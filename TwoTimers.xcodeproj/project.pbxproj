@@ -18,6 +18,7 @@
 		2D82D8AC1CA443F2008BFEB4 /* CountdownSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AB1CA443F2008BFEB4 /* CountdownSettingsViewController.swift */; };
 		2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */; };
 		2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */; };
+		2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2D82D8AB1CA443F2008BFEB4 /* CountdownSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownSettingsViewController.swift; path = CountdownTimer/ViewControllers/CountdownSettingsViewController.swift; sourceTree = "<group>"; };
 		2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CountdownTimer+CoreDataProperties.swift"; path = "CountdownTimer/Model/CountdownTimer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownTimer.swift; path = CountdownTimer/Model/CountdownTimer.swift; sourceTree = "<group>"; };
+		2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				2D82D8741CA33D24008BFEB4 /* AppDelegate.swift */,
 				2D82D89E1CA3F1B9008BFEB4 /* Constants.swift */,
 				2D82D8A91CA3FFB7008BFEB4 /* TimersTabBarController.swift */,
+				2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */,
 				2D82D87B1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld */,
 				2D82D8971CA3F08F008BFEB4 /* CountdownTimer */,
 				2D82D8961CA3F07F008BFEB4 /* Stopwatch */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D82D8751CA33D24008BFEB4 /* AppDelegate.swift in Sources */,
+				2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */,
 				2D82D8AC1CA443F2008BFEB4 /* CountdownSettingsViewController.swift in Sources */,
 				2D82D87D1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld in Sources */,
 				2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */,
