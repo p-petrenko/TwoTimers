@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import CoreData
+import CoreData
 
 class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate , UIPopoverPresentationControllerDelegate {
     
@@ -16,32 +16,19 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     var pickerViewMinutesArray = [String]()
     var pickerViewSecondsArray = [String]()
     
-    var selectedHours = Int()
-    var selectedMinutes = Int()
-    var selectedSeconds = Int()
+    var selectedHours : Int!
+    var selectedMinutes : Int!
+    var selectedSeconds : Int!
     
     let app = UIApplication.sharedApplication()
     
     var notificationCenter = NSNotificationCenter.defaultCenter()
     
-//    var sharedContext: NSManagedObjectContext {
-//        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        return delegate.managedObjectContext
-//    }
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
     
-//    lazy var fetchedResultsController: NSFetchedResultsController = {
-//        let fetchRequest = NSFetchRequest(entityName: "CountdownTimer")
-//        
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "selectedSeconds", ascending: true)]
-//        
-//        let fetchedResultsController = NSFetchedResultsController(
-//            fetchRequest: fetchRequest,
-//            managedObjectContext: self.sharedContext,
-//            sectionNameKeyPath: nil,
-//            cacheName: nil)
-//        
-//        return fetchedResultsController
-//    }()
+    var countdownTimer : CountdownTimer!
     
     @IBOutlet weak var chooseTime: UIPickerView!
 
@@ -53,18 +40,27 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
         selectedMinutes = chooseTime.selectedRowInComponent(1)
         selectedSeconds = chooseTime.selectedRowInComponent(2)
         
-//        let dictionary : [String : AnyObject] = [
-//            Constants.KeysUsedInCountdownTimer.SecondsForStart : selectedSeconds,
-//            Constants.KeysUsedInCountdownTimer.MinutesForStart : selectedMinutes,
-//            Constants.KeysUsedInCountdownTimer.HoursForStart : selectedHours
-//        ]
-//        
-//        let _ = CountdownTimer(dictionary: dictionary, context: self.sharedContext)
-//        do {
-//           try (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext.save()
-//        } catch let error as NSError {
-//            print("Error saving objects : \(error.userInfo)")
-//        }
+        let dictionary : [String : AnyObject] = [
+            Constants.KeysUsedInCountdownTimer.SecondsForStart : selectedSeconds,
+            Constants.KeysUsedInCountdownTimer.MinutesForStart : selectedMinutes,
+            Constants.KeysUsedInCountdownTimer.HoursForStart : selectedHours
+        ]
+        
+        if let cdTimers = fetchCountdownTimer() as [CountdownTimer]! {
+            if cdTimers.count == 0 {
+                countdownTimer = CountdownTimer(dictionary: dictionary, context: self.sharedContext)
+                print("   Start Button:   if one timer didn't exist before : \n s: \(countdownTimer.selectedSeconds), m : \(countdownTimer.selectedMinutes) , h : \(countdownTimer.selectedHours)\n")
+                
+            } else {
+                // delete existing countdownTimer and create the new one with new data in the dictionary of parameters
+                sharedContext.deleteObject(countdownTimer)
+                
+                countdownTimer = CountdownTimer(dictionary: dictionary, context: self.sharedContext)
+                print("   Start Button:   if one timer already exists : \n s: \(countdownTimer.selectedSeconds), m : \(countdownTimer.selectedMinutes) , h : \(countdownTimer.selectedHours)\n")
+            }
+        }
+        
+        CoreDataStackManager.sharedInstance().saveContext()
     }
     
     struct LocalConstants {
@@ -89,6 +85,21 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
             let infiniteSec = seconds % LocalConstants.NumOfMinutesOrSeconds
             pickerViewSecondsArray.append("\(infiniteSec)")
         }
+    
+        
+        if let cdTimers = fetchCountdownTimer() as [CountdownTimer]! {
+            if cdTimers.count != 0 {
+                countdownTimer = cdTimers[0]
+
+                selectedSeconds = countdownTimer.selectedSeconds as! Int
+                selectedMinutes = countdownTimer.selectedMinutes as! Int
+                selectedHours = countdownTimer.selectedHours as! Int
+                    
+                chooseTime.selectRow(selectedHours, inComponent: 0, animated: false)
+                chooseTime.selectRow(selectedMinutes, inComponent: 1, animated: false)
+                chooseTime.selectRow(selectedSeconds, inComponent: 2, animated: false)
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -98,12 +109,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
             app.idleTimerDisabled = false
         }
         
-//        do {
-//            try fetchedResultsController.performFetch()
-//        } catch let error as NSError {
-//            print("Error fetching objects : \(error.userInfo)")
-//            abort()
-//        }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -122,6 +128,20 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
         
 //        notificationCenter.postNotificationName(Constants.CountdownNotificationKey.TabBackToStopwatch, object: self)
     }
+    
+    // MARK: - Fetching data
+    
+    func fetchCountdownTimer() -> [CountdownTimer] {
+        let fetchRequest = NSFetchRequest(entityName: "CountdownTimer")
+        
+        do {
+            return try sharedContext.executeFetchRequest(fetchRequest) as! [CountdownTimer]
+        } catch {
+            print("an error with fetching actors")
+            return [CountdownTimer]()
+        }
+    }
+
     
     // MARK: - UIPickerView parameters
     
