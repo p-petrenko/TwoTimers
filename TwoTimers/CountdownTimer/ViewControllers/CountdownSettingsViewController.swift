@@ -49,24 +49,19 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
         if let cdTimers = fetchCountdownTimer() as [CountdownTimer]! {
             if cdTimers.count == 0 {
                 countdownTimer = CountdownTimer(dictionary: dictionary, context: self.sharedContext)
-                print("   Start Button:   if one timer didn't exist before : \n s: \(countdownTimer.selectedSeconds), m : \(countdownTimer.selectedMinutes) , h : \(countdownTimer.selectedHours)\n")
-                
             } else {
-                // delete existing countdownTimer and create the new one with new data in the dictionary of parameters
+    // delete existing countdownTimer and create the new one with new data in the dictionary of parameters
                 sharedContext.deleteObject(countdownTimer)
-                
                 countdownTimer = CountdownTimer(dictionary: dictionary, context: self.sharedContext)
-                print("   Start Button:   if one timer already exists : \n s: \(countdownTimer.selectedSeconds), m : \(countdownTimer.selectedMinutes) , h : \(countdownTimer.selectedHours)\n")
             }
         }
-        
         CoreDataStackManager.sharedInstance().saveContext()
     }
     
     struct LocalConstants {
         static let NumOfHrs = 23
         static let NumOfMinutesOrSeconds = 60
-        static let NumOfMinOrSecInComponent = 1000
+        static let NumOfMinOrSecInComponent = 1200
     }
     
     override func viewDidLoad() {
@@ -76,12 +71,13 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
             pickerViewHoursArray.append("\(hrs)")
         }
         
-        for minutes in 0...LocalConstants.NumOfMinOrSecInComponent {
+    // There will be 1200 minutes/seconds overall , but the value of infiniteMin/infiniteSec will be not bigger than 60
+        for minutes in 0..<LocalConstants.NumOfMinOrSecInComponent {
             let infiniteMin = minutes % LocalConstants.NumOfMinutesOrSeconds
             pickerViewMinutesArray.append("\(infiniteMin)")
         }
         
-        for seconds in 0...LocalConstants.NumOfMinOrSecInComponent {
+        for seconds in 0..<LocalConstants.NumOfMinOrSecInComponent {
             let infiniteSec = seconds % LocalConstants.NumOfMinutesOrSeconds
             pickerViewSecondsArray.append("\(infiniteSec)")
         }
@@ -98,24 +94,30 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
                 chooseTime.selectRow(selectedHours, inComponent: 0, animated: false)
                 chooseTime.selectRow(selectedMinutes, inComponent: 1, animated: false)
                 chooseTime.selectRow(selectedSeconds, inComponent: 2, animated: false)
+            } else {
+                chooseTime.selectRow(0, inComponent: 0, animated: false)
+    // The row will be in the middle of range (1200 / 2) so the user could scroll up and down as he wish.
+                chooseTime.selectRow((LocalConstants.NumOfMinOrSecInComponent / 2 + 1), inComponent: 1, animated: false)
+                chooseTime.selectRow(LocalConstants.NumOfMinOrSecInComponent / 2, inComponent: 2, animated: false)
             }
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         if app.idleTimerDisabled == true {
             app.idleTimerDisabled = false
         }
-        
-        
+    //        for tab-switches
+        notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabToCountdown, object: self)
+    
     }
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        //    permission for notifications
+    //    permission for notifications
         let regUserNotifSettings = UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))
 
         if regUserNotifSettings {
@@ -126,7 +128,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-//        notificationCenter.postNotificationName(Constants.CountdownNotificationKey.TabBackToStopwatch, object: self)
+        notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabBackToStopwatch, object: self) 
     }
     
     // MARK: - Fetching data
@@ -142,7 +144,6 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
         }
     }
 
-    
     // MARK: - UIPickerView parameters
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -193,6 +194,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    // If user sets time 00:00:00, then pickerView will automatically reset it to 00:01:00.
         if chooseTime.selectedRowInComponent(0) == 0 && chooseTime.selectedRowInComponent(1) % 60 == 0 && chooseTime.selectedRowInComponent(2) % 60 == 0 {
             chooseTime.selectRow(chooseTime.selectedRowInComponent(1) + 1 , inComponent: 1, animated: true)
         }
