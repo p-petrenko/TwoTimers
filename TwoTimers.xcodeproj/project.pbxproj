@@ -19,6 +19,7 @@
 		2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */; };
 		2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */; };
 		2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */; };
+		2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CountdownTimer+CoreDataProperties.swift"; path = "CountdownTimer/Model/CountdownTimer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownTimer.swift; path = CountdownTimer/Model/CountdownTimer.swift; sourceTree = "<group>"; };
 		2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownRunViewController.swift; path = CountdownTimer/ViewControllers/CountdownRunViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 		2D82D8A41CA3F27A008BFEB4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */,
 				2D82D8AB1CA443F2008BFEB4 /* CountdownSettingsViewController.swift */,
 			);
 			name = ViewControllers;
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */,
 				2D82D8751CA33D24008BFEB4 /* AppDelegate.swift in Sources */,
 				2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */,
 				2D82D8AC1CA443F2008BFEB4 /* CountdownSettingsViewController.swift in Sources */,
