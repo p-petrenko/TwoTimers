@@ -222,16 +222,6 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
                     selectedMinutes = chooseTime.selectedRowInComponent(1) % 60
                     selectedSeconds = chooseTime.selectedRowInComponent(2) % 60
                     
-                    var hourString = String()
-                    var minuteString = String()
-                    var secondString = String()
-                    
-                    hourString = timeToString(selectedHours)
-                    minuteString =  timeToString(selectedMinutes)
-                    secondString = timeToString(selectedSeconds)
-                    
-                    crvc.startTextForTime = hourString + ":" + minuteString + ":" + secondString
-                    
                 // pass set time to next ViewController
                     crvc.startHr = selectedHours
                     crvc.startMin = selectedMinutes
@@ -241,16 +231,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
         }
         
     }
-    
-    func timeToString(selectedTime : Int!) -> String {
-        if selectedTime < 10 {
-            return "0\(selectedHours)"
-        } else {
-            return "\(selectedHours)"
-        }
-    }
-    
-    
+
     func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
         return UINavigationController(rootViewController: controller.presentedViewController)
     }
