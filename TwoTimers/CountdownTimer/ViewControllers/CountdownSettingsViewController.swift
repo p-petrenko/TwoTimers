@@ -82,7 +82,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
             pickerViewSecondsArray.append("\(infiniteSec)")
         }
     
-        
+    // Use data from CoreData
         if let cdTimers = fetchCountdownTimer() as [CountdownTimer]! {
             if cdTimers.count != 0 {
                 countdownTimer = cdTimers[0]
@@ -202,8 +202,9 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        /*
+        
         if let identifier = segue.identifier {
+            /*
             if identifier == "Choose Music" {
                 if let mtvc = segue.destinationViewController as? MusicTableViewController {
                     if let ppc = mtvc.popoverPresentationController {
@@ -214,6 +215,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
                     }
                 }
             }
+            */
             if identifier == "Start Countdown Timer" {
                 if let crvc = segue.destinationViewController as? CountdownRunViewController {
                     selectedHours = chooseTime.selectedRowInComponent(0)
@@ -221,33 +223,32 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
                     selectedSeconds = chooseTime.selectedRowInComponent(2) % 60
                     
                     var hourString = String()
-                    var minutesString = String()
-                    var secondsString = String()
+                    var minuteString = String()
+                    var secondString = String()
                     
-                    if selectedHours < 10 {
-                        hourString = "0\(selectedHours)"
-                    } else {
-                        hourString = "\(selectedHours)"
-                    }
+                    hourString = timeToString(selectedHours)
+                    minuteString =  timeToString(selectedMinutes)
+                    secondString = timeToString(selectedSeconds)
                     
-                    if selectedMinutes < 10 {
-                        minutesString = ":0\(selectedMinutes)"
-                    } else {
-                        minutesString = ":\(selectedMinutes)"
-                    }
+                    crvc.startTextForTime = hourString + ":" + minuteString + ":" + secondString
                     
-                    if selectedSeconds < 10 {
-                        secondsString = ":0\(selectedSeconds)"
-                    } else {
-                        secondsString = ":\(selectedSeconds)"
-                    }
-                    crvc.startTextForTime = hourString + minutesString + secondsString
+                // pass set time to next ViewController
+                    crvc.startHr = selectedHours
+                    crvc.startMin = selectedMinutes
+                    crvc.startSec = selectedSeconds
                 }
             }
         }
-        */
+        
     }
     
+    func timeToString(selectedTime : Int!) -> String {
+        if selectedTime < 10 {
+            return "0\(selectedHours)"
+        } else {
+            return "\(selectedHours)"
+        }
+    }
     
     
     func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {

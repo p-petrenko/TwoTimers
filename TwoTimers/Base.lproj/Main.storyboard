@@ -69,7 +69,7 @@
                                 <state key="normal" image="StartButton"/>
                                 <connections>
                                     <action selector="startButton:" destination="Wrj-IV-lvl" eventType="touchUpInside" id="3Aj-cB-cJM"/>
-                                    <segue destination="abn-Zu-D0g" kind="show" id="7md-Np-Wd7"/>
+                                    <segue destination="abn-Zu-D0g" kind="show" identifier="Start Countdown Timer" id="7md-Np-Wd7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -167,6 +167,9 @@
                                     <constraint firstAttribute="width" constant="40" id="q5N-nd-Rmp"/>
                                 </constraints>
                                 <state key="normal" image="SoundOn"/>
+                                <connections>
+                                    <action selector="soundOnOffButton:" destination="abn-Zu-D0g" eventType="touchUpInside" id="ghx-3k-JjG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9n-mZ-CBy">
                                 <rect key="frame" x="151" y="463" width="80" height="80"/>
@@ -175,14 +178,9 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="iIP-zg-LNe"/>
                                 </constraints>
                                 <state key="normal" image="PauseButton"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEl-yC-oJ4">
-                                <rect key="frame" x="369" y="463" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="jgn-9g-sVb"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="jiQ-DV-RQL"/>
-                                </constraints>
-                                <state key="normal" image="StopButton"/>
+                                <connections>
+                                    <action selector="startOrPauseButton:" destination="abn-Zu-D0g" eventType="touchUpInside" id="2Rw-Z3-WHK"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Empty place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9I-2L-tM3">
                                 <rect key="frame" x="457" y="463" width="123" height="80"/>
@@ -205,18 +203,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-wg-ydI">
                                 <rect key="frame" x="500" y="375" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="H8S-MI-j3q"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="euX-WX-zOu"/>
+                                    <constraint firstAttribute="width" secondItem="2xM-wg-ydI" secondAttribute="height" multiplier="1:1" id="lhp-ZK-weX"/>
                                 </constraints>
                                 <state key="normal" image="+1minButton"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwH-PY-rip">
-                                <rect key="frame" x="20" y="375" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="bri-Xf-tra"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="btM-8A-G7A"/>
-                                </constraints>
-                                <state key="normal" image="-1minButton"/>
+                                <connections>
+                                    <action selector="plusOneMinuteButton:" destination="abn-Zu-D0g" eventType="touchUpInside" id="j3M-Xl-JV3"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-PI-VWj">
                                 <rect key="frame" x="108" y="375" width="384" height="80"/>
@@ -224,12 +216,35 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="745" text="00:01:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WI-z6-T7e">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="745" text="00:01:00 abc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WI-z6-T7e">
                                 <rect key="frame" x="20" y="120" width="560" height="247"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEl-yC-oJ4">
+                                <rect key="frame" x="369" y="463" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="jgn-9g-sVb"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="jiQ-DV-RQL"/>
+                                </constraints>
+                                <state key="normal" image="StopButton"/>
+                                <connections>
+                                    <action selector="stopButton:" destination="abn-Zu-D0g" eventType="touchUpInside" id="7f6-mi-Of1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwH-PY-rip">
+                                <rect key="frame" x="20" y="375" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="bri-Xf-tra"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="btM-8A-G7A"/>
+                                    <constraint firstAttribute="width" secondItem="gwH-PY-rip" secondAttribute="height" multiplier="1:1" id="ntc-tu-3j3"/>
+                                </constraints>
+                                <state key="normal" image="-1minButton"/>
+                                <connections>
+                                    <action selector="minusOneMinuteButton:" destination="abn-Zu-D0g" eventType="touchUpInside" id="92u-EI-uKq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -255,6 +270,7 @@
                                 <variation key="heightClass=compact" constant="8" symbolic="YES"/>
                             </constraint>
                             <constraint firstItem="b9n-mZ-CBy" firstAttribute="leading" secondItem="X5E-bE-gBc" secondAttribute="trailing" constant="8" symbolic="YES" id="Vn3-9y-sOU"/>
+                            <constraint firstItem="2xM-wg-ydI" firstAttribute="height" secondItem="gwH-PY-rip" secondAttribute="height" id="WrX-G2-DSm"/>
                             <constraint firstItem="aUK-sj-sSA" firstAttribute="height" secondItem="X5E-bE-gBc" secondAttribute="height" id="XMX-nP-C02"/>
                             <constraint firstItem="XA0-je-5Pf" firstAttribute="top" secondItem="DEl-yC-oJ4" secondAttribute="bottom" constant="8" symbolic="YES" id="Xze-m4-6mW"/>
                             <constraint firstItem="YgQ-PI-VWj" firstAttribute="leading" secondItem="b9n-mZ-CBy" secondAttribute="trailing" constant="8" id="YTm-XW-sbA">
@@ -269,6 +285,7 @@
                                 <variation key="heightClass=compact" constant="8" symbolic="YES"/>
                             </constraint>
                             <constraint firstItem="YgQ-PI-VWj" firstAttribute="top" secondItem="3WI-z6-T7e" secondAttribute="bottom" constant="8" symbolic="YES" id="gXM-tP-CK5"/>
+                            <constraint firstItem="2xM-wg-ydI" firstAttribute="width" secondItem="gwH-PY-rip" secondAttribute="width" id="k80-iy-Ke1"/>
                             <constraint firstItem="DEl-yC-oJ4" firstAttribute="leading" secondItem="aUK-sj-sSA" secondAttribute="trailing" constant="8" symbolic="YES" id="lcy-SX-JPH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3WI-z6-T7e" secondAttribute="trailing" id="ocP-4z-flb"/>
                             <constraint firstItem="G9I-2L-tM3" firstAttribute="leading" secondItem="DEl-yC-oJ4" secondAttribute="trailing" constant="8" symbolic="YES" id="qhC-qr-C18"/>
@@ -299,10 +316,10 @@
                                 <exclude reference="YTm-XW-sbA"/>
                                 <exclude reference="fav-WK-w4I"/>
                                 <exclude reference="znT-Br-gju"/>
+                                <exclude reference="slQ-eV-Pjs"/>
                                 <exclude reference="44v-ER-xtl"/>
                                 <exclude reference="UAv-H2-TLf"/>
                                 <exclude reference="bUN-9B-eIk"/>
-                                <exclude reference="slQ-eV-Pjs"/>
                                 <exclude reference="zPa-Hf-xCg"/>
                             </mask>
                         </variation>
@@ -332,14 +349,14 @@
                                 <exclude reference="YkQ-tg-ZdI"/>
                                 <exclude reference="bJC-hW-QsW"/>
                                 <exclude reference="xtL-Gx-Vri"/>
-                                <include reference="44v-ER-xtl"/>
-                                <include reference="UAv-H2-TLf"/>
-                                <include reference="bUN-9B-eIk"/>
-                                <exclude reference="lcy-SX-JPH"/>
                                 <exclude reference="4DM-8h-aGz"/>
                                 <exclude reference="E0Q-LJ-mdQ"/>
                                 <include reference="slQ-eV-Pjs"/>
                                 <exclude reference="uXF-dI-fFt"/>
+                                <include reference="44v-ER-xtl"/>
+                                <include reference="UAv-H2-TLf"/>
+                                <include reference="bUN-9B-eIk"/>
+                                <exclude reference="lcy-SX-JPH"/>
                                 <exclude reference="OJW-Nz-M2c"/>
                                 <include reference="zPa-Hf-xCg"/>
                                 <exclude reference="Hw4-jZ-PGO"/>
@@ -350,6 +367,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="minusOneMinuteOutlet" destination="gwH-PY-rip" id="xsK-oj-rnd"/>
+                        <outlet property="runningTimeLabel" destination="3WI-z6-T7e" id="wQ8-iU-Nxn"/>
+                        <outlet property="soundOnOffOutlet" destination="O0f-kW-qAU" id="2Q7-z3-GOv"/>
+                        <outlet property="startOrPauseOutlet" destination="b9n-mZ-CBy" id="74g-9b-Gl4"/>
+                        <outlet property="totalTimeLabel" destination="YgQ-PI-VWj" id="wdl-rE-rKn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCS-12-4bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

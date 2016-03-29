@@ -20,6 +20,26 @@
 		2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */; };
 		2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */; };
 		2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */; };
+		2DFEC3C61CAAD69700A58B0F /* wobble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */; };
+		2DFEC3C71CAAD69700A58B0F /* sleigh_bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */; };
+		2DFEC3C81CAAD69700A58B0F /* seagulls_and_foghorn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B41CAAD69700A58B0F /* seagulls_and_foghorn.mp3 */; };
+		2DFEC3C91CAAD69700A58B0F /* rhythmical_drums2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B51CAAD69700A58B0F /* rhythmical_drums2.mp3 */; };
+		2DFEC3CA1CAAD69700A58B0F /* rhythmical_drums1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B61CAAD69700A58B0F /* rhythmical_drums1.mp3 */; };
+		2DFEC3CB1CAAD69700A58B0F /* pipipi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B71CAAD69700A58B0F /* pipipi.mp3 */; };
+		2DFEC3CC1CAAD69700A58B0F /* pipi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B81CAAD69700A58B0F /* pipi.mp3 */; };
+		2DFEC3CD1CAAD69700A58B0F /* piano5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B91CAAD69700A58B0F /* piano5.mp3 */; };
+		2DFEC3CE1CAAD69700A58B0F /* piano4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3BA1CAAD69700A58B0F /* piano4.mp3 */; };
+		2DFEC3CF1CAAD69700A58B0F /* piano3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3BB1CAAD69700A58B0F /* piano3.mp3 */; };
+		2DFEC3D01CAAD69700A58B0F /* piano2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3BC1CAAD69700A58B0F /* piano2.mp3 */; };
+		2DFEC3D11CAAD69700A58B0F /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3BD1CAAD69700A58B0F /* piano.mp3 */; };
+		2DFEC3D21CAAD69700A58B0F /* piano_synth.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3BE1CAAD69700A58B0F /* piano_synth.mp3 */; };
+		2DFEC3D31CAAD69700A58B0F /* electronic_sound6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3BF1CAAD69700A58B0F /* electronic_sound6.mp3 */; };
+		2DFEC3D41CAAD69700A58B0F /* electronic_sound4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3C01CAAD69700A58B0F /* electronic_sound4.mp3 */; };
+		2DFEC3D51CAAD69700A58B0F /* electronic_sound3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3C11CAAD69700A58B0F /* electronic_sound3.mp3 */; };
+		2DFEC3D61CAAD69700A58B0F /* electronic_sound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3C21CAAD69700A58B0F /* electronic_sound2.mp3 */; };
+		2DFEC3D71CAAD69700A58B0F /* bottle_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3C31CAAD69700A58B0F /* bottle_sound.mp3 */; };
+		2DFEC3D81CAAD69700A58B0F /* anxious_violin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3C41CAAD69700A58B0F /* anxious_violin.mp3 */; };
+		2DFEC3D91CAAD69700A58B0F /* anxious_fretless_bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3C51CAAD69700A58B0F /* anxious_fretless_bass.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +58,26 @@
 		2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownTimer.swift; path = CountdownTimer/Model/CountdownTimer.swift; sourceTree = "<group>"; };
 		2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownRunViewController.swift; path = CountdownTimer/ViewControllers/CountdownRunViewController.swift; sourceTree = "<group>"; };
+		2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wobble.mp3; path = TwoTimers/SupportingFiles/Audio/wobble.mp3; sourceTree = "<group>"; };
+		2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sleigh_bells.mp3; path = TwoTimers/SupportingFiles/Audio/sleigh_bells.mp3; sourceTree = "<group>"; };
+		2DFEC3B41CAAD69700A58B0F /* seagulls_and_foghorn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = seagulls_and_foghorn.mp3; path = TwoTimers/SupportingFiles/Audio/seagulls_and_foghorn.mp3; sourceTree = "<group>"; };
+		2DFEC3B51CAAD69700A58B0F /* rhythmical_drums2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rhythmical_drums2.mp3; path = TwoTimers/SupportingFiles/Audio/rhythmical_drums2.mp3; sourceTree = "<group>"; };
+		2DFEC3B61CAAD69700A58B0F /* rhythmical_drums1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rhythmical_drums1.mp3; path = TwoTimers/SupportingFiles/Audio/rhythmical_drums1.mp3; sourceTree = "<group>"; };
+		2DFEC3B71CAAD69700A58B0F /* pipipi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pipipi.mp3; path = TwoTimers/SupportingFiles/Audio/pipipi.mp3; sourceTree = "<group>"; };
+		2DFEC3B81CAAD69700A58B0F /* pipi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pipi.mp3; path = TwoTimers/SupportingFiles/Audio/pipi.mp3; sourceTree = "<group>"; };
+		2DFEC3B91CAAD69700A58B0F /* piano5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano5.mp3; path = TwoTimers/SupportingFiles/Audio/piano5.mp3; sourceTree = "<group>"; };
+		2DFEC3BA1CAAD69700A58B0F /* piano4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano4.mp3; path = TwoTimers/SupportingFiles/Audio/piano4.mp3; sourceTree = "<group>"; };
+		2DFEC3BB1CAAD69700A58B0F /* piano3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano3.mp3; path = TwoTimers/SupportingFiles/Audio/piano3.mp3; sourceTree = "<group>"; };
+		2DFEC3BC1CAAD69700A58B0F /* piano2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano2.mp3; path = TwoTimers/SupportingFiles/Audio/piano2.mp3; sourceTree = "<group>"; };
+		2DFEC3BD1CAAD69700A58B0F /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano.mp3; path = TwoTimers/SupportingFiles/Audio/piano.mp3; sourceTree = "<group>"; };
+		2DFEC3BE1CAAD69700A58B0F /* piano_synth.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano_synth.mp3; path = TwoTimers/SupportingFiles/Audio/piano_synth.mp3; sourceTree = "<group>"; };
+		2DFEC3BF1CAAD69700A58B0F /* electronic_sound6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound6.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound6.mp3; sourceTree = "<group>"; };
+		2DFEC3C01CAAD69700A58B0F /* electronic_sound4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound4.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound4.mp3; sourceTree = "<group>"; };
+		2DFEC3C11CAAD69700A58B0F /* electronic_sound3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound3.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound3.mp3; sourceTree = "<group>"; };
+		2DFEC3C21CAAD69700A58B0F /* electronic_sound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound2.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound2.mp3; sourceTree = "<group>"; };
+		2DFEC3C31CAAD69700A58B0F /* bottle_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bottle_sound.mp3; path = TwoTimers/SupportingFiles/Audio/bottle_sound.mp3; sourceTree = "<group>"; };
+		2DFEC3C41CAAD69700A58B0F /* anxious_violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = anxious_violin.mp3; path = TwoTimers/SupportingFiles/Audio/anxious_violin.mp3; sourceTree = "<group>"; };
+		2DFEC3C51CAAD69700A58B0F /* anxious_fretless_bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = anxious_fretless_bass.mp3; path = TwoTimers/SupportingFiles/Audio/anxious_fretless_bass.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +160,26 @@
 		2D82D8951CA3EFD8008BFEB4 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */,
+				2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */,
+				2DFEC3B41CAAD69700A58B0F /* seagulls_and_foghorn.mp3 */,
+				2DFEC3B51CAAD69700A58B0F /* rhythmical_drums2.mp3 */,
+				2DFEC3B61CAAD69700A58B0F /* rhythmical_drums1.mp3 */,
+				2DFEC3B71CAAD69700A58B0F /* pipipi.mp3 */,
+				2DFEC3B81CAAD69700A58B0F /* pipi.mp3 */,
+				2DFEC3B91CAAD69700A58B0F /* piano5.mp3 */,
+				2DFEC3BA1CAAD69700A58B0F /* piano4.mp3 */,
+				2DFEC3BB1CAAD69700A58B0F /* piano3.mp3 */,
+				2DFEC3BC1CAAD69700A58B0F /* piano2.mp3 */,
+				2DFEC3BD1CAAD69700A58B0F /* piano.mp3 */,
+				2DFEC3BE1CAAD69700A58B0F /* piano_synth.mp3 */,
+				2DFEC3BF1CAAD69700A58B0F /* electronic_sound6.mp3 */,
+				2DFEC3C01CAAD69700A58B0F /* electronic_sound4.mp3 */,
+				2DFEC3C11CAAD69700A58B0F /* electronic_sound3.mp3 */,
+				2DFEC3C21CAAD69700A58B0F /* electronic_sound2.mp3 */,
+				2DFEC3C31CAAD69700A58B0F /* bottle_sound.mp3 */,
+				2DFEC3C41CAAD69700A58B0F /* anxious_violin.mp3 */,
+				2DFEC3C51CAAD69700A58B0F /* anxious_fretless_bass.mp3 */,
 			);
 			name = Audio;
 			sourceTree = "<group>";
@@ -163,8 +223,8 @@
 		2D82D8A41CA3F27A008BFEB4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */,
 				2D82D8AB1CA443F2008BFEB4 /* CountdownSettingsViewController.swift */,
+				2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -227,10 +287,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DFEC3D21CAAD69700A58B0F /* piano_synth.mp3 in Resources */,
+				2DFEC3D31CAAD69700A58B0F /* electronic_sound6.mp3 in Resources */,
+				2DFEC3CA1CAAD69700A58B0F /* rhythmical_drums1.mp3 in Resources */,
+				2DFEC3D41CAAD69700A58B0F /* electronic_sound4.mp3 in Resources */,
+				2DFEC3C61CAAD69700A58B0F /* wobble.mp3 in Resources */,
+				2DFEC3C81CAAD69700A58B0F /* seagulls_and_foghorn.mp3 in Resources */,
+				2DFEC3CE1CAAD69700A58B0F /* piano4.mp3 in Resources */,
+				2DFEC3CF1CAAD69700A58B0F /* piano3.mp3 in Resources */,
+				2DFEC3D01CAAD69700A58B0F /* piano2.mp3 in Resources */,
+				2DFEC3C71CAAD69700A58B0F /* sleigh_bells.mp3 in Resources */,
 				2D82D88D1CA3E804008BFEB4 /* Launch Screen.storyboard in Resources */,
+				2DFEC3C91CAAD69700A58B0F /* rhythmical_drums2.mp3 in Resources */,
+				2DFEC3D81CAAD69700A58B0F /* anxious_violin.mp3 in Resources */,
+				2DFEC3D71CAAD69700A58B0F /* bottle_sound.mp3 in Resources */,
 				2D82D8A61CA3F2F7008BFEB4 /* Default-568h@2x.png in Resources */,
+				2DFEC3D61CAAD69700A58B0F /* electronic_sound2.mp3 in Resources */,
+				2DFEC3CC1CAAD69700A58B0F /* pipi.mp3 in Resources */,
+				2DFEC3D51CAAD69700A58B0F /* electronic_sound3.mp3 in Resources */,
+				2DFEC3CD1CAAD69700A58B0F /* piano5.mp3 in Resources */,
 				2D82D87F1CA33D24008BFEB4 /* Assets.xcassets in Resources */,
 				2D82D87A1CA33D24008BFEB4 /* Main.storyboard in Resources */,
+				2DFEC3D91CAAD69700A58B0F /* anxious_fretless_bass.mp3 in Resources */,
+				2DFEC3D11CAAD69700A58B0F /* piano.mp3 in Resources */,
+				2DFEC3CB1CAAD69700A58B0F /* pipipi.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
