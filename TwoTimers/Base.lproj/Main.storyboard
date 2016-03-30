@@ -182,19 +182,19 @@
                                     <action selector="startOrPauseButton:" destination="abn-Zu-D0g" eventType="touchUpInside" id="2Rw-Z3-WHK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Empty place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9I-2L-tM3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9I-2L-tM3">
                                 <rect key="frame" x="457" y="463" width="123" height="80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Empty place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUK-sj-sSA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUK-sj-sSA">
                                 <rect key="frame" x="239" y="463" width="122" height="80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Empty place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-bE-gBc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-bE-gBc">
                                 <rect key="frame" x="20" y="463" width="123" height="80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -212,13 +212,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-PI-VWj">
                                 <rect key="frame" x="108" y="375" width="384" height="80"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="745" text="00:01:00 abc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WI-z6-T7e">
-                                <rect key="frame" x="20" y="120" width="560" height="247"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -245,6 +239,12 @@
                                     <action selector="minusOneMinuteButton:" destination="abn-Zu-D0g" eventType="touchUpInside" id="92u-EI-uKq"/>
                                 </connections>
                             </button>
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="745" text="00:01:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WI-z6-T7e">
+                                <rect key="frame" x="20" y="120" width="560" height="247"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="39"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -288,6 +288,7 @@
                             <constraint firstItem="2xM-wg-ydI" firstAttribute="width" secondItem="gwH-PY-rip" secondAttribute="width" id="k80-iy-Ke1"/>
                             <constraint firstItem="DEl-yC-oJ4" firstAttribute="leading" secondItem="aUK-sj-sSA" secondAttribute="trailing" constant="8" symbolic="YES" id="lcy-SX-JPH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3WI-z6-T7e" secondAttribute="trailing" id="ocP-4z-flb"/>
+                            <constraint firstItem="O0f-kW-qAU" firstAttribute="centerX" secondItem="2xM-wg-ydI" secondAttribute="centerX" id="opN-f6-V1n"/>
                             <constraint firstItem="G9I-2L-tM3" firstAttribute="leading" secondItem="DEl-yC-oJ4" secondAttribute="trailing" constant="8" symbolic="YES" id="qhC-qr-C18"/>
                             <constraint firstAttribute="trailingMargin" secondItem="G9I-2L-tM3" secondAttribute="trailing" id="qlT-aV-MXo"/>
                             <constraint firstItem="3WI-z6-T7e" firstAttribute="leading" secondItem="gwH-PY-rip" secondAttribute="trailing" constant="8" id="rQX-N7-hRE">
@@ -312,15 +313,16 @@
                             <mask key="constraints">
                                 <exclude reference="CC0-ay-0fT"/>
                                 <exclude reference="rQX-N7-hRE"/>
-                                <exclude reference="3dz-Rg-MtE"/>
-                                <exclude reference="YTm-XW-sbA"/>
                                 <exclude reference="fav-WK-w4I"/>
                                 <exclude reference="znT-Br-gju"/>
+                                <exclude reference="3dz-Rg-MtE"/>
+                                <exclude reference="YTm-XW-sbA"/>
                                 <exclude reference="slQ-eV-Pjs"/>
+                                <exclude reference="zPa-Hf-xCg"/>
+                                <exclude reference="opN-f6-V1n"/>
                                 <exclude reference="44v-ER-xtl"/>
                                 <exclude reference="UAv-H2-TLf"/>
                                 <exclude reference="bUN-9B-eIk"/>
-                                <exclude reference="zPa-Hf-xCg"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -330,40 +332,42 @@
                                 <exclude reference="X5E-bE-gBc"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="7EG-Oc-bho"/>
-                                <include reference="CC0-ay-0fT"/>
-                                <exclude reference="DjI-DN-a2V"/>
-                                <exclude reference="ocP-4z-flb"/>
-                                <include reference="rQX-N7-hRE"/>
-                                <include reference="3dz-Rg-MtE"/>
-                                <exclude reference="HLZ-Mq-5K3"/>
-                                <include reference="YTm-XW-sbA"/>
-                                <exclude reference="xoj-5m-AS4"/>
                                 <exclude reference="1yH-2q-jun"/>
                                 <exclude reference="HPp-n4-tEz"/>
                                 <exclude reference="ry1-Vu-s0U"/>
-                                <exclude reference="Vn3-9y-sOU"/>
-                                <include reference="fav-WK-w4I"/>
-                                <include reference="znT-Br-gju"/>
                                 <exclude reference="XMX-nP-C02"/>
                                 <exclude reference="YkQ-tg-ZdI"/>
                                 <exclude reference="bJC-hW-QsW"/>
                                 <exclude reference="xtL-Gx-Vri"/>
-                                <exclude reference="4DM-8h-aGz"/>
-                                <exclude reference="E0Q-LJ-mdQ"/>
-                                <include reference="slQ-eV-Pjs"/>
-                                <exclude reference="uXF-dI-fFt"/>
-                                <include reference="44v-ER-xtl"/>
-                                <include reference="UAv-H2-TLf"/>
-                                <include reference="bUN-9B-eIk"/>
-                                <exclude reference="lcy-SX-JPH"/>
-                                <exclude reference="OJW-Nz-M2c"/>
-                                <include reference="zPa-Hf-xCg"/>
                                 <exclude reference="Hw4-jZ-PGO"/>
                                 <exclude reference="qhC-qr-C18"/>
                                 <exclude reference="qlT-aV-MXo"/>
                                 <exclude reference="tzZ-OT-Qq7"/>
                                 <exclude reference="wuw-J5-8P8"/>
+                                <exclude reference="7EG-Oc-bho"/>
+                                <include reference="CC0-ay-0fT"/>
+                                <exclude reference="DjI-DN-a2V"/>
+                                <exclude reference="ocP-4z-flb"/>
+                                <include reference="rQX-N7-hRE"/>
+                                <exclude reference="Vn3-9y-sOU"/>
+                                <include reference="fav-WK-w4I"/>
+                                <include reference="znT-Br-gju"/>
+                                <include reference="3dz-Rg-MtE"/>
+                                <exclude reference="HLZ-Mq-5K3"/>
+                                <include reference="YTm-XW-sbA"/>
+                                <exclude reference="xoj-5m-AS4"/>
+                                <exclude reference="4DM-8h-aGz"/>
+                                <exclude reference="E0Q-LJ-mdQ"/>
+                                <include reference="slQ-eV-Pjs"/>
+                                <exclude reference="uXF-dI-fFt"/>
+                                <exclude reference="OJW-Nz-M2c"/>
+                                <include reference="zPa-Hf-xCg"/>
+                                <exclude reference="Cfs-FJ-ukr"/>
+                                <include reference="opN-f6-V1n"/>
+                                <include reference="44v-ER-xtl"/>
+                                <include reference="UAv-H2-TLf"/>
+                                <include reference="bUN-9B-eIk"/>
+                                <exclude reference="lcy-SX-JPH"/>
                             </mask>
                         </variation>
                     </view>

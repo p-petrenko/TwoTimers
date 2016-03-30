@@ -78,7 +78,7 @@ class CountdownRunViewController: UIViewController  {
     @IBOutlet weak var totalTimeLabel: UILabel!
     
     @IBOutlet weak var runningTimeLabel: UILabel!
-    
+
     @IBOutlet weak var startOrPauseOutlet: UIButton!
    
     @IBOutlet weak var soundOnOffOutlet: UIButton!
@@ -87,44 +87,44 @@ class CountdownRunViewController: UIViewController  {
     
     
     @IBAction func soundOnOffButton(sender: UIButton) {
-//        if soundIsOff == false || soundIsOff == nil {
-//            
-//            soundIsOff = true
-//            soundOnOffOutlet.setImage(UIImage(named : "SoundOff"), forState: .Normal)
-//            audioPlayer.volume = 0
-//        } else {
-//            soundIsOff = false
-//            soundOnOffOutlet.setImage(UIImage(named : "SoundOn"), forState: .Normal)
-//            audioPlayer.volume = 1
-//        }
-//        defaults.setObject(soundIsOff, forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff)
+        if soundIsOff == false || soundIsOff == nil {
+            
+            soundIsOff = true
+            soundOnOffOutlet.setImage(UIImage(named : "SoundOff"), forState: .Normal)
+            audioPlayer.volume = 0
+        } else {
+            soundIsOff = false
+            soundOnOffOutlet.setImage(UIImage(named : "SoundOn"), forState: .Normal)
+            audioPlayer.volume = 1
+        }
+        defaults.setObject(soundIsOff, forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff)
     }
     
     @IBAction func minusOneMinuteButton(sender: UIButton) {
-//        //  can work only under conditions
-//        if timeLeftInTimer > 60 { // more than 1 minute
-//            
-//            plusMinute = false
-//            minutesDelta -= 1
-//            totalTimeEvaluate()
-//            
-//            changeTimeLabel()
-//            
-//        } else {
-//            minusOneMinuteOutlet.enabled = false
-//        }
+        //  can work only under conditions
+        if timeLeftInTimer > 60 { // more than 1 minute
+            
+            plusMinute = false
+            minutesDelta -= 1
+            totalTimeEvaluate()
+            
+            changeTimeLabel()
+            
+        } else {
+            minusOneMinuteOutlet.enabled = false
+        }
     }
 
     @IBAction func plusOneMinuteButton(sender: UIButton) {
-//        plusMinute = true
-//        minutesDelta += 1
-//        totalTimeEvaluate()
-//        
-//        changeTimeLabel()
-//        
-//        if minusOneMinuteOutlet.enabled == false {
-//            minusOneMinuteOutlet.enabled = true
-//        }
+        plusMinute = true
+        minutesDelta += 1
+        totalTimeEvaluate()
+        
+        changeTimeLabel()
+        
+        if minusOneMinuteOutlet.enabled == false {
+            minusOneMinuteOutlet.enabled = true
+        }
     }
 
 
@@ -136,56 +136,55 @@ class CountdownRunViewController: UIViewController  {
         self.navigationController?.popViewControllerAnimated(true)
     }
 
-
-    func startTimer(nameOfButton : UIButton) {
-//        if let appDelegate = app.delegate as? AppDelegate {
-//            if appDelegate.oneTimerStarted == false {
-//                
-//                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timerBeep"), userInfo: nil, repeats: true)
-//                
-//                if timeKeeper == 0 {
-//                    startDate = NSDate()
-//                } else {
-//                    startDate = NSDate(timeIntervalSinceNow: timeKeeper)
-//                }
-//                
-//                
-//                nameOfButton.setImage(UIImage(named: "PauseButton"), forState: .Normal)
-//                appDelegate.oneTimerStarted = true
-//            } else {
-//                // press pause
-//                
-//                timeKeeper = secondsFromNSDate // = -1 , -2, -3 ... with time ticking
-//                timer.invalidate()
-//                nameOfButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
-//                appDelegate.oneTimerStarted = false
-//            }
-//        }
-    }
-    
-    func stopTimer() {
-//        timeKeeper = 0
-//        timer.invalidate()
-//        minutesDelta = 0
-//        
-//        if let appDelegate = app.delegate as? AppDelegate {
-//            appDelegate.oneTimerStarted = false
-//        }
-    }
-    
-    var arrayOfFormatsForFileNames = [String]()
-    
-    func formatsForMelodies() {
-//        for _ in 0..<Constants.arrayOfFileNames.count {
-//            arrayOfFormatsForFileNames.append("mp3")
-//        }
-    }
-    
     func timeToString(selectedTime : Int!) -> String {
         if selectedTime < 10 {
             return "0\(selectedTime)"
         } else {
             return "\(selectedTime)"
+        }
+    }
+
+    func startTimer(nameOfButton : UIButton) {
+        
+        if let appDelegate = app.delegate as? AppDelegate {
+            if appDelegate.oneTimerStarted == false {
+                
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timerBeep"), userInfo: nil, repeats: true)
+                
+                if timeKeeper == 0 {
+                    startDate = NSDate()
+                } else {
+                    startDate = NSDate(timeIntervalSinceNow: timeKeeper)
+                }
+                
+                nameOfButton.setImage(UIImage(named: "PauseButton"), forState: .Normal)
+                appDelegate.oneTimerStarted = true
+            } else {
+                // press pause
+                
+                timeKeeper = secondsFromNSDate // = -1 , -2, -3 ... with time ticking
+                timer.invalidate()
+                nameOfButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
+                appDelegate.oneTimerStarted = false
+            }
+        }
+    }
+    
+    func stopTimer() {
+        timeKeeper = 0
+        timer.invalidate()
+        minutesDelta = 0
+        
+        if let appDelegate = app.delegate as? AppDelegate {
+            appDelegate.oneTimerStarted = false
+        }
+    }
+    
+    var arrayOfFormatsForFileNames = [String]()
+    
+    func formatsForMelodies() {
+        for _ in 0..<Constants.arrayOfFileNames.count {
+            arrayOfFormatsForFileNames.append("mp3")
         }
     }
     
@@ -194,45 +193,43 @@ class CountdownRunViewController: UIViewController  {
         
         startTextForTime = "\(timeToString(startHr)):\(timeToString(startMin)):\(timeToString(startSec))"
 
-//        formatsForMelodies()
-//
-//        // convert start time from hr, min, sec into seconds
-//        secondsFromChosenTime = TimeConstants.secInHour * startHr + TimeConstants.secInMinute * startMin + startSec
-//        
-//
-//        
-//        // if user chose less than 60 seconds, disable "-1m" button
-//        if secondsFromChosenTime < 60 {
-//            minusOneMinuteOutlet.enabled = false
-//        } else {
-//            minusOneMinuteOutlet.enabled = true
-//        }
-//        
-//        // take chosen melody
-//        if let chosMelodyNum = defaults.objectForKey(Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
-//            numOfChosenMelody = chosMelodyNum
-//            audioURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(Constants.arrayOfFileNames[numOfChosenMelody!], ofType:"mp3")!)
-//        } else {
-//            audioURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(Constants.MelodyFileNames.SimpleSoundFileName, ofType: "mp3")!)
-//        }
-//        audioPlayer = try! AVAudioPlayer(contentsOfURL: audioURL!)
-//        
-//        notificationCenter.addObserver(self, selector: "actOnSwitchToStopwatch", name: Constants.CountdownNotificationKeys.TabBackToStopwatch, object: nil)
-//        notificationCenter.addObserver(self, selector: "actOnSwitchBackToCountdown", name: Constants.CountdownNotificationKeys.TabBackToCountdown, object: nil)
+        formatsForMelodies()
+
+        // convert start time from hr, min, sec into seconds
+        secondsFromChosenTime = TimeConstants.secInHour * startHr + TimeConstants.secInMinute * startMin + startSec
+
+    // if user chose less than 60 seconds, disable "-1m" button
+        if secondsFromChosenTime < 60 {
+            minusOneMinuteOutlet.enabled = false
+        } else {
+            minusOneMinuteOutlet.enabled = true
+        }
+
+        // take chosen melody
+        if let chosMelodyNum = defaults.objectForKey(Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
+            numOfChosenMelody = chosMelodyNum
+            audioURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(Constants.arrayOfFileNames[numOfChosenMelody!], ofType:"mp3")!)
+        } else {
+            audioURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(Constants.MelodyFileNames.SimpleSoundFileName, ofType: "mp3")!)
+        }
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: audioURL!)
+        
+        notificationCenter.addObserver(self, selector: "actOnSwitchToStopwatch", name: Constants.CountdownNotificationKeys.TabBackToStopwatch, object: nil)
+        notificationCenter.addObserver(self, selector: "actOnSwitchBackToCountdown", name: Constants.CountdownNotificationKeys.TabBackToCountdown, object: nil)
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 6/255, green: 167/255, blue: 244/255, alpha: 1)
         
     }
     
     func actOnSwitchToStopwatch() {
-//        //        println("-- recieved message of going to Stopwatch")
-//        switchToStopwatch = true
-//        startTextForTime = nil
+        //        println("-- recieved message of going to Stopwatch")
+        switchToStopwatch = true
+        startTextForTime = nil
     }
     
     func actOnSwitchBackToCountdown() {
-//        //        println("switchBackToCountdown = true")
-//        switchBackToCountdown = true
+        //        println("switchBackToCountdown = true")
+        switchBackToCountdown = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -251,42 +248,43 @@ class CountdownRunViewController: UIViewController  {
         }
         
         //    MARK: -Audio
-//        audioPlayer = try! AVAudioPlayer(contentsOfURL: audioURL!)
-//        
-//        if let soundVol = defaults.objectForKey(Constants.KeysUsedInCountdownTimer.SoundOnOff) as? Bool {
-//            soundIsOff = soundVol
-//            if soundIsOff == true {
-//                soundOnOffOutlet.setImage(UIImage(named : "SoundOff"), forState: .Normal)
-//                audioPlayer.volume = 0
-//            } else {
-//                soundOnOffOutlet.setImage(UIImage(named : "SoundOn"), forState: .Normal)
-//                audioPlayer.volume = 1
-//            }
-//        } else {
-//            soundOnOffOutlet.setImage(UIImage(named : "SoundOn"), forState: .Normal)
-//            audioPlayer.volume = 1
-//        }
-//        
-//        audioPlayer.prepareToPlay()
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: audioURL!)
+        
+        if let soundVol = defaults.objectForKey(Constants.KeysUsedInCountdownTimer.SoundOnOff) as? Bool {
+            soundIsOff = soundVol
+            if soundIsOff == true {
+                soundOnOffOutlet.setImage(UIImage(named : "SoundOff"), forState: .Normal)
+                audioPlayer.volume = 0
+            } else {
+                soundOnOffOutlet.setImage(UIImage(named : "SoundOn"), forState: .Normal)
+                audioPlayer.volume = 1
+            }
+        } else {
+            soundOnOffOutlet.setImage(UIImage(named : "SoundOn"), forState: .Normal)
+            audioPlayer.volume = 1
+        }
+        
+        audioPlayer.prepareToPlay()
         
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-//    //    add observer
-//        notificationCenter.addObserver(app.delegate!,
-//            selector: Selector("doLocalNotification"),
-//            name: UIApplicationDidEnterBackgroundNotification,
-//            object: nil)
-//        
-//    //   start timer and set start data for labels
-//        if switchBackToCountdown == false {
-//            startTimer(startOrPauseOutlet)
-//        }
-//        
-//    //    if return from StopwatchVC to RunVC :
-//        switchToStopwatch = false
-//        switchBackToCountdown = false
+    //    add observer
+        notificationCenter.addObserver(app.delegate!,
+            selector: Selector("doLocalNotification"),
+            name: UIApplicationDidEnterBackgroundNotification,
+            object: nil)
+        
+    //   start timer and set start data for labels
+        if switchBackToCountdown == false {
+            startTimer(startOrPauseOutlet)
+            print("")
+        }
+
+    //    if return from StopwatchVC to RunVC :
+        switchToStopwatch = false
+        switchBackToCountdown = false
         
     }
     
@@ -299,137 +297,111 @@ class CountdownRunViewController: UIViewController  {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(false)
-//        
-//        notificationCenter.removeObserver(app.delegate!)
-//        app.cancelAllLocalNotifications()
-//        
-//        if !switchToStopwatch {
-//            stopTimer()
-//            notificationCenter.removeObserver(self)
-//        }
+        
+        notificationCenter.removeObserver(app.delegate!)
+        app.cancelAllLocalNotifications()
+        
+        if !switchToStopwatch {
+            stopTimer()
+            notificationCenter.removeObserver(self)
+        }
     }
     
     func pushAlert() {
-//        let alert = UIAlertController (title: StringsForAlert.TimeIsUpAlert.Title,
-//            message: "",
-//            preferredStyle: UIAlertControllerStyle.Alert
-//        )
-//        alert.addAction(UIAlertAction(title: StringsForAlert.TimeIsUpAlert.ActionButton , style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
-//    //        add +1 minute
-//            self.plusMinute = true
-//            self.minutesDelta += 1
-//            self.totalTimeEvaluate()
-//            self.minutes += 1
-//            //        start timer
-//            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timerBeep"), userInfo: nil, repeats: true)
-//            if let appDelegate = self.app.delegate as? AppDelegate {
-//                appDelegate.oneTimerStarted = true
-//            }
-//    //        stop playing sound after alert is closed
-//            self.audioPlayer.stop()
-//        }))
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
-//            self.stopTimer()
-//            self.navigationController?.popViewControllerAnimated(true)
-//            self.audioPlayer.stop()
-//        }))
-//        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController (title: StringsForAlert.TimeIsUpAlert.Title,
+            message: "",
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        alert.addAction(UIAlertAction(title: StringsForAlert.TimeIsUpAlert.ActionButton , style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
+    //        add +1 minute
+            self.plusMinute = true
+            self.minutesDelta += 1
+            self.totalTimeEvaluate()
+            self.minutes += 1
+            //        start timer
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timerBeep"), userInfo: nil, repeats: true)
+            if let appDelegate = self.app.delegate as? AppDelegate {
+                appDelegate.oneTimerStarted = true
+            }
+    //        stop playing sound after alert is closed
+            self.audioPlayer.stop()
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
+            self.stopTimer()
+            self.navigationController?.popViewControllerAnimated(true)
+            self.audioPlayer.stop()
+        }))
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func timerBeep() {
-//        changeTimeLabel()
-//        defaults.setObject(timeLeftInTimer, forKey: Constants.KeysUsedInCountdownTimer.TimeLeft)
+        changeTimeLabel()
+/* is this line necessary? */
+        defaults.setObject(timeLeftInTimer, forKey: Constants.KeysUsedInCountdownTimer.TimeLeft)
     }
     
     func changeTimeLabel() {
         
-//        secondsFromNSDate = startDate.timeIntervalSinceNow
-//        timeLeftInTimer = secondsFromChosenTime + Int(secondsFromNSDate) + minutesDelta * 60
-//        if timeLeftInTimer < 60 {
-//            minusOneMinuteOutlet.enabled = false
-//        } else {
-//            minusOneMinuteOutlet.enabled = true
-//        }
-//        
-//        hours = timeLeftInTimer / TimeConstants.secInHour
-//        minutes = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) / TimeConstants.secInMinute % TimeConstants.secInMinute
-//        seconds = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) % TimeConstants.secInMinute
-//        
-//        //  display on the screen
-//        if hours < 10 {
-//            hourString = "0\(hours)"
-//        } else {
-//            hourString = "\(hours)"
-//        }
-//        
-//        if minutes < 10 {
-//            minutesString = ":0\(minutes)"
-//        } else {
-//            minutesString = ":\(minutes)"
-//        }
-//        
-//        if seconds < 10 {
-//            secondsString = ":0\(seconds)"
-//        } else {
-//            secondsString = ":\(seconds)"
-//        }
-//        
-//        if  timeLeftInTimer == 0 {
-//            timer.invalidate()
-//    //    play audio if it wasn't played at background state
-//            audioPlayer.play()
-//            
-//            //     alert action
-//            pushAlert()
-//        } else if timeLeftInTimer < 0 {
-//            hourString = "00" ; minutesString = ":00" ; secondsString = ":00"
-//            stopTimer()
-//            pushAlert()
-//        }
-//        runningTimeLabel.text = hourString + minutesString + secondsString
+        secondsFromNSDate = startDate.timeIntervalSinceNow
+        timeLeftInTimer = secondsFromChosenTime + Int(secondsFromNSDate) + minutesDelta * 60
+        
+        if timeLeftInTimer < 60 {
+            minusOneMinuteOutlet.enabled = false
+        } else {
+            minusOneMinuteOutlet.enabled = true
+        }
+        
+        hours = timeLeftInTimer / TimeConstants.secInHour
+        minutes = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) / TimeConstants.secInMinute % TimeConstants.secInMinute
+        seconds = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) % TimeConstants.secInMinute
+        
+        //  text for displaying on the screen
+        runningTimeLabel.text = timeToString(hours) + ":" + timeToString(minutes) + ":" + timeToString(seconds)
+
+ 
+        if  timeLeftInTimer == 0 {
+            timer.invalidate()
+    //    play audio if it wasn't played at background state
+            audioPlayer.play()
+            
+    //     alert action
+            pushAlert()
+        } else if timeLeftInTimer < 0 {
+            hourString = "00" ; minutesString = ":00" ; secondsString = ":00"
+            stopTimer()
+            pushAlert()
+        }
+        
     }
     
     func totalTimeEvaluate() {
         
-//        var localHoursFromDefaults = Int(startHr)
-//        let localMinutesFromDefaults = Int(startMin)
-//        
-//        minutesForTotalTime = (localMinutesFromDefaults + minutesDelta) % TimeConstants.secInMinute
-//        
-//        let leftOver = (localMinutesFromDefaults + minutesDelta) - (localMinutesFromDefaults + minutesDelta) % TimeConstants.secInMinute
-//        
-//        if leftOver != 0 {
-//            localHoursFromDefaults += leftOver / TimeConstants.secInMinute as Int!
-//        }
-//        
-//        if minutesForTotalTime < 0 {
-//            localHoursFromDefaults -= 1
-//            minutesForTotalTime = TimeConstants.secInMinute + minutesForTotalTime
-//        }
-//        
-//        if !plusMinute && localHoursFromDefaults < 0 {
-//            localHoursFromDefaults = 0
-//            minutesForTotalTime = 0
-//            minutesDelta = 0
-//        }
-//        
-//        totalTimeLabel.text = totalTimeText
-//        if startHr < 10 {
-//            totalTimeLabel.text = totalTimeLabel.text! + "0\(localHoursFromDefaults)"
-//        } else {
-//            totalTimeLabel.text = totalTimeLabel.text! + "\(localHoursFromDefaults)"
-//        }
-//        
-//        if minutesForTotalTime < 10 {
-//            totalTimeLabel.text = totalTimeLabel.text! + ":0\(minutesForTotalTime)"
-//        } else {
-//            totalTimeLabel.text = totalTimeLabel.text! + ":\(minutesForTotalTime)"
-//        }
-//        
-//        if startSec < 10 {
-//            totalTimeLabel.text = totalTimeLabel.text! + ":0\(startSec)"
-//        } else {
-//            totalTimeLabel.text = totalTimeLabel.text! + ":\(startSec)"
-//        }
+        var localHoursFromDefaults = Int(startHr)
+        let localMinutesFromDefaults = Int(startMin)
+        
+        minutesForTotalTime = (localMinutesFromDefaults + minutesDelta) % TimeConstants.secInMinute
+        
+        let leftOver = (localMinutesFromDefaults + minutesDelta) - (localMinutesFromDefaults + minutesDelta) % TimeConstants.secInMinute
+        
+        if leftOver != 0 {
+            localHoursFromDefaults += leftOver / TimeConstants.secInMinute as Int!
+        }
+        
+        if minutesForTotalTime < 0 {
+            localHoursFromDefaults -= 1
+            minutesForTotalTime = TimeConstants.secInMinute + minutesForTotalTime
+        }
+        
+        if !plusMinute && localHoursFromDefaults < 0 {
+            localHoursFromDefaults = 0
+            minutesForTotalTime = 0
+            minutesDelta = 0
+        }
+        
+        totalTimeLabel.text = totalTimeText // This is NSLocalizedString , so the start of text for label will be availible for 2 languages
+        totalTimeLabel.text = totalTimeLabel.text! + timeToString(startHr) + ":" + timeToString(minutesForTotalTime) + ":" + timeToString(startSec)
+        
     }
 }
+
+
