@@ -93,7 +93,7 @@ class CountdownRunViewController: UIViewController  {
     
     @IBAction func minusOneMinuteButton(sender: UIButton) {
 //        //  can work only under conditions
-//        if timeLeftInTimer > 60 { // more than 1 minute
+//        if timeLeftInTimer > TimeConstants.secInMinute { // more than 1 minute
 //            
 //            plusMinute = false
 //            minutesDelta -= 1
@@ -123,8 +123,8 @@ class CountdownRunViewController: UIViewController  {
     }
 
     @IBAction func stopButton(sender: UIButton) {
+        stopTimer()
         self.navigationController?.popViewControllerAnimated(true)
-    // don't need to stop timer, because it stops in viewDidDisappear()
     }
 
     func timeToString(selectedTime : Int!) -> String {
@@ -192,7 +192,7 @@ class CountdownRunViewController: UIViewController  {
         secondsFromChosenTime = TimeConstants.secInHour * startHr + TimeConstants.secInMinute * startMin + startSec
 
     // if user chose less than 60 seconds, disable "-1m" button
-        if secondsFromChosenTime < 60 {
+        if secondsFromChosenTime < TimeConstants.secInMinute {
             minusOneMinuteOutlet.enabled = false
         } else {
             minusOneMinuteOutlet.enabled = true
@@ -227,7 +227,6 @@ class CountdownRunViewController: UIViewController  {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         if app.idleTimerDisabled == true {
             app.idleTimerDisabled = false
         }
@@ -266,11 +265,11 @@ class CountdownRunViewController: UIViewController  {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     //    add observer
-//        notificationCenter.addObserver(app.delegate!,
-//            selector: Selector("doLocalNotification"),
-//            name: UIApplicationDidEnterBackgroundNotification,
-//            object: nil)
-//        
+        notificationCenter.addObserver(app.delegate!,
+            selector: Selector("doLocalNotification"),
+            name: UIApplicationDidEnterBackgroundNotification,
+            object: nil)
+//
     //   start timer and set start data for labels
         if switchBackToCountdown == false {
             startTimer(startOrPauseOutlet)
@@ -284,19 +283,18 @@ class CountdownRunViewController: UIViewController  {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        print("viewWillDisappear")
 //        notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabBackToStopwatch, object: self) 
-//        defaults.setObject(timeLeftInTimer, forKey: Constants.KeysUsedInCountdownTimer.TimeLeft)
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(false)
-//        
-//        notificationCenter.removeObserver(app.delegate!)
-//        app.cancelAllLocalNotifications()
+        print("viewDidDisappear")
+        notificationCenter.removeObserver(app.delegate!)
+        app.cancelAllLocalNotifications()
         
         if !switchToStopwatch {
-            stopTimer()
             notificationCenter.removeObserver(self)
         }
     }
@@ -329,45 +327,40 @@ class CountdownRunViewController: UIViewController  {
 
     
     func changeTimeLabel() {
-        
-        
-        secondsFromNSDate = startDate.timeIntervalSinceNow // will be < 0 because in future is more time than in past , like 12:00 is Now , and 12:15 is future. So in the future at 12:15 we must subtract 15 seconds (-15 sec) to get that past 12:00.
-        print("timeLeftInTimer: ")
-        timeLeftInTimer = secondsFromChosenTime + Int(secondsFromNSDate) + minutesDelta * 60
-        if timeLeftInTimer < 60 {
-            minusOneMinuteOutlet.enabled = false
-        } else {
-            minusOneMinuteOutlet.enabled = true
+
+        //Set this value here for case of going to the background. So Notification will come in time, left in timer. 
+        if let appDelegate = self.app.delegate as? AppDelegate {
+            appDelegate.secondsForFireDate = Double(timeLeftInTimer)
         }
         
-        var hours = timeLeftInTimer / TimeConstants.secInHour
-        var minutes = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) / TimeConstants.secInMinute % TimeConstants.secInMinute
-        var seconds = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) % TimeConstants.secInMinute
-        
-        print("hours : \(hours) minutes : \(minutes) seconds : \(seconds)")
-        
-        //  text for displaying on the screen
-        runningTimeLabel.text = timeToString(hours) + ":" + timeToString(minutes) + ":" + timeToString(seconds)
+        secondsFromNSDate = startDate.timeIntervalSinceNow // will be < 0 because in future is more time than in past , like 12:00 is Now , and 12:15 is future. So in the future at 12:15 we must subtract 15 seconds (-15 sec) to get that past 12:00.
 
- 
-        if  timeLeftInTimer == 0 {
-            timer.invalidate()
-            // or stopTimer()
-    //    play audio if it wasn't played at background state
-//            audioPlayer.play()
-            
-    //     alert action
-            pushAlert()
-        } else if timeLeftInTimer < 0 {
-            hours = 0
-            minutes = 0
-            seconds = 0
-            runningTimeLabel.text = timeToString(hours) + ":" + timeToString(minutes) + ":" + timeToString(seconds)
-            
- /* do I realy need this variables? Looks a bit strange */
-//            hourString = "00" ; minutesString = ":00" ; secondsString = ":00"
+//        
+        timeLeftInTimer = secondsFromChosenTime + Int(secondsFromNSDate) + minutesDelta * TimeConstants.secInMinute
+        
+        if timeLeftInTimer < 0 {
+        // the label of time must be fixed not to show smth like 00:0-10:0-11 (negative time)
+            runningTimeLabel.text = "00:00:00"
             stopTimer()
             pushAlert()
+        } else if timeLeftInTimer == 0 {
+            runningTimeLabel.text = "00:00:00"
+            stopTimer()
+            pushAlert()
+//    play audio if it wasn't played at background state
+//            audioPlayer.play()
+        } else {
+            if timeLeftInTimer < TimeConstants.secInMinute {
+                minusOneMinuteOutlet.enabled = false
+            } else {
+                minusOneMinuteOutlet.enabled = true
+            }
+            let hours = timeLeftInTimer / TimeConstants.secInHour
+            let minutes = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) / TimeConstants.secInMinute % TimeConstants.secInMinute
+            let seconds = ( timeLeftInTimer - (hours * TimeConstants.secInHour)) % TimeConstants.secInMinute
+
+            //  text for displaying on the screen
+            runningTimeLabel.text = timeToString(hours) + ":" + timeToString(minutes) + ":" + timeToString(seconds)
         }
     }
     

@@ -87,14 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if oneTimerStarted {
             print("   *** Implement doLocalNotification()  function")
-            //   time in seconds for fireDate
-            if let timeInCountdown = defaults.objectForKey(Constants.KeysUsedInCountdownTimer.TimeLeft) as? Double {
-                secondsForFireDate = timeInCountdown
-            }
-            
-            
             app.cancelLocalNotification(localNotification)
-            
             
             if let chosMelodyNum = defaults.objectForKey(Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
                 soundNameForNotification =  "\(arrayOfFileNames[chosMelodyNum])" + ".mp3"
@@ -120,5 +113,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             app.scheduleLocalNotification(localNotification)
         }
     }
+    
 }
 
