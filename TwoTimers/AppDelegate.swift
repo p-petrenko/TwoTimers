@@ -94,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 soundNameForNotification = "\(arrayOfFileNames[1])" + ".mp3"
             }
+
             
             localNotification.fireDate = NSDate(timeIntervalSinceNow: secondsForFireDate)
             localNotification.alertTitle = "Alert Title"
