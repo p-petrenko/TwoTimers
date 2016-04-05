@@ -401,11 +401,11 @@
             </objects>
             <point key="canvasLocation" x="-154" y="510"/>
         </scene>
-        <!--Item 1-->
+        <!--Countdown Timer-->
         <scene sceneID="Fpd-XJ-asJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bHk-XF-Fo5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="QfH-3z-ZJQ"/>
+                    <tabBarItem key="tabBarItem" title="Countdown Timer" image="ImageForCountdownTab" id="QfH-3z-ZJQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ahc-Ks-zCe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -420,11 +420,11 @@
             </objects>
             <point key="canvasLocation" x="666" y="180"/>
         </scene>
-        <!--Item 2-->
+        <!--Stopwatch-->
         <scene sceneID="HOZ-Uf-mpy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Noi-XR-rGB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="hv7-gQ-xSv"/>
+                    <tabBarItem key="tabBarItem" title="Stopwatch" image="ImageForStopwatchTab" id="hv7-gQ-xSv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixz-kx-8cb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -462,6 +462,8 @@
         <image name="+1minButton" width="100" height="100"/>
         <image name="-1minButton" width="100" height="100"/>
         <image name="ChooseMelodyButton" width="40" height="40"/>
+        <image name="ImageForCountdownTab" width="32" height="32"/>
+        <image name="ImageForStopwatchTab" width="32" height="32"/>
         <image name="PauseButton" width="100" height="100"/>
         <image name="SoundOn" width="40" height="40"/>
         <image name="StartButton" width="100" height="100"/>

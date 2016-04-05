@@ -2,7 +2,7 @@
 //  CoreDataStackManager.swift
 //  TwoTimers
 //
-//  Created by Sergey Petrenko on 25.03.16.
+//  Created by Polina Petrenko on 25.03.16.
 //  Copyright © 2016 Polina Petrenko. All rights reserved.
 //
 

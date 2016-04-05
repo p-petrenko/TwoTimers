@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D5FD22B1CB3FDD100A1A1C8 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */; };
 		2D82D8751CA33D24008BFEB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8741CA33D24008BFEB4 /* AppDelegate.swift */; };
 		2D82D87A1CA33D24008BFEB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D82D8781CA33D24008BFEB4 /* Main.storyboard */; };
 		2D82D87D1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D87B1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopwatchViewController.swift; path = Stopwatch/ViewControllers/StopwatchViewController.swift; sourceTree = "<group>"; };
 		2D82D8711CA33D24008BFEB4 /* TwoTimers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwoTimers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D82D8741CA33D24008BFEB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D82D8791CA33D24008BFEB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		2D82D8931CA3EF3F008BFEB4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */,
 				2D82D8751CA33D24008BFEB4 /* AppDelegate.swift in Sources */,
+				2D5FD22B1CB3FDD100A1A1C8 /* StopwatchViewController.swift in Sources */,
 				2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */,
 				2D82D8AC1CA443F2008BFEB4 /* CountdownSettingsViewController.swift in Sources */,
 				2D82D87D1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld in Sources */,

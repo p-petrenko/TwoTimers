@@ -147,7 +147,7 @@ class CountdownRunViewController: UIViewController  {
         }
         audioPlayer = try! AVAudioPlayer(contentsOfURL: audioURL!)
         
-        notificationCenter.addObserver(self, selector: "actOnSwitchToStopwatch", name: Constants.CountdownNotificationKeys.TabBackToStopwatch, object: nil)
+        notificationCenter.addObserver(self, selector: "actOnSwitchToStopwatch", name: Constants.CountdownNotificationKeys.TabToStopwatch, object: nil)
         notificationCenter.addObserver(self, selector: "actOnSwitchBackToCountdown", name: Constants.CountdownNotificationKeys.TabBackToCountdown, object: nil)
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 6/255, green: 167/255, blue: 244/255, alpha: 1)
@@ -210,6 +210,7 @@ class CountdownRunViewController: UIViewController  {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         print("viewWillDisappear")
+        
         notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabBackToStopwatch, object: self)
         
     }
@@ -220,11 +221,7 @@ class CountdownRunViewController: UIViewController  {
         notificationCenter.removeObserver(app.delegate!)
         app.cancelAllLocalNotifications()
         
-/*! Delete stopTimer here when fix switchToStopwatch! */
-        stopTimer()
-        
         if !switchToStopwatch {
-            print("I'm here!")
             stopTimer()
             notificationCenter.removeObserver(self)
         }
@@ -232,7 +229,7 @@ class CountdownRunViewController: UIViewController  {
     
     
     func actOnSwitchToStopwatch() {
-        //        println("-- recieved message of going to Stopwatch")
+        print("-- recieved message of going to Stopwatch")
         switchToStopwatch = true
         startTextForTime = nil
     }
