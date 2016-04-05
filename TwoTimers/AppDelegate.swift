@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var activeDate: NSDate?
     
     private struct TimeConstants {
-        static let secInHour = 3600
-        static let secInMinute = 60
+        static let SecInHour = 3600
+        static let SecInMinute = 60
     }
     
     

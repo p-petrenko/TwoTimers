@@ -45,8 +45,8 @@ class CountdownRunViewController: UIViewController  {
     var startTextForTime : String? // string for time labels which is set while segue from Settings to Run VC
     
     private struct TimeConstants {
-        static let secInHour = 3600
-        static let secInMinute = 60
+        static let SecInHour = 3600
+        static let SecInMinute = 60
     }
     
     private struct StringsForAlert {
@@ -54,6 +54,10 @@ class CountdownRunViewController: UIViewController  {
             static let Title = NSLocalizedString("Time is up!", comment: "Time is up - message")
             static let ActionButton = NSLocalizedString("+1min", comment: "action to add one more minute")
         }
+    }
+    
+    private struct TimeLabelConstants {
+        static let ZeroTimeLabel = "00:00:00"
     }
     
     let totalTimeText = NSLocalizedString("Total time ", comment: "text before numbers of Total Time label")
@@ -92,7 +96,7 @@ class CountdownRunViewController: UIViewController  {
     
     @IBAction func minusOneMinuteButton(sender: UIButton) {
         //  can work only under conditions
-        if timeLeftInTimer > TimeConstants.secInMinute { // more than 1 minute
+        if timeLeftInTimer > TimeConstants.SecInMinute { // more than 1 minute
             plusMinute = false
             minutesDelta -= 1
             totalTimeEvaluate()
@@ -128,10 +132,10 @@ class CountdownRunViewController: UIViewController  {
         startTextForTime = timeToString(startHr) + ":" + timeToString(startMin) + ":" + timeToString(startSec)
         
         // convert start time from hr, min, sec into seconds
-        secondsFromChosenTime = TimeConstants.secInHour * startHr + TimeConstants.secInMinute * startMin + startSec
+        secondsFromChosenTime = TimeConstants.SecInHour * startHr + TimeConstants.SecInMinute * startMin + startSec
 
     // if user chose less than 60 seconds, disable "-1m" button
-        if secondsFromChosenTime < TimeConstants.secInMinute {
+        if secondsFromChosenTime < TimeConstants.SecInMinute {
             minusOneMinuteOutlet.enabled = false
         } else {
             minusOneMinuteOutlet.enabled = true
@@ -250,7 +254,7 @@ class CountdownRunViewController: UIViewController  {
         if let appDelegate = app.delegate as? AppDelegate {
             if appDelegate.oneTimerStarted == false {
                 
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
                 
         //      Calculate startDate only for calculating timeKeeper. For more comments look into changeTimeLabel().
                 if timeKeeper != 0 {
@@ -300,7 +304,7 @@ class CountdownRunViewController: UIViewController  {
             self.audioPlayer.stop()
             
     //        start timer
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
         }))
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
             self.navigationController?.popViewControllerAnimated(true)
@@ -316,7 +320,7 @@ class CountdownRunViewController: UIViewController  {
         // timeKeeper always < 0. For example, timer started at 12:00:00. So in the future at 12:00:15 we must subtract 15 seconds (-15 sec) to get that past 12:00:00. Or user pressed pause, then pressed Start and it was 13:00:00 at the moment of pressing Start. In a second timeKeeper will be -1 , and time will be 13:00:01. That's why we need to set startDate at the moment of Start.
         }
 
-        timeLeftInTimer = secondsFromChosenTime + Int(timeKeeper) + minutesDelta * TimeConstants.secInMinute
+        timeLeftInTimer = secondsFromChosenTime + Int(timeKeeper) + minutesDelta * TimeConstants.SecInMinute
         
     //Set this value here for case of going to the background. So Local Notification will come in time, left in timer.
         if let appDelegate = self.app.delegate as? AppDelegate {
@@ -329,18 +333,18 @@ class CountdownRunViewController: UIViewController  {
                 audioPlayer.play()
             }
         // the label of time must be fixed NOT to show smth like 00:0-10:0-11 (negative time)
-            runningTimeLabel.text = "00:00:00"
+            runningTimeLabel.text = TimeLabelConstants.ZeroTimeLabel
             stopTimer()
             pushAlert()
         } else {
-            if timeLeftInTimer < TimeConstants.secInMinute {
+            if timeLeftInTimer < TimeConstants.SecInMinute {
                 minusOneMinuteOutlet.enabled = false
             } else {
                 minusOneMinuteOutlet.enabled = true
             }
-            let hours = timeLeftInTimer / TimeConstants.secInHour
-            let minutes = (timeLeftInTimer - (hours * TimeConstants.secInHour)) / TimeConstants.secInMinute % TimeConstants.secInMinute
-            let seconds = (timeLeftInTimer - (hours * TimeConstants.secInHour)) % TimeConstants.secInMinute
+            let hours = timeLeftInTimer / TimeConstants.SecInHour
+            let minutes = (timeLeftInTimer - (hours * TimeConstants.SecInHour)) / TimeConstants.SecInMinute % TimeConstants.SecInMinute
+            let seconds = (timeLeftInTimer - (hours * TimeConstants.SecInHour)) % TimeConstants.SecInMinute
 
             //  text for displaying on the screen
             runningTimeLabel.text = timeToString(hours) + ":" + timeToString(minutes) + ":" + timeToString(seconds)
@@ -349,24 +353,24 @@ class CountdownRunViewController: UIViewController  {
     
     func totalTimeEvaluate() {
         
-        var localHoursFromDefaults = Int(startHr)
-        let localMinutesFromDefaults = Int(startMin)
+        var hoursFromStart = Int(startHr)
+        let minutesFromStart = Int(startMin)
         
-        minutesForTotalTime = (localMinutesFromDefaults + minutesDelta) % TimeConstants.secInMinute
+        minutesForTotalTime = (minutesFromStart + minutesDelta) % TimeConstants.SecInMinute
         
-        let leftOver = (localMinutesFromDefaults + minutesDelta) - (localMinutesFromDefaults + minutesDelta) % TimeConstants.secInMinute
+        let leftOver = (minutesFromStart + minutesDelta) - (minutesFromStart + minutesDelta) % TimeConstants.SecInMinute
         
         if leftOver != 0 {
-            localHoursFromDefaults += leftOver / TimeConstants.secInMinute as Int!
+            hoursFromStart += leftOver / TimeConstants.SecInMinute as Int!
         }
         
         if minutesForTotalTime < 0 {
-            localHoursFromDefaults -= 1
-            minutesForTotalTime = TimeConstants.secInMinute + minutesForTotalTime
+            hoursFromStart -= 1
+            minutesForTotalTime = TimeConstants.SecInMinute + minutesForTotalTime
         }
         
-        if !plusMinute && localHoursFromDefaults < 0 {
-            localHoursFromDefaults = 0
+        if !plusMinute && hoursFromStart < 0 {
+            hoursFromStart = 0
             minutesForTotalTime = 0
             minutesDelta = 0
         }

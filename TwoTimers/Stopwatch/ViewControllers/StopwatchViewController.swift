@@ -51,9 +51,9 @@ class StopwatchViewController: UIViewController {
     var splitTimeKeeper = Double()
     
     struct TimeConstants {
-        static let secInHour: Float = 3600
-        static let secInMinute : Float = 60
-        static let centiDivider : Float = 100
+        static let SecInHour: Float = 3600
+        static let SecInMinute : Float = 60
+//        static let CentiDivider : Float = 100
     }
     
     @IBOutlet weak var runningTimeLabel: UILabel!
@@ -356,21 +356,21 @@ class StopwatchViewController: UIViewController {
             // take existing min, sec and convert it to only seconds
             var min = Int()
             var sec = Int()
-            let secondsFromCurrentTime = Int(TimeConstants.secInMinute) * Int(minutes) + Int(seconds)
+            let secondsFromCurrentTime = Int(TimeConstants.SecInMinute) * Int(minutes) + Int(seconds)
             let secondsAfterComeBack = Float(secondsFromCurrentTime) + timeIntlWhileBgr
             
-            min = (Int(secondsAfterComeBack) - Int(secondsAfterComeBack / TimeConstants.secInHour)) / Int(TimeConstants.secInMinute)
-            sec = (Int(secondsAfterComeBack) - Int(secondsAfterComeBack / TimeConstants.secInHour)) % Int(TimeConstants.secInMinute)
+            min = (Int(secondsAfterComeBack) - Int(secondsAfterComeBack / TimeConstants.SecInHour)) / Int(TimeConstants.SecInMinute)
+            sec = (Int(secondsAfterComeBack) - Int(secondsAfterComeBack / TimeConstants.SecInHour)) % Int(TimeConstants.SecInMinute)
             
             minutes = Float(min)
             seconds = Float(sec)
             //       for interval
             
-            let secondsFromCurrentInterval = Int(TimeConstants.secInMinute) * Int(intervalMinutes) + Int(intervalSeconds)
+            let secondsFromCurrentInterval = Int(TimeConstants.SecInMinute) * Int(intervalMinutes) + Int(intervalSeconds)
             let intervalSecondsAfterComeBack = Float(secondsFromCurrentInterval) + timeIntlWhileBgr
             
-            min = (Int(intervalSecondsAfterComeBack) - Int(intervalSecondsAfterComeBack / TimeConstants.secInHour)) / Int(TimeConstants.secInMinute) % Int(TimeConstants.secInMinute)
-            sec = (Int(intervalSecondsAfterComeBack) - Int(intervalSecondsAfterComeBack / TimeConstants.secInHour)) % Int(TimeConstants.secInMinute)
+            min = (Int(intervalSecondsAfterComeBack) - Int(intervalSecondsAfterComeBack / TimeConstants.SecInHour)) / Int(TimeConstants.SecInMinute) % Int(TimeConstants.SecInMinute)
+            sec = (Int(intervalSecondsAfterComeBack) - Int(intervalSecondsAfterComeBack / TimeConstants.SecInHour)) % Int(TimeConstants.SecInMinute)
             
             intervalMinutes = Float(min)
             intervalSeconds = Float(sec)
@@ -387,8 +387,8 @@ class StopwatchViewController: UIViewController {
     
     func timerForMinutesAndSeconds(startNSDate : NSDate , secFromNSDate : Double ) -> String {
         
-        var min = (Float(secFromNSDate)) / (TimeConstants.secInMinute)  //I have no hours, so I can make more than 60 minutes // % Int(TimeConstants.secInMinute)
-        var sec = (Float(secFromNSDate)) % (TimeConstants.secInMinute)
+        var min = (Float(secFromNSDate)) / (TimeConstants.SecInMinute)  //I have no hours, so I can make more than 60 minutes // % Int(TimeConstants.SecInMinute)
+        var sec = (Float(secFromNSDate)) % (TimeConstants.SecInMinute)
         var cs = Float(secFromNSDate) * 100 % 100
         
         let timeLabl = UILabel()

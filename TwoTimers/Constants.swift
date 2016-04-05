@@ -13,16 +13,13 @@ struct Constants {
     // MARK: - Countdown timer constants
     
     struct KeysUsedInCountdownTimer {
+//    hr, min, sec constantd for CoreData
         static let HoursForStart = "selectedHours"
         static let MinutesForStart = "selectedMinutes"
         static let SecondsForStart = "selectedSeconds"
-      
-        static let TimeLeft = "Time left from moment of going to background to zero"
-        static let TimeInterval = "Time interval from Background to Foreground state"
 
-        static let SoundOnOff = "Sound is On or Off as User Wish"
+        static let SoundOnOff = "Sound can be on or off"
     }
-    
 
     struct CountdownNotificationKeys {
         static let TabToStopwatch = "Key for RunVC to know when I open StopwatchVC"
