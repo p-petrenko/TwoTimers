@@ -290,14 +290,17 @@ class CountdownRunViewController: UIViewController  {
         alert.addAction(UIAlertAction(title: StringsForAlert.TimeIsUpAlert.ActionButton , style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
     //        add +1 minute
             self.plusOneMinute()
+    // changeTimeLabel() is for updating time label, because with timer start it will be called in 2 seconds, not in 1 second like I want. Will be shown 00:00:59 instead 00:00:58.
+            self.changeTimeLabel()
 
-    //        start timer
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
             if let appDelegate = self.app.delegate as? AppDelegate {
                 appDelegate.oneTimerStarted = true
             }
     //        stop playing sound after alert is closed
             self.audioPlayer.stop()
+            
+    //        start timer
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
         }))
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
             self.navigationController?.popViewControllerAnimated(true)
@@ -305,8 +308,6 @@ class CountdownRunViewController: UIViewController  {
         }))
         presentViewController(alert, animated: true, completion: nil)
     }
-    
-
     
     func changeTimeLabel() {
         print("timer")
