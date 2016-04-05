@@ -36,9 +36,9 @@ class CountdownRunViewController: UIViewController  {
     
     var soundIsOff : Bool?
     
-    var startDate = NSDate() // time begins to run on pressing start
-    var secondsFromNSDate = Double() // NSDate interval from now to start moment
-    var timeKeeper = Double() // time keeps track of latest tome when pause pressed
+    var startDate : NSDate? // time begins to run on pressing start , and it's value is set in viewDidAppear (first time)
+//    var secondsFromNSDate = Double() // NSDate interval from now to start moment
+    var timeKeeper : Double = 0 // time keeps track of latest tome when pause pressed
     
     var secondsFromChosenTime = Int() // time , chosen by user in PickerView , in seconds
     var timeLeftInTimer = Int() // time, left in timer , in seconds
@@ -115,72 +115,14 @@ class CountdownRunViewController: UIViewController  {
         }
     }
 
-
     @IBAction func startOrPauseButton(sender: UIButton) {
         startTimer(sender)
     }
 
     @IBAction func stopButton(sender: UIButton) {
-        stopTimer()
         self.navigationController?.popViewControllerAnimated(true)
     }
 
-    func timeToString(selectedTime : Int!) -> String {
-        if selectedTime < 10 {
-            return "0\(selectedTime)"
-        } else {
-            return "\(selectedTime)"
-        }
-    }
-    
-    func plusOneMinute() {
-        self.plusMinute = true
-        self.minutesDelta += 1
-        self.totalTimeEvaluate()
-    }
-
-    func startTimer(nameOfButton : UIButton) {
-        
-        if let appDelegate = app.delegate as? AppDelegate {
-            if appDelegate.oneTimerStarted == false {
-                
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
-                
-                if timeKeeper == 0 {
-                    startDate = NSDate()
-                } else {
-                    startDate = NSDate(timeIntervalSinceNow: timeKeeper)
-                }
-                
-                nameOfButton.setImage(UIImage(named: "PauseButton"), forState: .Normal)
-                appDelegate.oneTimerStarted = true
-            } else {
-                // press pause
-                
-                timeKeeper = secondsFromNSDate // = -1 , -2, -3 ... with time ticking , for example, it is -15 if 15 sec passed startDate.timeIntervalSinceNow
-                timer.invalidate()
-                nameOfButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
-                appDelegate.oneTimerStarted = false
-            }
-        }
-    }
-    
-    func stopTimer() {
-        if let appDelegate = app.delegate as? AppDelegate {
-            if appDelegate.oneTimerStarted {
-                timer.invalidate()
-            }
-        }
-        timeKeeper = 0
-        minutesDelta = 0
-        if let appDelegate = app.delegate as? AppDelegate {
-            appDelegate.oneTimerStarted = false
-        }
-    }
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -212,17 +154,6 @@ class CountdownRunViewController: UIViewController  {
         
     }
     
-    func actOnSwitchToStopwatch() {
-        //        println("-- recieved message of going to Stopwatch")
-        switchToStopwatch = true
-        startTextForTime = nil
-    }
-    
-    func actOnSwitchBackToCountdown() {
-        //        println("switchBackToCountdown = true")
-        switchBackToCountdown = true
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if app.idleTimerDisabled == true {
@@ -236,8 +167,6 @@ class CountdownRunViewController: UIViewController  {
             runningTimeLabel.text = startTextForTime!
             totalTimeLabel.text = totalTimeText + startTextForTime!
         }
-        
-
         
         //    MARK: -Audio
         audioPlayer = try! AVAudioPlayer(contentsOfURL: audioURL!)
@@ -276,13 +205,12 @@ class CountdownRunViewController: UIViewController  {
     //    if return from StopwatchVC to RunVC :
         switchToStopwatch = false
         switchBackToCountdown = false
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         print("viewWillDisappear")
-        notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabBackToStopwatch, object: self) 
+        notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabBackToStopwatch, object: self)
         
     }
     
@@ -292,10 +220,80 @@ class CountdownRunViewController: UIViewController  {
         notificationCenter.removeObserver(app.delegate!)
         app.cancelAllLocalNotifications()
         
+/*! Delete stopTimer here when fix switchToStopwatch! */
+        stopTimer()
+        
         if !switchToStopwatch {
+            print("I'm here!")
+            stopTimer()
             notificationCenter.removeObserver(self)
         }
     }
+    
+    
+    func actOnSwitchToStopwatch() {
+        //        println("-- recieved message of going to Stopwatch")
+        switchToStopwatch = true
+        startTextForTime = nil
+    }
+    
+    func actOnSwitchBackToCountdown() {
+        //        println("switchBackToCountdown = true")
+        switchBackToCountdown = true
+    }
+    
+    func timeToString(selectedTime : Int!) -> String {
+        if selectedTime < 10 {
+            return "0\(selectedTime)"
+        } else {
+            return "\(selectedTime)"
+        }
+    }
+    
+    func plusOneMinute() {
+        self.plusMinute = true
+        self.minutesDelta += 1
+        self.totalTimeEvaluate()
+    }
+    
+    func startTimer(nameOfButton : UIButton) {
+        
+        if let appDelegate = app.delegate as? AppDelegate {
+            if appDelegate.oneTimerStarted == false {
+                
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
+                
+                //      Calculate startDate only for calculating timeKeeper. For more comments look into changeTimeLabel().
+                if timeKeeper != 0 {
+                    startDate = NSDate(timeIntervalSinceNow: timeKeeper)
+                } else {
+                    startDate = NSDate()
+                }
+                
+                nameOfButton.setImage(UIImage(named: "PauseButton"), forState: .Normal)
+                appDelegate.oneTimerStarted = true
+            } else {
+                // press pause
+                
+                //                timeKeeper = secondsFromNSDate //for example, it is -15 if 15 sec passed startDate.timeIntervalSinceNow
+                timer.invalidate()
+                nameOfButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
+                appDelegate.oneTimerStarted = false
+            }
+        }
+    }
+    
+    func stopTimer() {
+        if let appDelegate = app.delegate as? AppDelegate {
+            if appDelegate.oneTimerStarted {
+                timer.invalidate()
+            }
+        }
+        if let appDelegate = app.delegate as? AppDelegate {
+            appDelegate.oneTimerStarted = false
+        }
+    }
+
     
     func pushAlert() {
         let alert = UIAlertController (title: StringsForAlert.TimeIsUpAlert.Title,
@@ -315,7 +313,6 @@ class CountdownRunViewController: UIViewController  {
             self.audioPlayer.stop()
         }))
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
-            self.stopTimer()
             self.navigationController?.popViewControllerAnimated(true)
             self.audioPlayer.stop()
         }))
@@ -325,22 +322,25 @@ class CountdownRunViewController: UIViewController  {
 
     
     func changeTimeLabel() {
+        print("timer")
+        if startDate != nil {
+            timeKeeper = startDate!.timeIntervalSinceNow
+        // timeKeeper always < 0. For example, timer started at 12:00:00. So in the future at 12:00:15 we must subtract 15 seconds (-15 sec) to get that past 12:00:00. Or user pressed pause, then pressed Start and it was 13:00:00 at the moment of pressing Start. In a second timeKeeper will be -1 , and time will be 13:00:01. That's why we need to set startDate at the moment of Start.
+        }
 
-    //Set this value here for case of going to the background. So Notification will come in time, left in timer.
+        timeLeftInTimer = secondsFromChosenTime + Int(timeKeeper) + minutesDelta * TimeConstants.secInMinute
+        
+    //Set this value here for case of going to the background. So Local Notification will come in time, left in timer.
         if let appDelegate = self.app.delegate as? AppDelegate {
             appDelegate.secondsForFireDate = Double(timeLeftInTimer)
         }
-        
-        secondsFromNSDate = startDate.timeIntervalSinceNow // will be < 0 because in future is more time than in past , like 12:00 is Now , and 12:15 is future. So in the future at 12:15 we must subtract 15 seconds (-15 sec) to get that past 12:00.
-       
-        timeLeftInTimer = secondsFromChosenTime + Int(secondsFromNSDate) + minutesDelta * TimeConstants.secInMinute
         
         if timeLeftInTimer <= 0 {
             if timeLeftInTimer == 0 {
         //    play audio if it wasn't played in background state
                 audioPlayer.play()
             }
-        // the label of time must be fixed not to show smth like 00:0-10:0-11 (negative time)
+        // the label of time must be fixed NOT to show smth like 00:0-10:0-11 (negative time)
             runningTimeLabel.text = "00:00:00"
             stopTimer()
             pushAlert()

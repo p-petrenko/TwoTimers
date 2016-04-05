@@ -78,11 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func doLocalNotification() {
         let arrayOfFileNames = Constants.arrayOfFileNames
         
-        var arrayOfFormatsForFileNames = [String]()
-        for _ in 0..<Constants.arrayOfFileNames.count {
-            arrayOfFormatsForFileNames.append("mp3")
-        }
-        
         var soundNameForNotification : String?
         
         if oneTimerStarted {
