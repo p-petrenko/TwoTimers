@@ -37,8 +37,7 @@ class CountdownRunViewController: UIViewController  {
     var soundIsOff : Bool?
     
     var startDate : NSDate? // time begins to run on pressing start , and it's value is set in viewDidAppear (first time)
-//    var secondsFromNSDate = Double() // NSDate interval from now to start moment
-    var timeKeeper : Double = 0 // time keeps track of latest tome when pause pressed
+    private var timeKeeper : Double = 0 // time keeps track of latest tome when pause pressed
     
     var secondsFromChosenTime = Int() // time , chosen by user in PickerView , in seconds
     var timeLeftInTimer = Int() // time, left in timer , in seconds
@@ -149,9 +148,6 @@ class CountdownRunViewController: UIViewController  {
         
         notificationCenter.addObserver(self, selector: "actOnSwitchToStopwatch", name: Constants.CountdownNotificationKeys.TabToStopwatch, object: nil)
         notificationCenter.addObserver(self, selector: "actOnSwitchBackToCountdown", name: Constants.CountdownNotificationKeys.TabBackToCountdown, object: nil)
-        
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 6/255, green: 167/255, blue: 244/255, alpha: 1)
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -209,15 +205,11 @@ class CountdownRunViewController: UIViewController  {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        print("viewWillDisappear")
-        
         notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabBackToStopwatch, object: self)
-        
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(false)
-        print("viewDidDisappear")
         notificationCenter.removeObserver(app.delegate!)
         app.cancelAllLocalNotifications()
         
@@ -235,7 +227,7 @@ class CountdownRunViewController: UIViewController  {
     }
     
     func actOnSwitchBackToCountdown() {
-        //        println("switchBackToCountdown = true")
+//        print("switchBackToCountdown = true")
         switchBackToCountdown = true
     }
     
@@ -260,7 +252,7 @@ class CountdownRunViewController: UIViewController  {
                 
                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
                 
-                //      Calculate startDate only for calculating timeKeeper. For more comments look into changeTimeLabel().
+        //      Calculate startDate only for calculating timeKeeper. For more comments look into changeTimeLabel().
                 if timeKeeper != 0 {
                     startDate = NSDate(timeIntervalSinceNow: timeKeeper)
                 } else {
@@ -270,9 +262,7 @@ class CountdownRunViewController: UIViewController  {
                 nameOfButton.setImage(UIImage(named: "PauseButton"), forState: .Normal)
                 appDelegate.oneTimerStarted = true
             } else {
-                // press pause
-                
-                //                timeKeeper = secondsFromNSDate //for example, it is -15 if 15 sec passed startDate.timeIntervalSinceNow
+        // press pause
                 timer.invalidate()
                 nameOfButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
                 appDelegate.oneTimerStarted = false

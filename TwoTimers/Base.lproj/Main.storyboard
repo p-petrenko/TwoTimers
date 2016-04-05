@@ -117,22 +117,57 @@
             </objects>
             <point key="canvasLocation" x="1478" y="180"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Music Table View Controller-->
         <scene sceneID="mj1-tH-nWe">
             <objects>
-                <tableViewController id="Vj7-RM-Dmo" sceneMemberID="viewController">
+                <tableViewController id="Vj7-RM-Dmo" customClass="MusicTableViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rqz-MT-8Ra">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Music Cell" id="uiD-Hj-ABq">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Music Cell" id="uiD-Hj-ABq" customClass="MusicTableViewCell" customModule="TwoTimers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uiD-Hj-ABq" id="eVI-T7-0aT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-n4-VjI">
+                                            <rect key="frame" x="50" y="8" width="542" height="27"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="cve-4A-Lv2">
+                                            <rect key="frame" x="8" y="8" width="27" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="27" id="1Vs-LW-vIK"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="cve-4A-Lv2" secondAttribute="leading" id="73L-Fj-0SD"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cve-4A-Lv2" secondAttribute="bottom" id="EOX-Bz-gU3"/>
+                                        <constraint firstItem="M5i-n4-VjI" firstAttribute="leading" secondItem="cve-4A-Lv2" secondAttribute="trailing" constant="8" id="VRV-JH-Dro"/>
+                                        <constraint firstAttribute="topMargin" secondItem="cve-4A-Lv2" secondAttribute="top" id="bon-Ud-Hh2"/>
+                                        <constraint firstAttribute="topMargin" secondItem="M5i-n4-VjI" secondAttribute="top" id="jWL-ll-01i"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="M5i-n4-VjI" secondAttribute="trailing" id="l4K-2T-uf3"/>
+                                        <constraint firstItem="M5i-n4-VjI" firstAttribute="leading" secondItem="cve-4A-Lv2" secondAttribute="trailing" constant="15" id="pXV-hG-RnZ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="M5i-n4-VjI" secondAttribute="bottom" id="vHq-9E-JmX"/>
+                                        <constraint firstItem="M5i-n4-VjI" firstAttribute="leading" secondItem="cve-4A-Lv2" secondAttribute="trailing" constant="15" id="vyD-NY-Olg"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="VRV-JH-Dro"/>
+                                            <exclude reference="vyD-NY-Olg"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="chosenMelodyImage" destination="cve-4A-Lv2" id="J4a-uF-6Ng"/>
+                                    <outlet property="melodyName" destination="M5i-n4-VjI" id="piR-jQ-Y0R"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -141,7 +176,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="efl-rS-RKJ">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="MPf-6f-dWm"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="P4J-V1-T5f">
+                            <connections>
+                                <action selector="done:" destination="Vj7-RM-Dmo" id="DbJ-So-nrf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGs-Ow-702" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -461,6 +500,7 @@
     <resources>
         <image name="+1minButton" width="100" height="100"/>
         <image name="-1minButton" width="100" height="100"/>
+        <image name="Checkmark" width="30" height="30"/>
         <image name="ChooseMelodyButton" width="40" height="40"/>
         <image name="ImageForCountdownTab" width="32" height="32"/>
         <image name="ImageForStopwatchTab" width="32" height="32"/>
@@ -469,4 +509,5 @@
         <image name="StartButton" width="100" height="100"/>
         <image name="StopButton" width="100" height="100"/>
     </resources>
+    <color key="tintColor" red="0.023529411760000001" green="0.65490196079999996" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -44,7 +44,7 @@ class StopwatchViewController: UIViewController {
     var startDate = NSDate() // time begins to run on pressing start
     var splitStartDate = NSDate()
     
-    var secondsFromNSDate = Double() // NSDate interval from now to start moment
+    private var secondsFromNSDate = Double() // NSDate interval from now to start moment
     var secondsFromSplitNSDate = Double()
     
     var timeKeeper = Double() // time keeps track of latest tome when pause pressed

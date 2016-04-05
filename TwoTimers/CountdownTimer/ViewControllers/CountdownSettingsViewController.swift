@@ -204,18 +204,17 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if let identifier = segue.identifier {
-            /*
+            
             if identifier == "Choose Music" {
                 if let mtvc = segue.destinationViewController as? MusicTableViewController {
                     if let ppc = mtvc.popoverPresentationController {
                         ppc.delegate = self
                         let minimumSize = mtvc.view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
                         mtvc.preferredContentSize = CGSize(width: minimumSize.width, height: minimumSize.height) // (width: 320, height: 320)
-                        
                     }
                 }
             }
-            */
+
             if identifier == "Start Countdown Timer" {
                 if let crvc = segue.destinationViewController as? CountdownRunViewController {
                     selectedHours = chooseTime.selectedRowInComponent(0)

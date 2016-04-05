@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D5FD22B1CB3FDD100A1A1C8 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */; };
+		2D5FD22D1CB411D000A1A1C8 /* MusicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5FD22C1CB411D000A1A1C8 /* MusicTableViewController.swift */; };
+		2D5FD2311CB412A600A1A1C8 /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5FD2301CB412A600A1A1C8 /* MusicTableViewCell.swift */; };
 		2D82D8751CA33D24008BFEB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8741CA33D24008BFEB4 /* AppDelegate.swift */; };
 		2D82D87A1CA33D24008BFEB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D82D8781CA33D24008BFEB4 /* Main.storyboard */; };
 		2D82D87D1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D87B1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopwatchViewController.swift; path = Stopwatch/ViewControllers/StopwatchViewController.swift; sourceTree = "<group>"; };
+		2D5FD22C1CB411D000A1A1C8 /* MusicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicTableViewController.swift; path = CountdownTimer/ViewControllers/MusicTableViewController.swift; sourceTree = "<group>"; };
+		2D5FD2301CB412A600A1A1C8 /* MusicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicTableViewCell.swift; path = CountdownTimer/Cells/MusicTableViewCell.swift; sourceTree = "<group>"; };
 		2D82D8711CA33D24008BFEB4 /* TwoTimers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwoTimers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D82D8741CA33D24008BFEB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D82D8791CA33D24008BFEB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 		2D82D8991CA3F0B4008BFEB4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2D5FD2301CB412A600A1A1C8 /* MusicTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 			children = (
 				2D82D8AB1CA443F2008BFEB4 /* CountdownSettingsViewController.swift */,
 				2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */,
+				2D5FD22C1CB411D000A1A1C8 /* MusicTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -333,7 +339,9 @@
 				2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */,
 				2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */,
 				2D82D89F1CA3F1B9008BFEB4 /* Constants.swift in Sources */,
+				2D5FD22D1CB411D000A1A1C8 /* MusicTableViewController.swift in Sources */,
 				2D82D8AA1CA3FFB7008BFEB4 /* TimersTabBarController.swift in Sources */,
+				2D5FD2311CB412A600A1A1C8 /* MusicTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
