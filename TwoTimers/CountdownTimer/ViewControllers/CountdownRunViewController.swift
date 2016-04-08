@@ -44,6 +44,8 @@ class CountdownRunViewController: UIViewController  {
     
     var startTextForTime : String? // string for time labels which is set while segue from Settings to Run VC
     
+    var appDelegate: AppDelegate!
+    
     private struct TimeConstants {
         static let SecInHour = 3600
         static let SecInMinute = 60
@@ -128,6 +130,8 @@ class CountdownRunViewController: UIViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         startTextForTime = timeToString(startHr) + ":" + timeToString(startMin) + ":" + timeToString(startSec)
         
@@ -251,38 +255,34 @@ class CountdownRunViewController: UIViewController  {
     
     func startTimer(nameOfButton : UIButton) {
         
-        if let appDelegate = app.delegate as? AppDelegate {
-            if appDelegate.oneTimerStarted == false {
-                
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
-                
-        //      Calculate startDate only for calculating timeKeeper. For more comments look into changeTimeLabel().
-                if timeKeeper != 0 {
-                    startDate = NSDate(timeIntervalSinceNow: timeKeeper)
-                } else {
-                    startDate = NSDate()
-                }
-                
-                nameOfButton.setImage(UIImage(named: "PauseButton"), forState: .Normal)
-                appDelegate.oneTimerStarted = true
+        if appDelegate.oneTimerStarted == false {
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("changeTimeLabel"), userInfo: nil, repeats: true)
+            
+    //      Calculate startDate only for calculating timeKeeper. For more comments look into changeTimeLabel().
+            if timeKeeper != 0 {
+                startDate = NSDate(timeIntervalSinceNow: timeKeeper)
             } else {
-        // press pause
-                timer.invalidate()
-                nameOfButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
-                appDelegate.oneTimerStarted = false
+                startDate = NSDate()
             }
+            
+            nameOfButton.setImage(UIImage(named: "PauseButton"), forState: .Normal)
+            appDelegate.oneTimerStarted = true
+        } else {
+    // press pause
+            timer.invalidate()
+            nameOfButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
+            appDelegate.oneTimerStarted = false
         }
     }
     
     func stopTimer() {
-        if let appDelegate = app.delegate as? AppDelegate {
-            if appDelegate.oneTimerStarted {
-                timer.invalidate()
-            }
+
+        if appDelegate.oneTimerStarted {
+            timer.invalidate()
         }
-        if let appDelegate = app.delegate as? AppDelegate {
-            appDelegate.oneTimerStarted = false
-        }
+        appDelegate.oneTimerStarted = false
+
     }
 
     
@@ -297,9 +297,8 @@ class CountdownRunViewController: UIViewController  {
     // changeTimeLabel() is for updating time label, because with timer start it will be called in 2 seconds, not in 1 second like I want. Will be shown 00:00:59 instead 00:00:58.
             self.changeTimeLabel()
 
-            if let appDelegate = self.app.delegate as? AppDelegate {
-                appDelegate.oneTimerStarted = true
-            }
+            self.appDelegate.oneTimerStarted = true
+
     //        stop playing sound after alert is closed
             self.audioPlayer.stop()
             
@@ -323,10 +322,8 @@ class CountdownRunViewController: UIViewController  {
         timeLeftInTimer = secondsFromChosenTime + Int(timeKeeper) + minutesDelta * TimeConstants.SecInMinute
         
     //Set this value here for case of going to the background. So Local Notification will come in time, left in timer.
-        if let appDelegate = self.app.delegate as? AppDelegate {
-            appDelegate.secondsForFireDate = Double(timeLeftInTimer)
-        }
-        
+        appDelegate.secondsForFireDate = Double(timeLeftInTimer)
+
         if timeLeftInTimer <= 0 {
             if timeLeftInTimer == 0 {
         //    play audio if it wasn't played in background state
