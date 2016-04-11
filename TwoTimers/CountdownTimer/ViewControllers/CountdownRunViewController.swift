@@ -97,27 +97,11 @@ class CountdownRunViewController: UIViewController  {
     }
     
     @IBAction func minusOneMinuteButton(sender: UIButton) {
-        //  can work only under conditions
-        if timeLeftInTimer > TimeConstants.SecInMinute { // more than 1 minute
-            plusMinute = false
-            minutesDelta -= 1
-            totalTimeEvaluate()
-            
-            changeTimeLabel()
-            
-        } else {
-            minusOneMinuteOutlet.enabled = false
-        }
+        plusMinusMinute(-1)
     }
 
     @IBAction func plusOneMinuteButton(sender: UIButton) {
-        plusOneMinute()
-
-        changeTimeLabel()
-        
-        if minusOneMinuteOutlet.enabled == false {
-            minusOneMinuteOutlet.enabled = true
-        }
+        plusMinusMinute(1)
     }
 
     @IBAction func startOrPauseButton(sender: UIButton) {
@@ -132,18 +116,9 @@ class CountdownRunViewController: UIViewController  {
         super.viewDidLoad()
         
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        startTextForTime = timeToString(startHr) + ":" + timeToString(startMin) + ":" + timeToString(startSec)
-        
-        // convert start time from hr, min, sec into seconds
-        secondsFromChosenTime = TimeConstants.SecInHour * startHr + TimeConstants.SecInMinute * startMin + startSec
 
-    // if user chose less than 60 seconds, disable "-1m" button
-        if secondsFromChosenTime < TimeConstants.SecInMinute {
-            minusOneMinuteOutlet.enabled = false
-        } else {
-            minusOneMinuteOutlet.enabled = true
-        }
+        // convert start time from hr, min, sec into seconds.Must be done to count number of hr, min, sec in changeTimeLabel() and totalTimeEvaluate()
+        secondsFromChosenTime = TimeConstants.SecInHour * startHr + TimeConstants.SecInMinute * startMin + startSec
 
         // take chosen melody
         if let chosMelodyNum = defaults.objectForKey(Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
@@ -166,11 +141,9 @@ class CountdownRunViewController: UIViewController  {
         
         notificationCenter.postNotificationName(Constants.CountdownNotificationKeys.TabToCountdown, object: self)
         
-        // prepare time labels to be synchronized with time, user choose
-        if startTextForTime != nil {
-            runningTimeLabel.text = startTextForTime!
-            totalTimeLabel.text = totalTimeText + startTextForTime!
-        }
+        // prepare time labels to be synchronized with time in seconds
+        changeTimeLabel()
+        totalTimeEvaluate()
         
         //    MARK: -Audio
         audioPlayer = try! AVAudioPlayer(contentsOfURL: audioURL!)
@@ -226,8 +199,7 @@ class CountdownRunViewController: UIViewController  {
             notificationCenter.removeObserver(self)
         }
     }
-    
-    
+
     func actOnSwitchToStopwatch() {
         print("-- recieved message of going to Stopwatch")
         switchToStopwatch = true
@@ -239,6 +211,21 @@ class CountdownRunViewController: UIViewController  {
         switchBackToCountdown = true
     }
     
+    func plusMinusMinute(delta : Int) {
+        switch delta {
+        case 1:
+            self.plusMinute = false
+            self.minutesDelta += 1
+        case -1:
+            self.plusMinute = true
+            self.minutesDelta -= 1
+        default:
+            print("Delta value for minutes must be -1 or 1.")
+        }
+        totalTimeEvaluate()
+        changeTimeLabel()
+    }
+    
     func timeToString(selectedTime : Int!) -> String {
         if selectedTime < 10 {
             return "0\(selectedTime)"
@@ -246,13 +233,7 @@ class CountdownRunViewController: UIViewController  {
             return "\(selectedTime)"
         }
     }
-    
-    func plusOneMinute() {
-        self.plusMinute = true
-        self.minutesDelta += 1
-        self.totalTimeEvaluate()
-    }
-    
+
     func startTimer(nameOfButton : UIButton) {
         
         if appDelegate.oneTimerStarted == false {
@@ -293,7 +274,7 @@ class CountdownRunViewController: UIViewController  {
         )
         alert.addAction(UIAlertAction(title: StringsForAlert.TimeIsUpAlert.ActionButton , style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
     //        add +1 minute
-            self.plusOneMinute()
+            self.plusMinusMinute(1)
     // changeTimeLabel() is for updating time label, because with timer start it will be called in 2 seconds, not in 1 second like I want. Will be shown 00:00:59 instead 00:00:58.
             self.changeTimeLabel()
 
@@ -313,7 +294,6 @@ class CountdownRunViewController: UIViewController  {
     }
     
     func changeTimeLabel() {
-        print("timer")
         if startDate != nil {
             timeKeeper = startDate!.timeIntervalSinceNow
         // timeKeeper always < 0. For example, timer started at 12:00:00. So in the future at 12:00:15 we must subtract 15 seconds (-15 sec) to get that past 12:00:00. Or user pressed pause, then pressed Start and it was 13:00:00 at the moment of pressing Start. In a second timeKeeper will be -1 , and time will be 13:00:01. That's why we need to set startDate at the moment of Start.
@@ -354,6 +334,7 @@ class CountdownRunViewController: UIViewController  {
         let minutesFromStart = Int(startMin)
         
         minutesForTotalTime = (minutesFromStart + minutesDelta) % TimeConstants.SecInMinute
+        print("minutesForTotalTime = \(minutesForTotalTime)")
         
         let leftOver = (minutesFromStart + minutesDelta) - (minutesFromStart + minutesDelta) % TimeConstants.SecInMinute
         
