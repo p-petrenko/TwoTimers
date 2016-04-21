@@ -16,7 +16,7 @@ class MusicTableViewController: UITableViewController {
     var defaults = NSUserDefaults.standardUserDefaults()
     
     //    audio
-    var audioURL : NSURL?
+    var audioData : NSData?
     var audioPlayer : AVAudioPlayer?
     
     var arrayOfFormatsForFileNames = [String]()
@@ -28,8 +28,13 @@ class MusicTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        audioURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(Constants.arrayOfFileNames[0], ofType: "mp3")!)
-        audioPlayer = try? AVAudioPlayer(contentsOfURL: audioURL!)
+        audioData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(Constants.arrayOfFileNames[0], ofType: "mp3")!)
+        do {
+            audioPlayer = try AVAudioPlayer(data: audioData!)
+        } catch let error as NSError {
+            print("An error occured , trying to take data from \(audioData) ,\(error.localizedDescription)")
+        }
+        
         audioPlayer!.prepareToPlay()
         
         if let selectedRowIndex = defaults.objectForKey(Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
@@ -77,10 +82,10 @@ class MusicTableViewController: UITableViewController {
         selectedRow = indexPath.row
         tableView.reloadData()
         
-        audioURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(Constants.arrayOfFileNames[selectedRow!], ofType: "mp3")!)
+        audioData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(Constants.arrayOfFileNames[selectedRow!], ofType: "mp3")!)
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOfURL: audioURL!)
+            audioPlayer = try AVAudioPlayer(data: audioData!)
         } catch let error as NSError {
             print("Error trying to get URL of the melody, \(error.description)")
         }

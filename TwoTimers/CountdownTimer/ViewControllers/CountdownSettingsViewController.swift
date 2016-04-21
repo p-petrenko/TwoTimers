@@ -118,7 +118,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
         super.viewDidAppear(animated)
         
     //    permission for notifications
-        let regUserNotifSettings = UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))
+        let regUserNotifSettings = UIApplication.instancesRespondToSelector(#selector(UIApplication.registerUserNotificationSettings(_:)))
 
         if regUserNotifSettings {
             app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [UIUserNotificationType.Sound, UIUserNotificationType.Alert] , categories: nil)) // | UIUserNotificationType.Badge

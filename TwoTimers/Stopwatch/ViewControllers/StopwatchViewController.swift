@@ -88,7 +88,7 @@ class StopwatchViewController: UIViewController {
             
             if appDelegate.startPressed == false {
                 //      if user press Start
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("timerBeep"), userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(StopwatchViewController.timerBeep), userInfo: nil, repeats: true)
                 
                 if timeKeeper == 0 {
                     print("timeKeeper == 0")
@@ -234,8 +234,8 @@ class StopwatchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        center.addObserver(self, selector: "actOnSwitchToCountdown", name: Constants.StopwatchNotificationKey.TabToCountdown, object: nil)
-        center.addObserver(self, selector: "actOnSwitchBackToStopwatch", name: Constants.StopwatchNotificationKey.TabBackToStopwatch, object: nil)
+        center.addObserver(self, selector: #selector(StopwatchViewController.actOnSwitchToCountdown), name: Constants.StopwatchNotificationKey.TabToCountdown, object: nil)
+        center.addObserver(self, selector: #selector(StopwatchViewController.actOnSwitchBackToStopwatch), name: Constants.StopwatchNotificationKey.TabBackToStopwatch, object: nil)
         
     }
     
@@ -255,7 +255,7 @@ class StopwatchViewController: UIViewController {
         center.postNotificationName(Constants.StopwatchNotificationKey.TabToStopwatch, object: self)
         
         center.addObserver(app.delegate!,
-            selector: Selector("timeIntervalForStopwatch"),
+            selector: #selector(AppDelegate.timeIntervalForStopwatch),
             name: UIApplicationWillEnterForegroundNotification,
             object: nil)
         
