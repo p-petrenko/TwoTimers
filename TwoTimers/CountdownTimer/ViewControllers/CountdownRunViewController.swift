@@ -256,6 +256,7 @@ class CountdownRunViewController: UIViewController  {
             // First recalculate startDate in startTimer(), only then can add 1 minute to refreshed startDate.
             self.startTimer()
             self.plusMinusMinute(1)
+            
         }))
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default , handler: { (action: UIAlertAction) -> Void in
             // Action: Stop timer and return to timer settings
@@ -268,7 +269,7 @@ class CountdownRunViewController: UIViewController  {
     // MARK: - Changing time labels
     
     func changeTimeLabel() {
-        // timeKeeper always < 0 after the moment of start. For example, timer started at 1000 sec. So in the future at 1015 we must subtract 15 seconds (-15 sec) to get that past 1000 sec. That's why we need to set startDate at the moment of Start.
+        // timeKeeper always < 0 after the moment of start. For example, timer started at 1000 sec (startDate). So in the future at 1015 sec (NSDate()) we must subtract 15 seconds (-15 sec = startDate.timeIntervalSinceNow) to get that past 1000 sec. That's why we need to set startDate at the moment of Start.
         if startDate != nil {
             timeKeeper = startDate!.timeIntervalSinceNow
         }
@@ -281,6 +282,8 @@ class CountdownRunViewController: UIViewController  {
             if timeLeftInTimer == 0 {
                 audioPlayer.play()
             }
+            // timeKeeper is used further if I choose "+1min" action in alert. If an app was in background and I didn't open notification immidiately, (NSDate() - startDate) will be -(secondsFromChosenTime + Time_of_Waiting_To_Open_the_App), and I change it to be -(secondsFromChosenTime) which is correct.
+            timeKeeper = -Double(secondsFromChosenTime)
             // the label of time must be fixed NOT to show smth like 00:0-10:0-11 (negative time)
             timeLeftInTimer = 0
             stopTimer()

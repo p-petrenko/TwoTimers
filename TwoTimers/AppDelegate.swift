@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var secondsForFireDate = Double()
     var backgroundDate: NSDate?
     
-    var activeDate: NSDate?
-    
     private struct TimeConstants {
         static let SecInHour = 3600
         static let SecInMinute = 60
@@ -67,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        activeDate = NSDate()
     }
     
     
@@ -90,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 soundNameForNotification = "\(arrayOfFileNames[1])" + ".mp3"
             }
 
-            
+            // the line where we set the fire date. It is the period of time in which the application will send a notification in background state.
             localNotification.fireDate = NSDate(timeIntervalSinceNow: secondsForFireDate)
             localNotification.alertTitle = "Alert Title"
             
@@ -105,7 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 localNotification.soundName =  soundNameForNotification
             }
-            
             app.scheduleLocalNotification(localNotification)
         }
     }
