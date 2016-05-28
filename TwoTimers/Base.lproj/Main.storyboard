@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Stopwatch View Controller-->
         <scene sceneID="JOl-Hf-x3u">
             <objects>
-                <viewController id="d7C-2g-efc" sceneMemberID="viewController">
+                <viewController id="d7C-2g-efc" customClass="StopwatchViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aqa-PU-eun"/>
                         <viewControllerLayoutGuide type="bottom" id="x7r-ge-bmR"/>
@@ -25,10 +25,13 @@
                                     <constraint firstAttribute="width" secondItem="aLn-OF-lG8" secondAttribute="height" multiplier="1:1" id="3g8-ZW-5WR"/>
                                 </constraints>
                                 <state key="normal" image="ResetButton"/>
+                                <connections>
+                                    <action selector="resetOrMakeSplit:" destination="d7C-2g-efc" eventType="touchUpInside" id="cmq-ai-OSY"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ8-qB-YtK" userLabel="Split time00:00.00">
-                                <rect key="frame" x="216" y="325" width="169" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <rect key="frame" x="204" y="326" width="193" height="47"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -60,6 +63,9 @@
                                     <constraint firstAttribute="height" constant="40" id="x8B-dk-SWb"/>
                                 </constraints>
                                 <state key="normal" image="SleepModeOn"/>
+                                <connections>
+                                    <action selector="switchSleepMode:" destination="d7C-2g-efc" eventType="touchUpInside" id="Fg2-9d-eCx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="744" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLd-IN-cWl" userLabel="StartOrPause Button">
                                 <rect key="frame" x="137" y="443" width="100" height="100"/>
@@ -80,20 +86,23 @@
                                         <include reference="XtE-p4-PkU"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="startTimer:" destination="d7C-2g-efc" eventType="touchUpInside" id="K0c-Py-JO9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="781-Qj-Uxr" userLabel="Running time00:00.00">
-                                <rect key="frame" x="20" y="120" width="560" height="197"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="85"/>
+                                <rect key="frame" x="20" y="120" width="560" height="198"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="85"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact">
-                                    <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="70"/>
                                 </variation>
                                 <variation key="widthClass=compact">
-                                    <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="90"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="200"/>
+                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="200"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5T4-Zt-9A9">
@@ -107,7 +116,8 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="GKC-4i-i22" kind="show" id="pL1-WL-Fgh"/>
+                                    <action selector="showAllResults:" destination="d7C-2g-efc" eventType="touchUpInside" id="wjW-cn-0wb"/>
+                                    <segue destination="GKC-4i-i22" kind="show" identifier="Split Results Segue" id="vGi-cT-PFu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -221,6 +231,15 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="BR7-Ls-ygH"/>
+                    <connections>
+                        <outlet property="runningTimeLabel" destination="781-Qj-Uxr" id="cEo-Sa-zRL"/>
+                        <outlet property="showAllResultsButton" destination="5T4-Zt-9A9" id="VM4-IJ-j44"/>
+                        <outlet property="sleepModeButton" destination="aCY-EI-Zeg" id="pez-uc-d1a"/>
+                        <outlet property="splitAndResetButton" destination="aLn-OF-lG8" id="U9C-Il-iW9"/>
+                        <outlet property="splitLabel" destination="VZ8-qB-YtK" id="KI5-nG-W9U"/>
+                        <outlet property="startTimerButton" destination="GLd-IN-cWl" id="ioz-G2-bo8"/>
+                        <segue destination="tgR-du-UwQ" kind="show" identifier="Folder in StopwatchVC Segue" id="ArM-Lq-Qsx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9SS-I2-Wwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -648,7 +667,7 @@
                     <navigationItem key="navigationItem" title="Title" id="pUW-fb-DA7">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="AxV-pk-Q8R">
                             <connections>
-                                <segue destination="tgR-du-UwQ" kind="show" id="q0G-FA-Bjj"/>
+                                <segue destination="tgR-du-UwQ" kind="show" identifier="Folder in SRTVC Segue" id="q0G-FA-Bjj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -683,7 +702,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U6p-d4-5mA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2185" y="1618"/>
+            <point key="canvasLocation" x="2159" y="1617"/>
         </scene>
         <!--Timers Tab Bar Controller-->
         <scene sceneID="HoC-f0-UZv">
@@ -774,5 +793,8 @@
         <image name="StartButton" width="100" height="100"/>
         <image name="StopButton" width="100" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="q0G-FA-Bjj"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.023529411760000001" green="0.65490196079999996" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
