@@ -196,7 +196,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     // If user sets time 00:00:00, then pickerView will automatically reset it to 00:01:00.
         if chooseTime.selectedRowInComponent(0) == 0 && chooseTime.selectedRowInComponent(1) % 60 == 0 && chooseTime.selectedRowInComponent(2) % 60 == 0 {
-            chooseTime.selectRow(chooseTime.selectedRowInComponent(1) + 1 , inComponent: 1, animated: true)
+            chooseTime.selectRow(chooseTime.selectedRowInComponent(2) + 1 , inComponent: 2, animated: true)
         }
     }
     

@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let chosMelodyNum = defaults.objectForKey(Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
                 soundNameForNotification =  "\(arrayOfFileNames[chosMelodyNum])" + ".mp3"
             } else {
-                soundNameForNotification = "\(arrayOfFileNames[1])" + ".mp3"
+                soundNameForNotification = "\(Constants.MelodyFileNames.SimpleSoundFileName)" + ".mp3"
             }
 
             // the line where we set the fire date. It is the period of time in which the application will send a notification in background state.

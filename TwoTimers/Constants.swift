@@ -104,8 +104,8 @@ struct Constants {
     }
     
     struct MelodyFileNames {
-        static let SimpleSoundFileName = "pipipi"
-        static let SimpleSound2FileName = "pipi"
+        static let SimpleSoundFileName = "pipi"
+        static let SimpleSound2FileName = "pipipi"
         static let Drums1FileName = "rhythmical_drums1"
         static let Drums2FileName = "rhythmical_drums2"
         static let FretlessBassFileName = "anxious_fretless_bass"
