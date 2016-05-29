@@ -32,6 +32,14 @@ struct Constants {
     // MARK: - Stopwatch timer constants
     
     struct KeysUsedInStopwatch {
+        
+        // Core Data keys
+        static let DateAndTime = "Date and Time on user device Array"
+        static let IntervalTimeResult = "Split Interval Results Array"
+        static let SplitEventName = "Array of names of split result, modifies if result saved"
+        static let Current = "The result will be ERASED after resetting the app"
+        static let Saved = "The result will be SAVED after resetting the app"
+        
         // for SplitTVC
         static let CurrentNumberOfEvent = "Event Number"
         static let EventName = "Event Name"
@@ -42,11 +50,8 @@ struct Constants {
         static let IntervalTimeSavedArray = "Time on The Timer"
         static let DateAndTimeSavedArray = "Date and Time on user device Array for SavedTVC"
         
-        static let DateAndTime = "Date and Time on user device Array"
-        static let SplitNumberArray = "Number of Pressing Split Button Array"
-        static let IntervalTimeResultArray = "Split Interval Results Array"
-        static let SplitEventNameArray = "Array of names of split result, modifies if result saved"
-        
+        static let SplitNumber = "Number of Pressing Split Button Array"
+
         static let SplitTimeLabel = "Text for Split time label"
         static let MainTimeLabel = "Text for running time label"
         

@@ -135,8 +135,8 @@ class StopwatchViewController: UIViewController {
                 arrayOfDevivceTimeAndDate.append(NSDate()) // NSDate() is taken from the computer, and it is current date and time
                 splitStartDate = NSDate()
                 
-                defaults.setObject(arrayOfSplitNumbers , forKey: Constants.KeysUsedInStopwatch.SplitNumberArray)
-                defaults.setObject(arrayOfSplitResults, forKey: Constants.KeysUsedInStopwatch.IntervalTimeResultArray)
+                defaults.setObject(arrayOfSplitNumbers , forKey: Constants.KeysUsedInStopwatch.SplitNumber)
+                defaults.setObject(arrayOfSplitResults, forKey: Constants.KeysUsedInStopwatch.IntervalTimeResult)
                 defaults.setObject(arrayOfDevivceTimeAndDate, forKey: Constants.KeysUsedInStopwatch.DateAndTime)
                 
             } else if appDelegate.startPressed == false {
@@ -168,10 +168,11 @@ class StopwatchViewController: UIViewController {
         arrayOfDevivceTimeAndDate = []
         showAllResultsButton.setTitle("", forState: .Normal)
         
-        defaults.setObject(nil , forKey: Constants.KeysUsedInStopwatch.SplitNumberArray)
-        defaults.setObject(nil, forKey: Constants.KeysUsedInStopwatch.IntervalTimeResultArray)
-        defaults.setObject(nil, forKey: Constants.KeysUsedInStopwatch.DateAndTime)
-        self.defaults.setObject(nil, forKey: Constants.KeysUsedInStopwatch.SplitEventNameArray)
+        defaults.setObject(nil , forKey: Constants.KeysUsedInStopwatch.SplitNumber)
+        
+//        defaults.setObject(nil, forKey: Constants.KeysUsedInStopwatch.IntervalTimeResult)
+//        defaults.setObject(nil, forKey: Constants.KeysUsedInStopwatch.DateAndTime)
+//        self.defaults.setObject(nil, forKey: Constants.KeysUsedInStopwatch.SplitEventName)
         
         defaults.setObject(zeroTextLabel, forKey: Constants.KeysUsedInStopwatch.SplitTimeLabel)
         defaults.setObject(zeroTextLabel, forKey: Constants.KeysUsedInStopwatch.MainTimeLabel)
@@ -256,12 +257,12 @@ class StopwatchViewController: UIViewController {
             object: nil)
         
         if switchBackToStopwatch == false {
-            if let numberArray = defaults.objectForKey(Constants.KeysUsedInStopwatch.SplitNumberArray) as? [String] {
+            if let numberArray = defaults.objectForKey(Constants.KeysUsedInStopwatch.SplitNumber) as? [String] {
                 arrayOfSplitNumbers = numberArray
                 splitNumber = numberArray.count
             }
             
-            if let intervalArray = defaults.objectForKey(Constants.KeysUsedInStopwatch.IntervalTimeResultArray) as? [String] {
+            if let intervalArray = defaults.objectForKey(Constants.KeysUsedInStopwatch.IntervalTimeResult) as? [String] {
                 arrayOfSplitResults = intervalArray
                 if arrayOfSplitResults != [] {
                     showAllResultsButton.setTitle("#\(splitNumber) \(arrayOfSplitResults.last!)", forState: .Normal)

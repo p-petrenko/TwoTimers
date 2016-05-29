@@ -22,6 +22,8 @@
 		2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */; };
 		2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */; };
 		2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */; };
+		2DAD01A21CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAD01A01CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift */; };
+		2DAD01A31CFAF85E00CF95C8 /* StopwatchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAD01A11CFAF85E00CF95C8 /* StopwatchResults.swift */; };
 		2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */; };
 		2DFEC3C61CAAD69700A58B0F /* wobble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */; };
 		2DFEC3C71CAAD69700A58B0F /* sleigh_bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */; };
@@ -46,16 +48,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopwatchViewController.swift; path = Stopwatch/ViewControllers/StopwatchViewController.swift; sourceTree = "<group>"; };
+		2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		2D5FD22C1CB411D000A1A1C8 /* MusicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicTableViewController.swift; path = CountdownTimer/ViewControllers/MusicTableViewController.swift; sourceTree = "<group>"; };
 		2D5FD2301CB412A600A1A1C8 /* MusicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicTableViewCell.swift; path = CountdownTimer/Cells/MusicTableViewCell.swift; sourceTree = "<group>"; };
 		2D82D8711CA33D24008BFEB4 /* TwoTimers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwoTimers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D82D8741CA33D24008BFEB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D82D8791CA33D24008BFEB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D82D87C1CA33D24008BFEB4 /* TwoTimers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TwoTimers.xcdatamodel; sourceTree = "<group>"; };
-		2D82D87E1CA33D24008BFEB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = TwoTimers/SupportingFiles/Assets.xcassets; sourceTree = "<group>"; };
-		2D82D8831CA33D24008BFEB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = TwoTimers/SupportingFiles/Info.plist; sourceTree = "<group>"; };
-		2D82D88C1CA3E804008BFEB4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "TwoTimers/SupportingFiles/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2D82D87E1CA33D24008BFEB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D82D8831CA33D24008BFEB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D82D88C1CA3E804008BFEB4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2D82D89E1CA3F1B9008BFEB4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2D82D8A51CA3F2F7008BFEB4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2D82D8A91CA3FFB7008BFEB4 /* TimersTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersTabBarController.swift; sourceTree = "<group>"; };
@@ -63,27 +65,29 @@
 		2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CountdownTimer+CoreDataProperties.swift"; path = "CountdownTimer/Model/CountdownTimer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownTimer.swift; path = CountdownTimer/Model/CountdownTimer.swift; sourceTree = "<group>"; };
 		2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		2DAD01A01CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StopwatchResults+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2DAD01A11CFAF85E00CF95C8 /* StopwatchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchResults.swift; sourceTree = "<group>"; };
 		2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownRunViewController.swift; path = CountdownTimer/ViewControllers/CountdownRunViewController.swift; sourceTree = "<group>"; };
-		2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wobble.mp3; path = TwoTimers/SupportingFiles/Audio/wobble.mp3; sourceTree = "<group>"; };
-		2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sleigh_bells.mp3; path = TwoTimers/SupportingFiles/Audio/sleigh_bells.mp3; sourceTree = "<group>"; };
-		2DFEC3B41CAAD69700A58B0F /* seagulls_and_foghorn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = seagulls_and_foghorn.mp3; path = TwoTimers/SupportingFiles/Audio/seagulls_and_foghorn.mp3; sourceTree = "<group>"; };
-		2DFEC3B51CAAD69700A58B0F /* rhythmical_drums2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rhythmical_drums2.mp3; path = TwoTimers/SupportingFiles/Audio/rhythmical_drums2.mp3; sourceTree = "<group>"; };
-		2DFEC3B61CAAD69700A58B0F /* rhythmical_drums1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rhythmical_drums1.mp3; path = TwoTimers/SupportingFiles/Audio/rhythmical_drums1.mp3; sourceTree = "<group>"; };
-		2DFEC3B71CAAD69700A58B0F /* pipipi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pipipi.mp3; path = TwoTimers/SupportingFiles/Audio/pipipi.mp3; sourceTree = "<group>"; };
-		2DFEC3B81CAAD69700A58B0F /* pipi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pipi.mp3; path = TwoTimers/SupportingFiles/Audio/pipi.mp3; sourceTree = "<group>"; };
-		2DFEC3B91CAAD69700A58B0F /* piano5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano5.mp3; path = TwoTimers/SupportingFiles/Audio/piano5.mp3; sourceTree = "<group>"; };
-		2DFEC3BA1CAAD69700A58B0F /* piano4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano4.mp3; path = TwoTimers/SupportingFiles/Audio/piano4.mp3; sourceTree = "<group>"; };
-		2DFEC3BB1CAAD69700A58B0F /* piano3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano3.mp3; path = TwoTimers/SupportingFiles/Audio/piano3.mp3; sourceTree = "<group>"; };
-		2DFEC3BC1CAAD69700A58B0F /* piano2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano2.mp3; path = TwoTimers/SupportingFiles/Audio/piano2.mp3; sourceTree = "<group>"; };
-		2DFEC3BD1CAAD69700A58B0F /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano.mp3; path = TwoTimers/SupportingFiles/Audio/piano.mp3; sourceTree = "<group>"; };
-		2DFEC3BE1CAAD69700A58B0F /* piano_synth.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = piano_synth.mp3; path = TwoTimers/SupportingFiles/Audio/piano_synth.mp3; sourceTree = "<group>"; };
-		2DFEC3BF1CAAD69700A58B0F /* electronic_sound6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound6.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound6.mp3; sourceTree = "<group>"; };
-		2DFEC3C01CAAD69700A58B0F /* electronic_sound4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound4.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound4.mp3; sourceTree = "<group>"; };
-		2DFEC3C11CAAD69700A58B0F /* electronic_sound3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound3.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound3.mp3; sourceTree = "<group>"; };
-		2DFEC3C21CAAD69700A58B0F /* electronic_sound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = electronic_sound2.mp3; path = TwoTimers/SupportingFiles/Audio/electronic_sound2.mp3; sourceTree = "<group>"; };
-		2DFEC3C31CAAD69700A58B0F /* bottle_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bottle_sound.mp3; path = TwoTimers/SupportingFiles/Audio/bottle_sound.mp3; sourceTree = "<group>"; };
-		2DFEC3C41CAAD69700A58B0F /* anxious_violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = anxious_violin.mp3; path = TwoTimers/SupportingFiles/Audio/anxious_violin.mp3; sourceTree = "<group>"; };
-		2DFEC3C51CAAD69700A58B0F /* anxious_fretless_bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = anxious_fretless_bass.mp3; path = TwoTimers/SupportingFiles/Audio/anxious_fretless_bass.mp3; sourceTree = "<group>"; };
+		2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wobble.mp3; sourceTree = "<group>"; };
+		2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sleigh_bells.mp3; sourceTree = "<group>"; };
+		2DFEC3B41CAAD69700A58B0F /* seagulls_and_foghorn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = seagulls_and_foghorn.mp3; sourceTree = "<group>"; };
+		2DFEC3B51CAAD69700A58B0F /* rhythmical_drums2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rhythmical_drums2.mp3; sourceTree = "<group>"; };
+		2DFEC3B61CAAD69700A58B0F /* rhythmical_drums1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rhythmical_drums1.mp3; sourceTree = "<group>"; };
+		2DFEC3B71CAAD69700A58B0F /* pipipi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pipipi.mp3; sourceTree = "<group>"; };
+		2DFEC3B81CAAD69700A58B0F /* pipi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pipi.mp3; sourceTree = "<group>"; };
+		2DFEC3B91CAAD69700A58B0F /* piano5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano5.mp3; sourceTree = "<group>"; };
+		2DFEC3BA1CAAD69700A58B0F /* piano4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano4.mp3; sourceTree = "<group>"; };
+		2DFEC3BB1CAAD69700A58B0F /* piano3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano3.mp3; sourceTree = "<group>"; };
+		2DFEC3BC1CAAD69700A58B0F /* piano2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano2.mp3; sourceTree = "<group>"; };
+		2DFEC3BD1CAAD69700A58B0F /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
+		2DFEC3BE1CAAD69700A58B0F /* piano_synth.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_synth.mp3; sourceTree = "<group>"; };
+		2DFEC3BF1CAAD69700A58B0F /* electronic_sound6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electronic_sound6.mp3; sourceTree = "<group>"; };
+		2DFEC3C01CAAD69700A58B0F /* electronic_sound4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electronic_sound4.mp3; sourceTree = "<group>"; };
+		2DFEC3C11CAAD69700A58B0F /* electronic_sound3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electronic_sound3.mp3; sourceTree = "<group>"; };
+		2DFEC3C21CAAD69700A58B0F /* electronic_sound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electronic_sound2.mp3; sourceTree = "<group>"; };
+		2DFEC3C31CAAD69700A58B0F /* bottle_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bottle_sound.mp3; sourceTree = "<group>"; };
+		2DFEC3C41CAAD69700A58B0F /* anxious_violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = anxious_violin.mp3; sourceTree = "<group>"; };
+		2DFEC3C51CAAD69700A58B0F /* anxious_fretless_bass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = anxious_fretless_bass.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,15 +142,17 @@
 				2D82D8831CA33D24008BFEB4 /* Info.plist */,
 				2D82D88C1CA3E804008BFEB4 /* Launch Screen.storyboard */,
 			);
-			name = SupportingFiles;
-			path = ..;
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		2D82D8921CA3EF38008BFEB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2DAD01A01CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift */,
+				2DAD01A11CFAF85E00CF95C8 /* StopwatchResults.swift */,
 			);
 			name = Model;
+			path = Stopwatch/Model;
 			sourceTree = "<group>";
 		};
 		2D82D8931CA3EF3F008BFEB4 /* ViewControllers */ = {
@@ -155,6 +161,7 @@
 				2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */,
 			);
 			name = ViewControllers;
+			path = Stopwatch/ViewControllers;
 			sourceTree = "<group>";
 		};
 		2D82D8941CA3EF7C008BFEB4 /* Cells */ = {
@@ -162,6 +169,7 @@
 			children = (
 			);
 			name = Cells;
+			path = Stopwatch/Cells;
 			sourceTree = "<group>";
 		};
 		2D82D8951CA3EFD8008BFEB4 /* Audio */ = {
@@ -188,7 +196,7 @@
 				2DFEC3C41CAAD69700A58B0F /* anxious_violin.mp3 */,
 				2DFEC3C51CAAD69700A58B0F /* anxious_fretless_bass.mp3 */,
 			);
-			name = Audio;
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		2D82D8961CA3F07F008BFEB4 /* Stopwatch */ = {
@@ -336,9 +344,11 @@
 				2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */,
 				2D82D8AC1CA443F2008BFEB4 /* CountdownSettingsViewController.swift in Sources */,
 				2D82D87D1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld in Sources */,
+				2DAD01A21CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift in Sources */,
 				2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */,
 				2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */,
 				2D82D89F1CA3F1B9008BFEB4 /* Constants.swift in Sources */,
+				2DAD01A31CFAF85E00CF95C8 /* StopwatchResults.swift in Sources */,
 				2D5FD22D1CB411D000A1A1C8 /* MusicTableViewController.swift in Sources */,
 				2D82D8AA1CA3FFB7008BFEB4 /* TimersTabBarController.swift in Sources */,
 				2D5FD2311CB412A600A1A1C8 /* MusicTableViewCell.swift in Sources */,
@@ -448,7 +458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TwoTimers/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers;
+				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -459,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TwoTimers/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers;
+				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

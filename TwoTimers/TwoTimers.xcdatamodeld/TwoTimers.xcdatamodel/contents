@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1605" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
     <entity name="CountdownTimer" representedClassName=".CountdownTimer" syncable="YES">
         <attribute name="selectedHours" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="selectedMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="selectedSeconds" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="StopwatchResults" representedClassName=".StopwatchResults" syncable="YES">
+        <attribute name="current" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="dateAndTimeOfSplit" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="saved" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="splitEventName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="splitTimeLabel" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="CountdownTimer" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="CountdownTimer" positionX="-65" positionY="-117" width="128" height="88"/>
+        <element name="StopwatchResults" positionX="-63" positionY="9" width="128" height="118"/>
     </elements>
 </model>

@@ -1,4 +1,4 @@
-//
+    //
 //  CoreDataStackManager.swift
 //  TwoTimers
 //
@@ -25,7 +25,6 @@ class CoreDataStackManager {
         struct Static {
             static let instance = CoreDataStackManager()
         }
-        
         return Static.instance
     }
     
@@ -58,12 +57,10 @@ class CoreDataStackManager {
             
             dict[NSUnderlyingErrorKey] = error as NSError
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            // Replace this with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            // abort() causes the application to generate a crash log and terminate. Comment this function in a shipping application, it may be useful during development.
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            abort()
+//            abort()
         }
-        
         return coordinator
     }()
     
@@ -83,11 +80,9 @@ class CoreDataStackManager {
             do {
                 try managedObjectContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+//                abort()
             }
         }
     }

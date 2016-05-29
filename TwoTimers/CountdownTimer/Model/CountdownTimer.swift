@@ -11,8 +11,6 @@ import CoreData
 
 
 class CountdownTimer: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -25,5 +23,4 @@ class CountdownTimer: NSManagedObject {
         selectedMinutes = dictionary[Constants.KeysUsedInCountdownTimer.MinutesForStart] as! Int
         selectedHours = dictionary[Constants.KeysUsedInCountdownTimer.HoursForStart] as! Int
     }
-
 }
