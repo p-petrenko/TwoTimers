@@ -70,14 +70,14 @@ class CountdownRunViewController: UIViewController  {
     
     @IBOutlet weak var runningTimeLabel: UILabel!
 
-    @IBOutlet weak var startOrPauseOutlet: UIButton!
+    @IBOutlet weak var startOrPauseButton: UIButton!
    
-    @IBOutlet weak var soundOnOffOutlet: UIButton!
+    @IBOutlet weak var soundOnOffOButton: UIButton!
     
-    @IBOutlet weak var minusOneMinuteOutlet: UIButton!
+    @IBOutlet weak var minusOneMinuteButton: UIButton!
     
     
-    @IBAction func soundOnOffButton(sender: UIButton) {
+    @IBAction func turnSoundOnOff(sender: UIButton) {
         if soundIsOff == false || soundIsOff == nil { 
             soundIsOff = true
             soundOff()
@@ -88,15 +88,15 @@ class CountdownRunViewController: UIViewController  {
         defaults.setObject(soundIsOff, forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff)
     }
     
-    @IBAction func minusOneMinuteButton(sender: UIButton) {
+    @IBAction func minusOneMinute(sender: UIButton) {
         plusMinusMinute(-1)
     }
 
-    @IBAction func plusOneMinuteButton(sender: UIButton) {
+    @IBAction func plusOneMinute(sender: UIButton) {
         plusMinusMinute(1)
     }
 
-    @IBAction func startOrPauseButton(sender: UIButton) {
+    @IBAction func startOrPauseAction(sender: UIButton) {
         startOrPauseTimer(sender)
     }
 
@@ -154,7 +154,7 @@ class CountdownRunViewController: UIViewController  {
         
     //   start timer and set start data for labels
         if switchBackToCountdown == false {
-            startOrPauseTimer(startOrPauseOutlet)
+            startOrPauseTimer(startOrPauseButton)
         }
 
     //    if return from StopwatchVC to RunVC :
@@ -291,9 +291,9 @@ class CountdownRunViewController: UIViewController  {
         }
         // if time < 61 sec , lock pressing "-1m" button
         if timeLeftInTimer < (TimeConstants.SecInMinute + 1) {
-            minusOneMinuteOutlet.enabled = false
+            minusOneMinuteButton.enabled = false
         } else {
-            minusOneMinuteOutlet.enabled = true
+            minusOneMinuteButton.enabled = true
         }
         calculateTimeAndSetTimeLabel(runningTimeLabel, timeInSeconds: timeLeftInTimer)
     }
@@ -321,12 +321,12 @@ class CountdownRunViewController: UIViewController  {
     // MARK: - Audio functions
     
     func soundOff() {
-        soundOnOffOutlet.setImage(UIImage(named : "SoundOff"), forState: .Normal)
+        soundOnOffOButton.setImage(UIImage(named : "SoundOff"), forState: .Normal)
         audioPlayer.volume = 0
     }
     
     func soundOn() {
-        soundOnOffOutlet.setImage(UIImage(named : "SoundOn"), forState: .Normal)
+        soundOnOffOButton.setImage(UIImage(named : "SoundOn"), forState: .Normal)
         audioPlayer.volume = 1
     }
     
