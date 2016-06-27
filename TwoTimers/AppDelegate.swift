@@ -25,11 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var secondsForFireDate = Double()
     var backgroundDate: NSDate?
-    
-    private struct TimeConstants {
-        static let SecInHour = 3600
-        static let SecInMinute = 60
-    }
  
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

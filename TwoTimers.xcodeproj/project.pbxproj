@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D09BE361D21A96B005EDF14 /* SplitResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09BE351D21A96B005EDF14 /* SplitResultTableViewCell.swift */; };
+		2D09BE381D21A98D005EDF14 /* SavedResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09BE371D21A98D005EDF14 /* SavedResultTableViewCell.swift */; };
 		2D2F1D451D21561000A19953 /* SavedResultsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */; };
 		2D2F1D471D21563E00A19953 /* SplitResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F1D461D21563E00A19953 /* SplitResultsTableViewController.swift */; };
 		2D5FD22B1CB3FDD100A1A1C8 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */; };
@@ -50,6 +52,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D09BE351D21A96B005EDF14 /* SplitResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitResultTableViewCell.swift; sourceTree = "<group>"; };
+		2D09BE371D21A98D005EDF14 /* SavedResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResultTableViewCell.swift; sourceTree = "<group>"; };
 		2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResultsTableTableViewController.swift; sourceTree = "<group>"; };
 		2D2F1D461D21563E00A19953 /* SplitResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitResultsTableViewController.swift; sourceTree = "<group>"; };
 		2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 		2D82D8941CA3EF7C008BFEB4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2D09BE351D21A96B005EDF14 /* SplitResultTableViewCell.swift */,
+				2D09BE371D21A98D005EDF14 /* SavedResultTableViewCell.swift */,
 			);
 			name = Cells;
 			path = Stopwatch/Cells;
@@ -356,7 +362,9 @@
 				2D2F1D451D21561000A19953 /* SavedResultsTableTableViewController.swift in Sources */,
 				2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */,
 				2D82D89F1CA3F1B9008BFEB4 /* Constants.swift in Sources */,
+				2D09BE381D21A98D005EDF14 /* SavedResultTableViewCell.swift in Sources */,
 				2DAD01A31CFAF85E00CF95C8 /* StopwatchResults.swift in Sources */,
+				2D09BE361D21A96B005EDF14 /* SplitResultTableViewCell.swift in Sources */,
 				2D5FD22D1CB411D000A1A1C8 /* MusicTableViewController.swift in Sources */,
 				2D82D8AA1CA3FFB7008BFEB4 /* TimersTabBarController.swift in Sources */,
 				2D5FD2311CB412A600A1A1C8 /* MusicTableViewCell.swift in Sources */,

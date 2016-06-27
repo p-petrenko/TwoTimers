@@ -53,7 +53,6 @@ class StopwatchViewController: UIViewController {
     struct TimeConstants {
         static let SecInHour: Float = 3600
         static let SecInMinute : Float = 60
-//        static let CentiDivider : Float = 100
     }
     
     @IBOutlet weak var runningTimeLabel: UILabel!

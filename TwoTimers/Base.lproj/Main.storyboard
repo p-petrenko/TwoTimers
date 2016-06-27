@@ -652,7 +652,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Split Results" rowHeight="89" id="Y66-Hd-oJT">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Split Results" rowHeight="89" id="Y66-Hd-oJT" customClass="SplitResultTableViewCell" customModule="TwoTimers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y66-Hd-oJT" id="uZO-Pp-wbB">
@@ -713,6 +713,13 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateAndTimeOfSplitPressing" destination="D15-fp-Ka8" id="2ow-2B-S9G"/>
+                                    <outlet property="numOfSplitResult" destination="ey6-dM-khd" id="04z-yN-GRl"/>
+                                    <outlet property="resultName" destination="xbB-uP-nP4" id="xHZ-Gh-gdz"/>
+                                    <outlet property="saveThisResultButton" destination="eh5-A6-HKw" id="cUm-pP-2Sh"/>
+                                    <outlet property="timeInterval" destination="kZ0-ot-tfL" id="VqS-yn-Uvf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -741,7 +748,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Saved Results" rowHeight="100" id="B8X-t9-ZMD">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Saved Results" rowHeight="100" id="B8X-t9-ZMD" customClass="SavedResultTableViewCell" customModule="TwoTimers" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B8X-t9-ZMD" id="9ih-B6-IJs">
@@ -793,6 +800,12 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dAndTFromSplit" destination="Cr5-9X-g2V" id="j9N-0g-XWb"/>
+                                    <outlet property="pencilButton" destination="8EK-de-wJO" id="biL-8U-8ed"/>
+                                    <outlet property="resultName" destination="ftl-tO-Zk5" id="ayH-cU-Yc6"/>
+                                    <outlet property="savedTime" destination="red-d2-AV3" id="Nwo-Kz-WaL"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

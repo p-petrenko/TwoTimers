@@ -42,8 +42,8 @@ class CountdownRunViewController: UIViewController  {
     var appDelegate: AppDelegate!
     
     private struct TimeConstants {
-        static let SecInHour = 3600
-        static let SecInMinute = 60
+        static let SecInHour :Int = 3600
+        static let SecInMinute :Int = 60
     }
     
     private struct StringsForAlert {
