@@ -39,35 +39,35 @@ struct Constants {
         static let SplitEventName = "Array of names of split result, modifies if result saved"
         static let Current = "The result will be ERASED after resetting the app"
         static let Saved = "The result will be SAVED after resetting the app"
-        
-        // for SplitTVC
-        static let CurrentNumberOfEvent = "Event Number"
-        static let EventName = "Event Name"
-        static let TimerLabel = "Time on The Timer"
-        
-        //     default keys for usung in SavedTVC
-        static let EventNameSavedArray = "Event Name"
-        static let IntervalTimeSavedArray = "Time on The Timer"
-        static let DateAndTimeSavedArray = "Date and Time on user device Array for SavedTVC"
-        
-        static let SplitNumber = "Number of Pressing Split Button Array"
-
-        static let SplitTimeLabel = "Text for Split time label"
-        static let MainTimeLabel = "Text for running time label"
-        
-        static let StopwatchTimeInterval = "Time interval while Background State in Stopwatch"
-        
-        
-        static let ArrayToCheckIfResultIsSaved = "Array of Bool values for checking if result was already saved"
-        
-        static let TimeKeeperKey = "Save Last Used time of main label in Stopwatch"
-        static let SplitTimeKeeperKey = "Save Last Used time of split label in Stopwatch"
-        
+//
+//        // for SplitTVC
+//        static let CurrentNumberOfEvent = "Event Number"
+//        static let EventName = "Event Name"
+//        static let TimerLabel = "Time on The Timer"
+//        
+//        //     default keys for usung in SavedTVC
+//        static let EventNameSavedArray = "Event Name"
+//        static let IntervalTimeSavedArray = "Time on The Timer"
+//        static let DateAndTimeSavedArray = "Date and Time on user device Array for SavedTVC"
+//        
+//        static let SplitNumber = "Number of Pressing Split Button Array"
+//
+//        static let SplitTimeLabel = "Text for Split time label"
+//        static let MainTimeLabel = "Text for running time label"
+//        
+//        static let StopwatchTimeInterval = "Time interval while Background State in Stopwatch"
+//        
+//        
+//        static let ArrayToCheckIfResultIsSaved = "Array of Bool values for checking if result was already saved"
+//        
+//        static let TimeKeeperKey = "Save Last Used time of main label in Stopwatch"
+//        static let SplitTimeKeeperKey = "Save Last Used time of split label in Stopwatch"
+//        
         static let SleepMode = "Remember value of sleepModeOff variable"
         
-        static let DatesOfDeletedCells = "Array of NSDate type, which keeps deleted dates to compare with existed dates in Split results, and if this tates are identical, than user recieves FloppyDisk button again"
-        
-        static let DataOfCellsWithEditedNames = "Dictionary, which keeps names of edited results with keys, containing String-converted NSDate, and than use it to change name of the same result in SplitResultTVC"
+//        static let DatesOfDeletedCells = "Array of NSDate type, which keeps deleted dates to compare with existed dates in Split results, and if this tates are identical, than user recieves FloppyDisk button again"
+//        
+//        static let DataOfCellsWithEditedNames = "Dictionary, which keeps names of edited results with keys, containing String-converted NSDate, and than use it to change name of the same result in SplitResultTVC"
     }
     
     struct StopwatchNotificationKey {

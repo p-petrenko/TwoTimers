@@ -29,8 +29,8 @@
                                     <action selector="resetOrMakeSplit:" destination="d7C-2g-efc" eventType="touchUpInside" id="cmq-ai-OSY"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ8-qB-YtK" userLabel="Split time00:00.00">
-                                <rect key="frame" x="204" y="326" width="193" height="47"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" text="00:00.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ8-qB-YtK" userLabel="Split time00:00.00">
+                                <rect key="frame" x="216" y="326" width="169" height="47"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -90,7 +90,7 @@
                                     <action selector="startTimer:" destination="d7C-2g-efc" eventType="touchUpInside" id="K0c-Py-JO9"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="781-Qj-Uxr" userLabel="Running time00:00.00">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="00:00.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="781-Qj-Uxr" userLabel="Running time00:00.00">
                                 <rect key="frame" x="20" y="120" width="560" height="198"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="85"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -910,7 +910,7 @@
         <image name="StopButton" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RP5-eJ-6fQ"/>
+        <segue reference="deg-Zh-yCV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.023529411760000001" green="0.65490196079999996" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
