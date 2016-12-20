@@ -9,21 +9,44 @@
 import UIKit
 
 class SavedResultTableViewCell: UITableViewCell {
+ 
+    var savedResult: SplitStopwatchResult? {
+        didSet {
+            updateUI()
+        }
+    }
     
     @IBOutlet weak var resultName: UILabel!
     @IBOutlet weak var savedTime: UILabel!
     @IBOutlet weak var dAndTFromSplit: UILabel!
     @IBOutlet weak var pencilButton: UIButton!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+
+    fileprivate func updateUI() {
+        resultName.text = nil
+        savedTime.text = nil
+        dAndTFromSplit.text = nil
+
+        if let result = self.savedResult {
+            resultName.text = result.splitEventName
+            savedTime.text = result.splitTimeLabel
+            dAndTFromSplit.text = transferNSDateIntoString(result.splitDateAndTimeOfSplit! as Date)
+        }
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    fileprivate func transferNSDateIntoString(_ fullDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        let date = dateFormatter.string(from: fullDate)
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = DateFormatter.Style.short
+        timeFormatter.dateStyle = DateFormatter.Style.none
+        let time = timeFormatter.string(from: fullDate)
+        
+        let localizedUserTandD = NSLocalizedString("%@ at %@",comment: "Reports date and time when Split button was pressed")
+        let textOfDate = String.localizedStringWithFormat(localizedUserTandD, date , time)
+        
+        return textOfDate
     }
-
 }

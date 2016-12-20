@@ -7,92 +7,95 @@
 //
 
 import UIKit
+import CoreData
 
 class SavedResultsTableTableViewController: UITableViewController {
 
+    fileprivate var savedStopwatchResults = [SplitStopwatchResult]()
+    fileprivate var coreDataStackManager = CoreDataStackManager.sharedInstance()
+    fileprivate var sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext
+    
+    @IBAction func changeEventName(_ sender: UIButton) {
+        let eventNameTextField = UITextField()
+        let alert = UIAlertController(title: Constants.StringsForAlert.RenameTitle, message: "Rename this result", preferredStyle: UIAlertControllerStyle.alert)
+        var alertTextField = [UITextField]()
+        
+        alert.addTextField(){ textField in
+            eventNameTextField.keyboardType = UIKeyboardType.default
+        }
+        if alert.textFields != nil {
+            alertTextField = alert.textFields as [UITextField]!
+            alertTextField[0].placeholder = "Event name"
+            alertTextField[0].text = savedStopwatchResults[sender.tag].splitEventName
+        }
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {[unowned self] (alert : UIAlertAction) in
+
+            self.savedStopwatchResults[sender.tag].splitEventName = alertTextField[0].text!
+            self.coreDataStackManager.saveContext()
+
+            self.tableView.reloadData()
+            } )
+        alert.addAction(UIAlertAction(title: "Cancel" , style: UIAlertActionStyle.cancel, handler: nil))
+        alert.view.setNeedsLayout()
+        present(alert, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        savedStopwatchResults = coreDataStackManager.fetchSavedSplitResult()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return savedStopwatchResults.count
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 89.0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Saved Results", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Saved Results", for: indexPath) as! SavedResultTableViewCell
+        cell.pencilButton.tag = indexPath.row
+        cell.savedResult = savedStopwatchResults[indexPath.row]
         return cell
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let savedResult = savedStopwatchResults[indexPath.row]
+            let current = Bool(savedResult.current!)
+            if !current {
+                sharedContext.delete(savedResult)
+            } else {
+                savedResult.saved = false
+            }
+            coreDataStackManager.saveContext()
+            savedStopwatchResults.remove(at: indexPath.row)
+            
+            tableView.reloadData()
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
+        let valueAtOldPosition = savedStopwatchResults[fromIndexPath.row]
+        
+        savedStopwatchResults.remove(at: fromIndexPath.row)
+        savedStopwatchResults.insert(valueAtOldPosition, at: toIndexPath.row)
+        for (index,value) in savedStopwatchResults.enumerated() {
+            // value.positionOfSavedResult = index + 1
+            value.positionOfSavedResult = NSNumber(value: index + 1)
+        }
+        coreDataStackManager.saveContext()
+        tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

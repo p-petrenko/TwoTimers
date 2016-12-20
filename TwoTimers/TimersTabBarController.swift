@@ -18,7 +18,7 @@ class TimersTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor(red: 6/255, green: 167/255, blue: 244/255, alpha: 1) // color of text
     }
     
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
 //    if user selects an already chosen tab
         if tabBarController.selectedViewController == viewController {
             return false

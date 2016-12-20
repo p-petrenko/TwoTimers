@@ -7,24 +7,31 @@
 //
 
 import UIKit
+import CoreData
 
 class StopwatchViewController: UIViewController {
-    let app = UIApplication.sharedApplication()
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    fileprivate let app = UIApplication.shared
+    fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    fileprivate var notificationCenter = NotificationCenter.default
+    fileprivate var defaults = UserDefaults.standard
+    fileprivate var coreDataStackManager = CoreDataStackManager.sharedInstance()
+    fileprivate var sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext
     
-    var timer: NSTimer!
-    var startDate: NSDate! // time begins to run on pressing start
-    var splitStartDate: NSDate!
-    var secondsFromNSDate: Double! // NSDate interval from now to start moment
-    var secondsFromSplitNSDate: Double!
-    var timeKeeper: Double = 0  // time keeps track of latest tome when pause pressed
-    var splitTimeKeeper: Double! = 0
-    var splitNumber = 0
+    fileprivate var timer: Timer!
+    fileprivate var startDate: Date! // time begins to run on pressing start
+    fileprivate var splitStartDate: Date!
+    fileprivate var secondsFromNSDate: Double! // NSDate interval from now to start moment
+    fileprivate var secondsFromSplitNSDate: Double!
+    fileprivate var timeKeeper = 0.0  // time keeps track of latest tome when pause pressed
+    fileprivate var splitTimeKeeper = 0.0
+    fileprivate var splitNumber = 0
+    fileprivate var timerIsOnPause = true
+    fileprivate var timeWithPauseEvaluated = false
+    fileprivate var sleepModeOff = false
+    fileprivate var splitStopwatchResults = [SplitStopwatchResult]()
+    fileprivate var savedStopwatchResults = [SplitStopwatchResult]()
     
-    private struct TimeConstants {
-        static let SecInHour:Int = 3600
-        static let SecInMinute:Int = 60
-    }
+
     
     @IBOutlet weak var runningTimeLabel: UILabel!
     @IBOutlet weak var splitLabel: UILabel!
@@ -32,91 +39,221 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var splitAndResetButton: UIButton! // split/reset button outlet
     @IBOutlet weak var sleepModeButton: UIButton!
     @IBOutlet weak var showAllResultsButton: UIButton!
+    @IBOutlet weak var folderButton: UIButton!
     
-    @IBAction func switchSleepMode(sender: UIButton) {
-        
+    @IBAction func switchSleepMode(_ sender: UIButton) {
+        if sleepModeOff == false {
+            //switch off the sleeping possibility of the screen
+            setSleepModeState(true)
+        } else {
+            setSleepModeState(false)
+        }
+        defaults.set(sleepModeOff, forKey: Constants.KeysUsedInStopwatch.SleepMode)
     }
     
-    @IBAction func startTimer(sender: UIButton) {
-        if appDelegate.startPressed == false {
+    @IBAction func startTimer(_ sender: UIButton) {
+        if appDelegate.stopwatchTimerStarted == false {
             // the user pressed Start
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(timerBeep), userInfo: nil, repeats: true)
-            startDate = evaluateStartTime(timeKeeper)
-            splitStartDate = evaluateStartTime(splitTimeKeeper)
-            sender.setImage(UIImage(named: "PauseButton"), forState: .Normal)
-            splitAndResetButton.setImage(UIImage(named: "SplitButton"), forState: .Normal)
-            appDelegate.startPressed = true
+            automaticPressStart()
+            changeButtonsToPauseAndSplit()
+            startDate = Date()
+            splitStartDate = Date()
+
         } else {
             // the user pressed Pause
-            automaticPressPauseButton()
+            pauseTimer()
+            changeButtonsToStartAndReset()
+            timeKeeper = secondsFromNSDate
+            splitTimeKeeper = secondsFromSplitNSDate
+            timerIsOnPause = true
         }
     }
     
-    @IBAction func resetOrMakeSplit(sender: UIButton) {
-        if appDelegate.startPressed == false {
+    @IBAction func resetOrMakeSplit(_ sender: UIButton) {
+        if appDelegate.stopwatchTimerStarted == false {
             // the user pressed Reset
-            showAllResultsButton.setTitle("", forState: .Normal)
-            startDate = NSDate(); splitStartDate = NSDate()
+            showAllResultsButton.setTitle("", for: UIControlState())
+            startDate = Date(); splitStartDate = Date()
             timeKeeper = 0 ; splitTimeKeeper = 0 ; splitNumber = 0
+            removeSplitResultsFromCoreData()
             timerBeep()
-            
         } else {
             // the user pressed Split
-            splitStartDate = NSDate()
+            splitStartDate = Date()
+            splitTimeKeeper = 0
             splitNumber += 1
-            showAllResultsButton.setTitle("#\(splitNumber) \(splitLabel.text!)", forState: UIControlState.Normal)
+            let splitTimeResult = "\(splitLabel.text!)"
+            //timeOfResultSaving and positionOfSavedResult are not used for split results table view, but it must have some value, which will never be used
+            coreDataStackManager.saveSplitResult("",
+                                                 timeLabel: splitTimeResult,
+                                                 date: Date(),
+                                                 saved: false,
+                                                 current: true,
+                                                 timeOfResultSaving: Date(),
+                                                 positionOfSavedResult: 0
+            )
+            showAllResultsButton.setTitle("#\(splitNumber) " + splitTimeResult, for: UIControlState())
         }
-    }
-    
-    @IBAction func showAllResults(sender: UIButton) {
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let timkeeper = defaults.value(forKey: Constants.KeysUsedInStopwatch.TimeKeeperKey) as? Double {
+            timeKeeper = timkeeper
+        }
+        if let splittimekeeper = defaults.value(forKey: Constants.KeysUsedInStopwatch.SplitTimeKeeperKey) as? Double {
+            splitTimeKeeper = splittimekeeper
+        }
+        presetTimeLabels()
+    }
+    
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        savedStopwatchResults = coreDataStackManager.fetchSavedSplitResult()
         
-    }
-    
-    func automaticPressPauseButton() {
-        if appDelegate.startPressed == true {
-            startTimerButton.setImage(UIImage(named: "StartButton"), forState: .Normal)
-            splitAndResetButton.setImage(UIImage(named: "ResetButton"), forState: .Normal)
-            timeKeeper = secondsFromNSDate // take the latest time on timer
-            splitTimeKeeper = secondsFromSplitNSDate
-            appDelegate.startPressed = false
-            timer.invalidate()
-        }
-    }
-    
-    func evaluateStartTime(timeDifferenceBetweenNowAndTimeOfPause: Double) -> NSDate {
-        if timeDifferenceBetweenNowAndTimeOfPause == 0 {
-            return NSDate()
+        notificationCenter.addObserver(self,
+                                       selector: #selector(setDefaults),
+                                       name: NSNotification.Name.UIApplicationDidEnterBackground,
+                                       object: nil)
+
+        // fetch results from CoreData
+        splitStopwatchResults = coreDataStackManager.fetchCurrentSplitResult()
+        splitNumber = splitStopwatchResults.count
+        if let lastResult = splitStopwatchResults.last {
+            showAllResultsButton.setTitle("#\(splitNumber) " + lastResult.splitTimeLabel!, for: UIControlState())
         } else {
-            return NSDate(timeIntervalSinceNow: -timeDifferenceBetweenNowAndTimeOfPause)
+            showAllResultsButton.setTitle(" ", for: UIControlState())
         }
+
+        if let sleepMode = defaults.object(forKey: Constants.KeysUsedInStopwatch.SleepMode) as? Bool {
+            sleepModeOff = sleepMode
+            setSleepModeState(sleepModeOff)
+        } else {
+            // the screen can sleep by default
+            setSleepModeState(false)
+        }
+
+        if !savedStopwatchResults.isEmpty {
+            folderButton.isHidden = false
+        } else {
+            folderButton.isHidden = true
+        }
+    }
+
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !timerIsOnPause {
+            automaticPressStart()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notificationCenter.removeObserver(self)
+        app.cancelAllLocalNotifications()
+        pauseTimer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    fileprivate func automaticPressStart() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timerBeep), userInfo: nil, repeats: true)
+        appDelegate.stopwatchTimerStarted = true
+        timerIsOnPause = false
+    }
+    
+    func pauseTimer() {
+        if appDelegate.stopwatchTimerStarted == true {
+            appDelegate.stopwatchTimerStarted = false
+            timeWithPauseEvaluated = false
+            timer.invalidate()
+            setDefaults()
+        }
+    }
+
+    fileprivate func changeButtonsToStartAndReset() {
+        startTimerButton.setImage(UIImage(named: "StartButton"), for: UIControlState())
+        splitAndResetButton.setImage(UIImage(named: "ResetButton"), for: UIControlState())
+    }
+    
+    fileprivate func changeButtonsToPauseAndSplit() {
+        startTimerButton.setImage(UIImage(named: "PauseButton"), for: UIControlState())
+        splitAndResetButton.setImage(UIImage(named: "SplitButton"), for: UIControlState())
     }
     
     func timerBeep() {
-        secondsFromNSDate = -(startDate.timeIntervalSinceNow)
-        secondsFromSplitNSDate = -(splitStartDate.timeIntervalSinceNow)
+        secondsFromNSDate = timeKeeper - (startDate.timeIntervalSinceNow)
+        secondsFromSplitNSDate = splitTimeKeeper - (splitStartDate.timeIntervalSinceNow)
         runningTimeLabel.text = getTimeLabelFromTimeNumbers(secondsFromNSDate)
         splitLabel.text = getTimeLabelFromTimeNumbers(secondsFromSplitNSDate)
     }
     
-    func getTimeLabelFromTimeNumbers(secFromNSDate : Double ) -> String {
-        let min = ((secFromNSDate) / Double(TimeConstants.SecInMinute))  //I have no hours, so I can make more than 60 minutes // % Int(TimeConstants.SecInMinute)
-        let sec = (secFromNSDate) % Double(TimeConstants.SecInMinute)
-        let cs = ((secFromNSDate)) * 10 % 10
+    fileprivate func getTimeLabelFromTimeNumbers(_ secFromNSDate : Double ) -> String {
+        let min = ((secFromNSDate) / Double(Constants.TimeConstants.SecInMinute))  //I have no hours, so I can make more than 60 minutes // % Int(TimeConstants.SecInMinute)
+        let sec = (secFromNSDate).truncatingRemainder(dividingBy: Double(Constants.TimeConstants.SecInMinute))
+        let cs = (((secFromNSDate)) * 10).truncatingRemainder(dividingBy: 10)
         let timeLabl = UILabel()
         timeLabl.text = timeToString(Int(min)) + ":" + timeToString(Int(sec)) + "." + "\(Int(cs))"
         return timeLabl.text!
     }
     
-    func timeToString(selectedTime : Int!) -> String {
+    fileprivate func timeToString(_ selectedTime : Int!) -> String {
         if selectedTime < 10 {
             return "0\(selectedTime)"
         } else {
             return "\(selectedTime)"
         }
     }
+    
+    func setDefaults() {
+        defaults.setValue(secondsFromNSDate , forKey: Constants.KeysUsedInStopwatch.TimeKeeperKey)
+        defaults.setValue(secondsFromSplitNSDate, forKey: Constants.KeysUsedInStopwatch.SplitTimeKeeperKey)
+    }
+    fileprivate func setSleepModeState(_ state: Bool) {
+        app.isIdleTimerDisabled = state
+        sleepModeOff = state
+        if sleepModeOff {
+            sleepModeButton.setImage(UIImage(named: "SleepModeOff"), for: UIControlState())
+        } else {
+            sleepModeButton.setImage(UIImage(named: "SleepModeOn"), for: UIControlState())
+        }
+    }
+ 
+    fileprivate func presetTimeLabels() {
+        secondsFromNSDate = timeKeeper - (Date().timeIntervalSinceNow)
+        secondsFromSplitNSDate = splitTimeKeeper - (Date().timeIntervalSinceNow)
+        runningTimeLabel.text = getTimeLabelFromTimeNumbers(secondsFromNSDate)
+        splitLabel.text = getTimeLabelFromTimeNumbers(secondsFromSplitNSDate)
+    }
+    
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "Split Results Segue" && splitNumber != 0 {
+            return true
+        }
+        else if identifier == "Folder in StopwatchVC Segue" && !savedStopwatchResults.isEmpty {
+            // if there is a value in core data and if the array of time intervals is not empty, return true
+            return true
+        }
+        return false
+    }
+
+    
+    fileprivate func removeSplitResultsFromCoreData() {
+        for (index,_) in splitStopwatchResults.enumerated() {
+            if splitStopwatchResults[index].saved == false {
+                sharedContext.delete(splitStopwatchResults[index])
+            } else {
+                splitStopwatchResults[index].current = false
+            }
+        }
+        coreDataStackManager.saveContext()
+    }
+    
+    
 }

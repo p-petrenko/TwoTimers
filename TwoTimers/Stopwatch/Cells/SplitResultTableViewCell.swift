@@ -9,11 +9,13 @@
 import UIKit
 
 class SplitResultTableViewCell: UITableViewCell {
-
-    var cellDateTime = NSDate()
-    var cellTimeInterval = String()
-    let notificationCenter = NSNotificationCenter.defaultCenter()
     
+    var currentResult: SplitStopwatchResult? {
+        didSet {
+            updateUI()
+        }
+    }
+
     
     @IBOutlet weak var resultName: UILabel!
     @IBOutlet weak var numOfSplitResult: UILabel!
@@ -21,15 +23,43 @@ class SplitResultTableViewCell: UITableViewCell {
     @IBOutlet weak var dateAndTimeOfSplitPressing: UILabel!
     @IBOutlet weak var saveThisResultButton: UIButton!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+
+    fileprivate func updateUI() {
+        resultName.text = nil
+        timeInterval.text = nil
+        dateAndTimeOfSplitPressing.text = nil
+        numOfSplitResult.text = nil
+
+        if let result = self.currentResult {
+            resultName.text = result.splitEventName
+            timeInterval.text = result.splitTimeLabel
+            dateAndTimeOfSplitPressing.text = transferNSDateIntoString(result.splitDateAndTimeOfSplit! as Date)
+            numOfSplitResult.text = "#" + String(saveThisResultButton.tag + 1) + " "
+            if (result.saved == true) {
+                saveThisResultButton.isHidden = true
+             } else {
+                if saveThisResultButton.isHidden {
+                    saveThisResultButton.isHidden = false
+                }
+            }
+        }
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    fileprivate func transferNSDateIntoString(_ fullDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        let date = dateFormatter.string(from: fullDate)
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = DateFormatter.Style.short
+        timeFormatter.dateStyle = DateFormatter.Style.none
+        let time = timeFormatter.string(from: fullDate)
+        
+        let localizedUserTandD = NSLocalizedString("%@ at %@",comment: "Reports date and time when Split button was pressed")
+        let textOfDate = String.localizedStringWithFormat(localizedUserTandD, date , time)
+        
+        return textOfDate
     }
 
 }

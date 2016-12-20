@@ -14,65 +14,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var oneTimerStarted = false
+    var countdownTimerStarted = false
+    var stopwatchTimerStarted = false
     
-    var startPressed = false
-    
-    var app = UIApplication.sharedApplication()
+    var app = UIApplication.shared
     var localNotification = UILocalNotification()
     
-    var defaults = NSUserDefaults.standardUserDefaults()
+    var defaults = UserDefaults.standard
     
     var secondsForFireDate = Double()
-    var backgroundDate: NSDate?
  
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if defaults.value(forKey: Constants.TimersKeys.FirstRunKey) == nil {
+            defaults.setValue(true, forKey: Constants.TimersKeys.FirstRunKey)
+            // take data from Defaults (for saved results) of previous version and put it to CoreData for current version
+        } else {
+            // start with empty saved results
+        }
         return true
     }
     
-    func timeIntervalForStopwatch() {
-//        var timeIntervalFromBackgroundToForeground  = Int()
-//        if startPressed == true {
-//            if let bgDate = backgroundDate {
-//                timeIntervalFromBackgroundToForeground = -Int(bgDate.timeIntervalSinceNow)
-//            }
-//            defaults.setValue(timeIntervalFromBackgroundToForeground, forKey: Constants.KeysUsedInStopwatch.StopwatchTimeInterval)
-//        }
-    }
-     
+//    func applicationDidEnterBackground(application: UIApplication) {
+//    }
+//    
+//    func applicationWillEnterForeground(application: UIApplication) {
+//    }
+    
     func doLocalNotification() {
-//        let arrayOfFileNames = Constants.arrayOfFileNames
-//        
-//        var soundNameForNotification : String?
-//        
-//        if oneTimerStarted {
-//            print("   *** Implement doLocalNotification()  function")
-//            app.cancelLocalNotification(localNotification)
-//            
-//            if let chosMelodyNum = defaults.objectForKey(Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
-//                soundNameForNotification =  "\(arrayOfFileNames[chosMelodyNum])" + ".mp3"
-//            } else {
-//                soundNameForNotification = "\(Constants.MelodyFileNames.SimpleSoundFileName)" + ".mp3"
-//            }
-//
-//            // the line where we set the fire date. It is the period of time in which the application will send a notification in background state.
-//            localNotification.fireDate = NSDate(timeIntervalSinceNow: secondsForFireDate)
-//            localNotification.alertTitle = "Alert Title"
-//            
-//            localNotification.alertBody = "Time is up"
-//            localNotification.alertAction = NSLocalizedString("Open timer", comment: "A word that means : look ,time is up, so open the application")
-//            if let soundInRunVCisOff = defaults.objectForKey(Constants.KeysUsedInCountdownTimer.SoundOnOff) as? Bool {
-//                if soundInRunVCisOff == false {
-//                    localNotification.soundName = soundNameForNotification
-//                } else {
-//                    localNotification.soundName = "" // must be no sound
-//                }
-//            } else {
-//                localNotification.soundName =  soundNameForNotification
-//            }
-//            app.scheduleLocalNotification(localNotification)
-//        }
+        let arrayOfFileNames = Constants.arrayOfFileNames
+        var soundNameForNotification = "\(Constants.MelodyFileNames.SimpleSoundFileName)" + ".mp3"
+        
+        if countdownTimerStarted {
+            // cancel notification if there is any existing
+            app.cancelLocalNotification(localNotification)
+
+            // the line where we set the fire date. It is the period of time in which the application will send a notification in background state.
+            localNotification.fireDate = Date(timeIntervalSinceNow: secondsForFireDate)
+            localNotification.alertBody = "Time is up"
+            localNotification.alertAction = NSLocalizedString("Open the timer", comment: "Open the timer")
+            
+            if let chosenMelodyNum = defaults.value(forKey: Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
+                soundNameForNotification =  "\(arrayOfFileNames[chosenMelodyNum])" + ".mp3"
+            }
+            localNotification.soundName =  soundNameForNotification
+            if let soundInRunVCIsOff = defaults.object(forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff) as? Bool {
+                if soundInRunVCIsOff {
+                    localNotification.soundName = "" // must be no sound
+                }
+            }
+            app.scheduleLocalNotification(localNotification)
+        }
     }
     
 }

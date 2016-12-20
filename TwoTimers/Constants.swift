@@ -10,10 +10,15 @@ import Foundation
 
 struct Constants {
     
+    struct TimeConstants {
+        static let SecInHour:Int = 3600
+        static let SecInMinute:Int = 60
+    }
+    
     // MARK: - Countdown timer constants
     
     struct KeysUsedInCountdownTimer {
-//    hr, min, sec constantd for CoreData
+        // hr, min, sec Core Data keys
         static let HoursForStart = "selectedHours"
         static let MinutesForStart = "selectedMinutes"
         static let SecondsForStart = "selectedSeconds"
@@ -32,55 +37,41 @@ struct Constants {
     // MARK: - Stopwatch timer constants
     
     struct KeysUsedInStopwatch {
-        
         // Core Data keys
-        static let DateAndTime = "Date and Time on user device Array"
-        static let IntervalTimeResult = "Split Interval Results Array"
+        static let SplitDateAndTime = "Date and Time on user device Array"
+        static let SplitIntervalTimeResult = "Split Interval Results Array"
         static let SplitEventName = "Array of names of split result, modifies if result saved"
-        static let Current = "The result will be ERASED after resetting the app"
-        static let Saved = "The result will be SAVED after resetting the app"
-//
-//        // for SplitTVC
-//        static let CurrentNumberOfEvent = "Event Number"
-//        static let EventName = "Event Name"
-//        static let TimerLabel = "Time on The Timer"
-//        
-//        //     default keys for usung in SavedTVC
-//        static let EventNameSavedArray = "Event Name"
-//        static let IntervalTimeSavedArray = "Time on The Timer"
-//        static let DateAndTimeSavedArray = "Date and Time on user device Array for SavedTVC"
-//        
-//        static let SplitNumber = "Number of Pressing Split Button Array"
-//
-//        static let SplitTimeLabel = "Text for Split time label"
-//        static let MainTimeLabel = "Text for running time label"
-//        
-//        static let StopwatchTimeInterval = "Time interval while Background State in Stopwatch"
-//        
-//        
-//        static let ArrayToCheckIfResultIsSaved = "Array of Bool values for checking if result was already saved"
-//        
-//        static let TimeKeeperKey = "Save Last Used time of main label in Stopwatch"
-//        static let SplitTimeKeeperKey = "Save Last Used time of split label in Stopwatch"
-//        
-        static let SleepMode = "Remember value of sleepModeOff variable"
+        static let Saved = "Saved Boolean"
+        static let Current = "Current Boolean"
+        static let TimeOfResultSaving = "TimeOfResultSaving"
+        static let PositionOfSavedResult = "PositionOfSavedResult"
         
-//        static let DatesOfDeletedCells = "Array of NSDate type, which keeps deleted dates to compare with existed dates in Split results, and if this tates are identical, than user recieves FloppyDisk button again"
-//        
-//        static let DataOfCellsWithEditedNames = "Dictionary, which keeps names of edited results with keys, containing String-converted NSDate, and than use it to change name of the same result in SplitResultTVC"
+        static let TimeKeeperKey = "Save Last Used time of main label in Stopwatch"
+        static let SplitTimeKeeperKey = "Save Last Used time of split label in Stopwatch"
+        static let SleepMode = "Remember value of sleepModeOff variable"
     }
     
     struct StopwatchNotificationKey {
-        static let TabToStopwatch = "Key for RunVC to know when I open StopwatchVC"
-        static let TabBackToCountdown = "Key for RunVC to know when view is appearing after being in Stopwatch tab"
-        
-        static let TabToCountdown = "Key for RunVC to know when I open CountdownVC"
-        static let TabBackToStopwatch = "Key for Stopwatch to know when view is appearing after being in Countdown tab"
-        
         static let WhenPencilButtonPressed = "Press Pencil button and do actions"
         static let WhenSaveButtonPressed = "Press Floppy Disk button and do actions"
     }
     
+    struct KeyForSaveButtonUserInfo {
+        static let DeviceDateAndTime = "cell date+time for saving"
+        static let TimeInterval = "cell time interval for saving"
+    }
+    
+    struct StringsForAlert {
+        static let SaveResultQuestion = NSLocalizedString("Save result?", comment: "ask if user wants to save result")
+        static let EnterName = NSLocalizedString("Enter a name of result", comment: "Ask user to enter the result name")
+        
+        static let RenameTitle = NSLocalizedString("Result Name", comment: "rename the result")
+        static let CancelActionButton = NSLocalizedString("Cancel", comment: "Cancel action button")
+    }
+    // MARK: - Application constants
+    struct TimersKeys {
+        static let FirstRunKey = "First Run of the Application"
+    }
     
     
     // MARK: - Sound constants

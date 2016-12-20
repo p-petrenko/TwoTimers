@@ -1,8 +1,8 @@
 //
-//  StopwatchResults+CoreDataProperties.swift
+//  SplitStopwatchResult+CoreDataProperties.swift
 //  TwoTimers
 //
-//  Created by Polina Petrenko on 29.05.16.
+//  Created by Polina Petrenko on 30.07.16.
 //  Copyright © 2016 Polina Petrenko. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,12 +12,14 @@
 import Foundation
 import CoreData
 
-extension StopwatchResults {
+extension SplitStopwatchResult {
 
-    @NSManaged var splitEventName: String?
-    @NSManaged var dateAndTimeOfSplit: NSDate?
-    @NSManaged var splitTimeLabel: String?
-    @NSManaged var saved: NSNumber?
     @NSManaged var current: NSNumber?
+    @NSManaged var saved: NSNumber?
+    @NSManaged var splitDateAndTimeOfSplit: Date?
+    @NSManaged var splitEventName: String?
+    @NSManaged var splitTimeLabel: String?
+    @NSManaged var timeOfResultSaving: Date?
+    @NSManaged var positionOfSavedResult: NSNumber?
 
 }

@@ -12,15 +12,17 @@ import CoreData
 
 class CountdownTimer: NSManagedObject {
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
     
     init(dictionary: [String: AnyObject], context: NSManagedObjectContext) {
-        let entity = NSEntityDescription.entityForName("CountdownTimer", inManagedObjectContext: context)!
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
-        selectedSeconds = dictionary[Constants.KeysUsedInCountdownTimer.SecondsForStart] as! Int
-        selectedMinutes = dictionary[Constants.KeysUsedInCountdownTimer.MinutesForStart] as! Int
-        selectedHours = dictionary[Constants.KeysUsedInCountdownTimer.HoursForStart] as! Int
+        let entity = NSEntityDescription.entity(forEntityName: "CountdownTimer", in: context)!
+        super.init(entity: entity, insertInto: context)
+        selectedSeconds = dictionary[Constants.KeysUsedInCountdownTimer.SecondsForStart] as! Int as NSNumber?
+        selectedMinutes = dictionary[Constants.KeysUsedInCountdownTimer.MinutesForStart] as! Int as NSNumber?
+        selectedHours = dictionary[Constants.KeysUsedInCountdownTimer.HoursForStart] as! Int as NSNumber?
     }
+    
+    
 }

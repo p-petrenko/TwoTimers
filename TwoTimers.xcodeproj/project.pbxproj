@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		2D09BE361D21A96B005EDF14 /* SplitResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09BE351D21A96B005EDF14 /* SplitResultTableViewCell.swift */; };
 		2D09BE381D21A98D005EDF14 /* SavedResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09BE371D21A98D005EDF14 /* SavedResultTableViewCell.swift */; };
+		2D2D74411D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D743F1D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift */; };
+		2D2D74421D4695B000BCCFA9 /* SplitStopwatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D74401D4695B000BCCFA9 /* SplitStopwatchResult.swift */; };
 		2D2F1D451D21561000A19953 /* SavedResultsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */; };
 		2D2F1D471D21563E00A19953 /* SplitResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F1D461D21563E00A19953 /* SplitResultsTableViewController.swift */; };
-		2D372F311D28618A001011F0 /* SplitResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D372F301D28618A001011F0 /* SplitResult.swift */; };
-		2D372F331D2861CE001011F0 /* SavedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D372F321D2861CE001011F0 /* SavedResult.swift */; };
 		2D372F351D2863CB001011F0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D372F341D2863CB001011F0 /* Launch Screen.storyboard */; };
 		2D5FD22B1CB3FDD100A1A1C8 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */; };
 		2D5FD22D1CB411D000A1A1C8 /* MusicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5FD22C1CB411D000A1A1C8 /* MusicTableViewController.swift */; };
@@ -27,8 +27,6 @@
 		2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */; };
 		2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */; };
 		2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */; };
-		2DAD01A21CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAD01A01CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift */; };
-		2DAD01A31CFAF85E00CF95C8 /* StopwatchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAD01A11CFAF85E00CF95C8 /* StopwatchResults.swift */; };
 		2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */; };
 		2DFEC3C61CAAD69700A58B0F /* wobble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */; };
 		2DFEC3C71CAAD69700A58B0F /* sleigh_bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */; };
@@ -55,10 +53,10 @@
 /* Begin PBXFileReference section */
 		2D09BE351D21A96B005EDF14 /* SplitResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitResultTableViewCell.swift; sourceTree = "<group>"; };
 		2D09BE371D21A98D005EDF14 /* SavedResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResultTableViewCell.swift; sourceTree = "<group>"; };
+		2D2D743F1D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SplitStopwatchResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D2D74401D4695B000BCCFA9 /* SplitStopwatchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitStopwatchResult.swift; sourceTree = "<group>"; };
 		2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResultsTableTableViewController.swift; sourceTree = "<group>"; };
 		2D2F1D461D21563E00A19953 /* SplitResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitResultsTableViewController.swift; sourceTree = "<group>"; };
-		2D372F301D28618A001011F0 /* SplitResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitResult.swift; sourceTree = "<group>"; };
-		2D372F321D2861CE001011F0 /* SavedResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResult.swift; sourceTree = "<group>"; };
 		2D372F341D2863CB001011F0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2D5FD22A1CB3FDD100A1A1C8 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		2D5FD22C1CB411D000A1A1C8 /* MusicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicTableViewController.swift; path = CountdownTimer/ViewControllers/MusicTableViewController.swift; sourceTree = "<group>"; };
@@ -75,8 +73,6 @@
 		2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CountdownTimer+CoreDataProperties.swift"; path = "CountdownTimer/Model/CountdownTimer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownTimer.swift; path = CountdownTimer/Model/CountdownTimer.swift; sourceTree = "<group>"; };
 		2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
-		2DAD01A01CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StopwatchResults+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2DAD01A11CFAF85E00CF95C8 /* StopwatchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchResults.swift; sourceTree = "<group>"; };
 		2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownRunViewController.swift; path = CountdownTimer/ViewControllers/CountdownRunViewController.swift; sourceTree = "<group>"; };
 		2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wobble.mp3; sourceTree = "<group>"; };
 		2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sleigh_bells.mp3; sourceTree = "<group>"; };
@@ -157,10 +153,8 @@
 		2D82D8921CA3EF38008BFEB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2DAD01A01CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift */,
-				2DAD01A11CFAF85E00CF95C8 /* StopwatchResults.swift */,
-				2D372F301D28618A001011F0 /* SplitResult.swift */,
-				2D372F321D2861CE001011F0 /* SavedResult.swift */,
+				2D2D743F1D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift */,
+				2D2D74401D4695B000BCCFA9 /* SplitStopwatchResult.swift */,
 			);
 			name = Model;
 			path = Stopwatch/Model;
@@ -288,11 +282,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Polina Petrenko";
 				TargetAttributes = {
 					2D82D8701CA33D24008BFEB4 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -352,22 +347,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2D74411D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift in Sources */,
+				2D2D74421D4695B000BCCFA9 /* SplitStopwatchResult.swift in Sources */,
 				2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */,
 				2D82D8751CA33D24008BFEB4 /* AppDelegate.swift in Sources */,
 				2D5FD22B1CB3FDD100A1A1C8 /* StopwatchViewController.swift in Sources */,
 				2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */,
 				2D82D8AC1CA443F2008BFEB4 /* CountdownSettingsViewController.swift in Sources */,
-				2D372F311D28618A001011F0 /* SplitResult.swift in Sources */,
 				2D2F1D471D21563E00A19953 /* SplitResultsTableViewController.swift in Sources */,
 				2D82D87D1CA33D24008BFEB4 /* TwoTimers.xcdatamodeld in Sources */,
-				2DAD01A21CFAF85E00CF95C8 /* StopwatchResults+CoreDataProperties.swift in Sources */,
 				2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */,
-				2D372F331D2861CE001011F0 /* SavedResult.swift in Sources */,
 				2D2F1D451D21561000A19953 /* SavedResultsTableTableViewController.swift in Sources */,
 				2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */,
 				2D82D89F1CA3F1B9008BFEB4 /* Constants.swift in Sources */,
 				2D09BE381D21A98D005EDF14 /* SavedResultTableViewCell.swift in Sources */,
-				2DAD01A31CFAF85E00CF95C8 /* StopwatchResults.swift in Sources */,
 				2D09BE361D21A96B005EDF14 /* SplitResultTableViewCell.swift in Sources */,
 				2D5FD22D1CB411D000A1A1C8 /* MusicTableViewController.swift in Sources */,
 				2D82D8AA1CA3FFB7008BFEB4 /* TimersTabBarController.swift in Sources */,
@@ -402,8 +395,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -447,8 +442,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -467,6 +464,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -480,6 +478,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -491,6 +490,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
