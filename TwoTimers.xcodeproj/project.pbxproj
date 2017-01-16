@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D09BE361D21A96B005EDF14 /* SplitResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09BE351D21A96B005EDF14 /* SplitResultTableViewCell.swift */; };
 		2D09BE381D21A98D005EDF14 /* SavedResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09BE371D21A98D005EDF14 /* SavedResultTableViewCell.swift */; };
+		2D262F571E2D70AD00DF61D5 /* CountdownSettingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D262F561E2D70AD00DF61D5 /* CountdownSettingsUITests.swift */; };
+		2D262F591E2D725600DF61D5 /* TwoTimersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D262F581E2D725600DF61D5 /* TwoTimersUITests.swift */; };
 		2D2D74411D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D743F1D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift */; };
 		2D2D74421D4695B000BCCFA9 /* SplitStopwatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D74401D4695B000BCCFA9 /* SplitStopwatchResult.swift */; };
 		2D2F1D451D21561000A19953 /* SavedResultsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */; };
@@ -50,9 +52,23 @@
 		2DFEC3D91CAAD69700A58B0F /* anxious_fretless_bass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3C51CAAD69700A58B0F /* anxious_fretless_bass.mp3 */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2D262F511E2D6F8300DF61D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D82D8691CA33D24008BFEB4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D82D8701CA33D24008BFEB4;
+			remoteInfo = TwoTimers;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2D09BE351D21A96B005EDF14 /* SplitResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitResultTableViewCell.swift; sourceTree = "<group>"; };
 		2D09BE371D21A98D005EDF14 /* SavedResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResultTableViewCell.swift; sourceTree = "<group>"; };
+		2D262F4C1E2D6F8200DF61D5 /* TwoTimersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwoTimersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D262F501E2D6F8300DF61D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D262F561E2D70AD00DF61D5 /* CountdownSettingsUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownSettingsUITests.swift; sourceTree = "<group>"; };
+		2D262F581E2D725600DF61D5 /* TwoTimersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTimersUITests.swift; sourceTree = "<group>"; };
 		2D2D743F1D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SplitStopwatchResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D2D74401D4695B000BCCFA9 /* SplitStopwatchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitStopwatchResult.swift; sourceTree = "<group>"; };
 		2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResultsTableTableViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +113,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2D262F491E2D6F8200DF61D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2D82D86E1CA33D24008BFEB4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -107,10 +130,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D262F4D1E2D6F8200DF61D5 /* TwoTimersUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2D262F581E2D725600DF61D5 /* TwoTimersUITests.swift */,
+				2D262F561E2D70AD00DF61D5 /* CountdownSettingsUITests.swift */,
+				2D262F501E2D6F8300DF61D5 /* Info.plist */,
+			);
+			path = TwoTimersUITests;
+			sourceTree = "<group>";
+		};
 		2D82D8681CA33D24008BFEB4 = {
 			isa = PBXGroup;
 			children = (
 				2D82D8731CA33D24008BFEB4 /* TwoTimers */,
+				2D262F4D1E2D6F8200DF61D5 /* TwoTimersUITests */,
 				2D82D8721CA33D24008BFEB4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -119,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				2D82D8711CA33D24008BFEB4 /* TwoTimers.app */,
+				2D262F4C1E2D6F8200DF61D5 /* TwoTimersUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,6 +293,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2D262F4B1E2D6F8200DF61D5 /* TwoTimersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D262F551E2D6F8300DF61D5 /* Build configuration list for PBXNativeTarget "TwoTimersUITests" */;
+			buildPhases = (
+				2D262F481E2D6F8200DF61D5 /* Sources */,
+				2D262F491E2D6F8200DF61D5 /* Frameworks */,
+				2D262F4A1E2D6F8200DF61D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D262F521E2D6F8300DF61D5 /* PBXTargetDependency */,
+			);
+			name = TwoTimersUITests;
+			productName = TwoTimersUITests;
+			productReference = 2D262F4C1E2D6F8200DF61D5 /* TwoTimersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		2D82D8701CA33D24008BFEB4 /* TwoTimers */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D82D8861CA33D24008BFEB4 /* Build configuration list for PBXNativeTarget "TwoTimers" */;
@@ -281,12 +334,20 @@
 		2D82D8691CA33D24008BFEB4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Polina Petrenko";
 				TargetAttributes = {
+					2D262F4B1E2D6F8200DF61D5 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = J5RT2TQ373;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2D82D8701CA33D24008BFEB4;
+					};
 					2D82D8701CA33D24008BFEB4 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = J5RT2TQ373;
 						LastSwiftMigration = 0810;
 					};
 				};
@@ -305,11 +366,19 @@
 			projectRoot = "";
 			targets = (
 				2D82D8701CA33D24008BFEB4 /* TwoTimers */,
+				2D262F4B1E2D6F8200DF61D5 /* TwoTimersUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2D262F4A1E2D6F8200DF61D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2D82D86F1CA33D24008BFEB4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,6 +412,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2D262F481E2D6F8200DF61D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D262F591E2D725600DF61D5 /* TwoTimersUITests.swift in Sources */,
+				2D262F571E2D70AD00DF61D5 /* CountdownSettingsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2D82D86D1CA33D24008BFEB4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,6 +448,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2D262F521E2D6F8300DF61D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D82D8701CA33D24008BFEB4 /* TwoTimers */;
+			targetProxy = 2D262F511E2D6F8300DF61D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		2D82D8781CA33D24008BFEB4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -382,6 +468,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2D262F531E2D6F8300DF61D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = J5RT2TQ373;
+				INFOPLIST_FILE = TwoTimersUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.polinapetrenko.TwoTimersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = TwoTimers;
+			};
+			name = Debug;
+		};
+		2D262F541E2D6F8300DF61D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = J5RT2TQ373;
+				INFOPLIST_FILE = TwoTimersUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.polinapetrenko.TwoTimersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = TwoTimers;
+			};
+			name = Release;
+		};
 		2D82D8841CA33D24008BFEB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -474,7 +596,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = J5RT2TQ373;
 				INFOPLIST_FILE = TwoTimers/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -486,7 +610,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = J5RT2TQ373;
 				INFOPLIST_FILE = TwoTimers/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = petrenko.polina.TwoTimers0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -497,6 +623,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2D262F551E2D6F8300DF61D5 /* Build configuration list for PBXNativeTarget "TwoTimersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D262F531E2D6F8300DF61D5 /* Debug */,
+				2D262F541E2D6F8300DF61D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		2D82D86C1CA33D24008BFEB4 /* Build configuration list for PBXProject "TwoTimers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

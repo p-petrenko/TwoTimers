@@ -74,7 +74,7 @@ class CountdownRunViewController: UIViewController  {
     }
 
     @IBAction func stopButton(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
@@ -94,9 +94,7 @@ class CountdownRunViewController: UIViewController  {
                                        name: NSNotification.Name.UIApplicationDidEnterBackground,
                                        object: nil)
         // if it was set to true in stopwatch, then set it to false here, as in countdown it should be able to sleep.
-        if app.isIdleTimerDisabled {
-            app.isIdleTimerDisabled = false
-        }
+        if app.isIdleTimerDisabled { app.isIdleTimerDisabled = false }
         
         if let soundVol = defaults.object(forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff) as? Bool {
             soundIsOff = soundVol
@@ -162,6 +160,9 @@ class CountdownRunViewController: UIViewController  {
             timeWithPauseEvaluated = false
             timerIsOnPause = true
             nameOfButton.setImage(UIImage(named: "StartButton"), for: UIControlState())
+            // remove local notification
+            notificationCenter.removeObserver(app.delegate!)
+            app.cancelAllLocalNotifications()
         }
     }
     
@@ -194,7 +195,7 @@ class CountdownRunViewController: UIViewController  {
         changeTimeLabel()
     }
     
-    fileprivate func timeToString(_ selectedTime : Int!) -> String {
+    fileprivate func timeToString(_ selectedTime : Int) -> String {
         if selectedTime < 10 {
             return "0\(selectedTime)"
         } else {
@@ -219,7 +220,7 @@ class CountdownRunViewController: UIViewController  {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             [unowned self] (action: UIAlertAction) -> Void in
             // Action: Stop timer and return to timer settings
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController!.popViewController(animated: true)
             self.audioPlayer.stop()
         })
         
