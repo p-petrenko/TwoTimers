@@ -13,8 +13,8 @@ class CountdownRunViewController: UIViewController  {
 
     fileprivate let app = UIApplication.shared
     fileprivate var appDelegate: AppDelegate!
-    fileprivate var notificationCenter = NotificationCenter.default
-    fileprivate var defaults = UserDefaults.standard
+    fileprivate let notificationCenter = NotificationCenter.default
+    fileprivate let defaults = UserDefaults.standard
     
     fileprivate var timer = Timer()
     fileprivate var plusMinute = false

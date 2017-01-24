@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Jo-jk-GDG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Jo-jk-GDG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,6 +26,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLd-IN-cWl" userLabel="StartOrPause Button">
                                 <rect key="frame" x="52" y="510" width="100" height="100"/>
+                                <accessibility key="accessibilityConfiguration" identifier="StartTimerInStopwatchButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GLd-IN-cWl" secondAttribute="height" multiplier="1:1" id="rpf-X4-W3n"/>
                                 </constraints>
@@ -35,7 +36,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLn-OF-lG8" userLabel="StopOrReset Button">
-                                <rect key="frame" x="224" y="510" width="100" height="100"/>
+                                <rect key="frame" x="223.5" y="510" width="100" height="100"/>
+                                <accessibility key="accessibilityConfiguration" identifier="StopTimerInStopwatchButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="UKv-Ov-n1o"/>
                                     <constraint firstAttribute="width" secondItem="aLn-OF-lG8" secondAttribute="height" multiplier="1:1" id="h0P-Yt-YKm"/>
@@ -47,6 +49,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCY-EI-Zeg" userLabel="Sleep Button">
                                 <rect key="frame" x="319" y="72" width="40" height="40"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SleepModeButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="2Yy-qr-jLX"/>
                                     <constraint firstAttribute="height" constant="40" id="JHA-UR-9Fj"/>
@@ -57,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="255" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="748" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="5T4-Zt-9A9">
-                                <rect key="frame" x="102" y="411" width="172" height="91"/>
+                                <rect key="frame" x="102.5" y="410.5" width="171.5" height="91.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="hCL-5v-0Rp">
@@ -95,23 +98,25 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="255" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="753" text="11:00.0" textAlignment="center" lineBreakMode="clip" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="VZ8-qB-YtK" userLabel="Split time00:00.00">
-                                <rect key="frame" x="102" y="311" width="172" height="92"/>
+                                <rect key="frame" x="102.5" y="311" width="171.5" height="91.5"/>
+                                <accessibility key="accessibilityConfiguration" identifier="RunningSplitTimeLabel"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="253" verticalHuggingPriority="255" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="11:00.0" textAlignment="center" lineBreakMode="clip" minimumFontSize="60" translatesAutoresizingMaskIntoConstraints="NO" id="781-Qj-Uxr" userLabel="Running time00:00.00">
                                 <rect key="frame" x="16" y="120" width="343" height="183"/>
+                                <accessibility key="accessibilityConfiguration" identifier="RunningTimeLabel"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="200"/>
                                 <color key="textColor" red="0.0078431372550000003" green="0.21960784310000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZ3-76-b8m">
-                                <rect key="frame" x="160" y="510" width="56" height="100"/>
+                                <rect key="frame" x="160" y="510" width="55.5" height="100"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OU-KL-ddo">
-                                <rect key="frame" x="332" y="510" width="27" height="100"/>
+                                <rect key="frame" x="331.5" y="510" width="27.5" height="100"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wE-XV-Gp2">
@@ -310,6 +315,7 @@
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8Q-XW-ufV">
                                 <rect key="frame" x="16" y="157" width="343" height="353"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TimerPickerView"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Wrj-IV-lvl" id="I0V-Ec-qSs"/>
                                     <outlet property="delegate" destination="Wrj-IV-lvl" id="WN9-3l-zEX"/>
@@ -393,12 +399,14 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-n4-VjI">
                                             <rect key="frame" x="50" y="8" width="317" height="27"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="MelodyNameLabel"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="cve-4A-Lv2">
                                             <rect key="frame" x="8" y="8" width="27" height="27"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="CheckmarkImageView"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="1Vs-LW-vIK"/>
                                             </constraints>
@@ -459,6 +467,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="755" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0f-kW-qAU">
                                 <rect key="frame" x="319" y="72" width="40" height="40"/>
+                                <accessibility key="accessibilityConfiguration" identifier="SoundOnOffButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Bky-EQ-bsR"/>
                                     <constraint firstAttribute="height" constant="40" id="dEJ-d6-Vw7">
@@ -488,6 +497,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="746" verticalCompressionResistancePriority="746" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwH-PY-rip">
                                 <rect key="frame" x="16" y="422" width="80" height="80"/>
+                                <accessibility key="accessibilityConfiguration" identifier="MinusOneMinuteButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gwH-PY-rip" secondAttribute="height" multiplier="1:1" id="0Op-6e-oh0"/>
                                 </constraints>
@@ -498,6 +508,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="746" verticalCompressionResistancePriority="746" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-wg-ydI" userLabel="Plus One Minute Button">
                                 <rect key="frame" x="279" y="422" width="80" height="80"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PlusOneMinuteButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="6yw-ng-xPL"/>
                                     <constraint firstAttribute="width" secondItem="2xM-wg-ydI" secondAttribute="height" multiplier="1:1" id="d1d-jY-9UL"/>
@@ -520,15 +531,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6B-VG-AMb">
-                                <rect key="frame" x="160" y="510" width="56" height="100"/>
+                                <rect key="frame" x="160" y="510" width="55.5" height="100"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LqG-Ix-Yd4">
-                                <rect key="frame" x="332" y="510" width="27" height="100"/>
+                                <rect key="frame" x="331.5" y="510" width="27.5" height="100"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" horizontalCompressionResistancePriority="745" text="" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="3WI-z6-T7e">
                                 <rect key="frame" x="16" y="120" width="343" height="294"/>
+                                <accessibility key="accessibilityConfiguration" identifier="RunningTimeCountdownLabel"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="200"/>
                                 <color key="textColor" red="0.0078431372549019607" green="0.2196078431372549" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -538,7 +550,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEl-yC-oJ4" userLabel="Stop Button">
-                                <rect key="frame" x="224" y="510" width="100" height="100"/>
+                                <rect key="frame" x="223.5" y="510" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="250" constant="80" id="NJj-iG-PSe"/>
                                     <constraint firstAttribute="width" priority="750" constant="100" id="VXF-0E-FjU"/>
@@ -964,7 +976,7 @@
         <image name="StopButton" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uqe-D2-s8U"/>
+        <segue reference="84c-aI-mKH"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.023529411760000001" green="0.65490196079999996" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

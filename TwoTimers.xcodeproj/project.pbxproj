@@ -29,6 +29,7 @@
 		2D82D8AF1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */; };
 		2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */; };
 		2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */; };
+		2DE41DEF1E37B74C00CFB700 /* CountdownRunUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE41DEE1E37B74C00CFB700 /* CountdownRunUITests.swift */; };
 		2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */; };
 		2DFEC3C61CAAD69700A58B0F /* wobble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */; };
 		2DFEC3C71CAAD69700A58B0F /* sleigh_bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */; };
@@ -89,6 +90,7 @@
 		2D82D8AD1CA45C88008BFEB4 /* CountdownTimer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CountdownTimer+CoreDataProperties.swift"; path = "CountdownTimer/Model/CountdownTimer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownTimer.swift; path = CountdownTimer/Model/CountdownTimer.swift; sourceTree = "<group>"; };
 		2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		2DE41DEE1E37B74C00CFB700 /* CountdownRunUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownRunUITests.swift; sourceTree = "<group>"; };
 		2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownRunViewController.swift; path = CountdownTimer/ViewControllers/CountdownRunViewController.swift; sourceTree = "<group>"; };
 		2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wobble.mp3; sourceTree = "<group>"; };
 		2DFEC3B31CAAD69700A58B0F /* sleigh_bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sleigh_bells.mp3; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				2D262F581E2D725600DF61D5 /* TwoTimersUITests.swift */,
 				2D262F561E2D70AD00DF61D5 /* CountdownSettingsUITests.swift */,
+				2DE41DEE1E37B74C00CFB700 /* CountdownRunUITests.swift */,
 				2D262F501E2D6F8300DF61D5 /* Info.plist */,
 			);
 			path = TwoTimersUITests;
@@ -416,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE41DEF1E37B74C00CFB700 /* CountdownRunUITests.swift in Sources */,
 				2D262F591E2D725600DF61D5 /* TwoTimersUITests.swift in Sources */,
 				2D262F571E2D70AD00DF61D5 /* CountdownSettingsUITests.swift in Sources */,
 			);
@@ -630,6 +634,7 @@
 				2D262F541E2D6F8300DF61D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D82D86C1CA33D24008BFEB4 /* Build configuration list for PBXProject "TwoTimers" */ = {
 			isa = XCConfigurationList;

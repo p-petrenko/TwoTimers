@@ -9,33 +9,58 @@
 import XCTest
 
 class TwoTimersUITests: XCTestCase {
-    
-    var defaults = UserDefaults.standard
+    let app = XCUIApplication()
+    let defaults = UserDefaults.standard
     
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testForCheckingIfTheLaunchOfTheAppOpensCountdownSettingsScreen() {
-        let app = XCUIApplication()
+    func test_ToCheckIfTheLaunchOfTheAppOpensCountdownSettingsScreen() {
+        let hr = "1 h"
+        let min = "2 min"
+        let sec = "3 sec"
         
-//        XCTAssert(app.buttons["StartTimerInSettingsButton"].exists)
-//        XCTAssert(app.buttons["ChooseMelodyButton"].exists)
-        XCTAssertEqual("1", "1")
+        app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: hr)
+        app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: min)
+        app.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: sec)
+        
+        let hourPickerWheel = app.pickerWheels[hr]
+        let minPickerWheel = app.pickerWheels[min]
+        let secPickerWheel = app.pickerWheels[sec]
+        let startButton = app.buttons["StartTimerInSettingsButton"]
+        let chooseMelodyButton = app.buttons["ChooseMelodyButton"]
+        
+        XCTAssert(hourPickerWheel.exists)
+        XCTAssert(minPickerWheel.exists)
+        XCTAssert(secPickerWheel.exists)
+        XCTAssert(startButton.exists)
+        XCTAssert(chooseMelodyButton.exists)
+    }
+    
+    func test_ToCheckIfChoosingStopwatchInTabBarOpensStopwatchScreen() {
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Stopwatch"].tap()
+
+        let startButton = app.buttons["StartTimerInStopwatchButton"]
+        let stopButton = app.buttons["StopTimerInStopwatchButton"]
+        let sleepButton = app.buttons["SleepModeButton"]
+        let runningTimeLabel = app.staticTexts["RunningTimeLabel"]
+        let runningSplitTimeLabel = app.staticTexts["RunningSplitTimeLabel"]
+        
+        XCTAssert(startButton.exists)
+        XCTAssert(stopButton.exists)
+        XCTAssert(sleepButton.exists)
+        XCTAssert(runningTimeLabel.exists)
+        XCTAssert(runningSplitTimeLabel.exists)
     }
     
 }
