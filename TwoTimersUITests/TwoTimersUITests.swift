@@ -9,6 +9,9 @@
 import XCTest
 
 class TwoTimersUITests: XCTestCase {
+    
+// Comment these tests because each test is slow
+    /*
     let app = XCUIApplication()
     let defaults = UserDefaults.standard
     
@@ -16,8 +19,6 @@ class TwoTimersUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         XCUIApplication().launch()
-
-
     }
     
     override func tearDown() {
@@ -25,25 +26,20 @@ class TwoTimersUITests: XCTestCase {
     }
     
     func test_ToCheckIfTheLaunchOfTheAppOpensCountdownSettingsScreen() {
-        let hr = "1 h"
-        let min = "2 min"
-        let sec = "3 sec"
-        
-        app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: hr)
-        app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: min)
-        app.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: sec)
-        
-        let hourPickerWheel = app.pickerWheels[hr]
-        let minPickerWheel = app.pickerWheels[min]
-        let secPickerWheel = app.pickerWheels[sec]
+        let pickerView = app.pickers["TimerPickerView"]
         let startButton = app.buttons["StartTimerInSettingsButton"]
         let chooseMelodyButton = app.buttons["ChooseMelodyButton"]
-        
-        XCTAssert(hourPickerWheel.exists)
-        XCTAssert(minPickerWheel.exists)
-        XCTAssert(secPickerWheel.exists)
-        XCTAssert(startButton.exists)
-        XCTAssert(chooseMelodyButton.exists)
+        let settingsScreenExists = NSPredicate(format: "exists == true")
+        expectation(for: settingsScreenExists, evaluatedWith: pickerView, handler: nil)
+        waitForExpectations(timeout: 20) { (error) in
+            if let error = error {
+                XCTFail("\nERROR! \(error.localizedDescription)\n")
+            } else {
+                XCTAssert(pickerView.exists)
+                XCTAssert(startButton.exists)
+                XCTAssert(chooseMelodyButton.exists)
+            }
+        }
     }
     
     func test_ToCheckIfChoosingStopwatchInTabBarOpensStopwatchScreen() {
@@ -62,5 +58,5 @@ class TwoTimersUITests: XCTestCase {
         XCTAssert(runningTimeLabel.exists)
         XCTAssert(runningSplitTimeLabel.exists)
     }
-    
+    */
 }

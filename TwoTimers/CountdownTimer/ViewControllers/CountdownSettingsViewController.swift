@@ -24,7 +24,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     struct LocalConstants {
         static let NumOfHrs = 23
         static let NumOfMinutesOrSeconds = 60
-        static let NumOfMinOrSecInComponent = 1200
+        static let NumOfMinutesOrSecondsInComponent = 1200
     }
     
     @IBOutlet weak var chooseTime: UIPickerView!
@@ -59,11 +59,11 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
         for hrs in 0...LocalConstants.NumOfHrs {
             pickerViewHoursArray.append("\(hrs)")
         }
-        for minutes in 0..<LocalConstants.NumOfMinOrSecInComponent {
+        for minutes in 0..<LocalConstants.NumOfMinutesOrSecondsInComponent {
             let infiniteMin = minutes % LocalConstants.NumOfMinutesOrSeconds
             pickerViewMinutesArray.append("\(infiniteMin)")
         }
-        for seconds in 0..<LocalConstants.NumOfMinOrSecInComponent {
+        for seconds in 0..<LocalConstants.NumOfMinutesOrSecondsInComponent {
             let infiniteSec = seconds % LocalConstants.NumOfMinutesOrSeconds
             pickerViewSecondsArray.append("\(infiniteSec)")
         }
@@ -85,8 +85,8 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
                    and the initial time will be 00:01:00.
                  */
                 chooseTime.selectRow(0, inComponent: 0, animated: false)
-                chooseTime.selectRow((LocalConstants.NumOfMinOrSecInComponent / 2 + 1), inComponent: 1, animated: false)
-                chooseTime.selectRow((LocalConstants.NumOfMinOrSecInComponent / 2), inComponent: 2, animated: false)
+                chooseTime.selectRow((LocalConstants.NumOfMinutesOrSecondsInComponent / 2 + 1), inComponent: 1, animated: false)
+                chooseTime.selectRow((LocalConstants.NumOfMinutesOrSecondsInComponent / 2), inComponent: 2, animated: false)
             }
         }
     }
@@ -187,7 +187,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
                     selectedMinutes = chooseTime.selectedRow(inComponent: 1) % 60
                     selectedSeconds = chooseTime.selectedRow(inComponent: 2) % 60
                     
-                    // pass set time to next ViewController
+                    // pass the preset time to next ViewController
                     crvc.startHr = selectedHours
                     crvc.startMin = selectedMinutes
                     crvc.startSec = selectedSeconds

@@ -29,11 +29,11 @@ class SavedResultTableViewCell: UITableViewCell {
         if let result = self.savedResult {
             resultName.text = result.splitEventName
             savedTime.text = result.splitTimeLabel
-            dAndTFromSplit.text = transferNSDateIntoString(result.splitDateAndTimeOfSplit! as Date)
+            dAndTFromSplit.text = transferDateIntoString(result.splitDateAndTimeOfSplit! as Date)
         }
     }
 
-    fileprivate func transferNSDateIntoString(_ fullDate: Date) -> String {
+    fileprivate func transferDateIntoString(_ fullDate: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = DateFormatter.Style.none
         dateFormatter.dateStyle = DateFormatter.Style.medium
