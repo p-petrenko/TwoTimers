@@ -23,13 +23,10 @@ class CountdownRunViewController: UIViewController  {
     var openFirstTime = false
     fileprivate var timeWithPauseEvaluated = false
     fileprivate var moreThanOneMinute = true
-    var startHr : Int!
-    var startMin : Int!
-    var startSec : Int!
-    fileprivate var startDate : Date? // time begins to run on pressing start , and it's value is set in viewDidAppear (first time)
+    var secondsFromChosenTime = 0 // time, chosen by user in PickerView, converted to seconds
+    fileprivate var startDate : Date? // time begins to run on pressing start, and it's value is set in viewDidAppear (first time)
     fileprivate var timeKeeper : Double = 0.0 // time keeps track of latest time
     fileprivate var timeKeeperForPause : Double = 0.0 // remembers the timekeeper at the moment of pressing pause
-    fileprivate var secondsFromChosenTime = Int() // time , chosen by user in PickerView , in seconds
     fileprivate var timeOfWaitingOnPause = 0
     fileprivate var timeLeftInTimer = Int() // time, left in timer , in seconds
     fileprivate var audioData = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: Constants.MelodyFileNames.SimpleSoundFileName, ofType: "mp3")!))
@@ -82,7 +79,7 @@ class CountdownRunViewController: UIViewController  {
         // initialize appDelegate variable
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         // convert start time from hr, min, sec into seconds.Must be done to count number of hr, min, sec in changeTimeLabel()
-        secondsFromChosenTime = Constants.TimeConstants.SecInHour * startHr + Constants.TimeConstants.SecInMinute * startMin + startSec
+//        secondsFromChosenTime = Constants.TimeConstants.SecInHour * startHr + Constants.TimeConstants.SecInMinute * startMin + startSec
         takeChosenMelody()
         startDate = Date()
     }

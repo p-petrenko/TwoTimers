@@ -68,7 +68,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
             pickerViewSecondsArray.append("\(infiniteSec)")
         }
         
-        // Use data from CoreData
+        // Get data from CoreData
         if let cdTimers = fetchCountdownTimer() as [CountdownTimer]! {
             if cdTimers.count != 0 {
                 countdownTimer = cdTimers[0]
@@ -93,7 +93,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //    ask the user for a permission for notifications
+        //    ask the user for a permission for notifications sending
         let regUserNotifSettings = UIApplication.instancesRespond(to: #selector(UIApplication.registerUserNotificationSettings(_:)))
         if regUserNotifSettings {
             app.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.sound, UIUserNotificationType.alert] , categories: nil))
@@ -123,7 +123,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     //  content of each row in each component
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let blueColor = UIColor(red: 2/255, green: 56/255, blue: 81/255, alpha: 1)
-        let attrs = [NSForegroundColorAttributeName : blueColor ]
+        let attrs = [NSForegroundColorAttributeName : blueColor]
         if component == 0 {
             let hStr = NSLocalizedString(" h",  comment: "short from hour or hours nearby number of hours")
             let h = pickerViewHoursArray[row] + hStr
@@ -156,7 +156,6 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     
     fileprivate func fetchCountdownTimer() -> [CountdownTimer] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountdownTimer")
-        
         do {
             return try sharedContext.fetch(fetchRequest) as! [CountdownTimer]
         } catch {
@@ -188,9 +187,7 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
                     selectedSeconds = chooseTime.selectedRow(inComponent: 2) % 60
                     
                     // pass the preset time to next ViewController
-                    crvc.startHr = selectedHours
-                    crvc.startMin = selectedMinutes
-                    crvc.startSec = selectedSeconds
+                    crvc.secondsFromChosenTime = Constants.TimeConstants.SecInHour * selectedHours + Constants.TimeConstants.SecInMinute * selectedMinutes + selectedSeconds
                     crvc.openFirstTime = true
                 }
             }

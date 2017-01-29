@@ -30,6 +30,7 @@
 		2D82D8B01CA45C88008BFEB4 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */; };
 		2D82D8B41CA537FC008BFEB4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */; };
 		2DD3A9751E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD3A9741E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift */; };
+		2DD3A9771E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD3A9761E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift */; };
 		2DE41DEF1E37B74C00CFB700 /* CountdownRunUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE41DEE1E37B74C00CFB700 /* CountdownRunUITests.swift */; };
 		2DFEC3B11CAA86B500A58B0F /* CountdownRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B01CAA86B500A58B0F /* CountdownRunViewController.swift */; };
 		2DFEC3C61CAAD69700A58B0F /* wobble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DFEC3B21CAAD69700A58B0F /* wobble.mp3 */; };
@@ -99,6 +100,7 @@
 		2D82D8AE1CA45C88008BFEB4 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownTimer.swift; path = CountdownTimer/Model/CountdownTimer.swift; sourceTree = "<group>"; };
 		2D82D8B31CA537FC008BFEB4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		2DD3A9741E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownSettingsViewControllerUnitTests.swift; sourceTree = "<group>"; };
+		2DD3A9761E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownRunViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		2DE41DEE1E37B74C00CFB700 /* CountdownRunUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownRunUITests.swift; sourceTree = "<group>"; };
 		2DE41DF41E38F61400CFB700 /* TwoTimersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwoTimersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE41DF81E38F61400CFB700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			children = (
 				2DE41DF81E38F61400CFB700 /* Info.plist */,
 				2DD3A9741E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift */,
+				2DD3A9761E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift */,
 			);
 			path = TwoTimersTests;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD3A9771E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift in Sources */,
 				2DD3A9751E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
