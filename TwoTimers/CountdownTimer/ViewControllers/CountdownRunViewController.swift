@@ -29,7 +29,7 @@ class CountdownRunViewController: UIViewController  {
     fileprivate var timeKeeperForPause : Double = 0.0 // remembers the timekeeper at the moment of pressing pause
     fileprivate var timeOfWaitingOnPause = 0
     fileprivate var timeLeftInTimer = Int() // time, left in timer , in seconds
-    fileprivate var audioData = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: Constants.MelodyFileNames.SimpleSoundFileName, ofType: "mp3")!))
+    fileprivate var audioData: Data!
     fileprivate var audioPlayer = AVAudioPlayer()
     fileprivate var numOfChosenMelody : Int?
     fileprivate let totalTimeText = NSLocalizedString("Total time ", comment: "text before numbers of Total Time label")
@@ -78,8 +78,6 @@ class CountdownRunViewController: UIViewController  {
         super.viewDidLoad()
         // initialize appDelegate variable
         appDelegate = UIApplication.shared.delegate as! AppDelegate
-        // convert start time from hr, min, sec into seconds.Must be done to count number of hr, min, sec in changeTimeLabel()
-//        secondsFromChosenTime = Constants.TimeConstants.SecInHour * startHr + Constants.TimeConstants.SecInMinute * startMin + startSec
         takeChosenMelody()
         startDate = Date()
     }
@@ -91,7 +89,7 @@ class CountdownRunViewController: UIViewController  {
                                        name: NSNotification.Name.UIApplicationDidEnterBackground,
                                        object: nil)
         // if it was set to true in stopwatch, then set it to false here, as in countdown it should be able to sleep.
-        if app.isIdleTimerDisabled { app.isIdleTimerDisabled = false }
+        if app.isIdleTimerDisabled{ app.isIdleTimerDisabled = false }
         
         if let soundVol = defaults.object(forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff) as? Bool {
             soundIsOff = soundVol
@@ -149,6 +147,16 @@ class CountdownRunViewController: UIViewController  {
             startTimer()
             timerIsOnPause = false
             nameOfButton.setImage(UIImage(named: "PauseButton"), for: UIControlState())
+            
+            /*
+             Initially observer is added in viewWillAppear
+             But when first pause is pressed, this observer is removed
+             So in case when Start is pressed and observer was removed, I am adding an observer
+             */
+            notificationCenter.addObserver(app.delegate!,
+                                           selector: #selector(AppDelegate.doLocalNotification),
+                                           name: NSNotification.Name.UIApplicationDidEnterBackground,
+                                           object: nil)
         } else {
             // press pause
             stopTimer()
@@ -299,14 +307,21 @@ class CountdownRunViewController: UIViewController  {
     }
     
     fileprivate func takeChosenMelody() {
+        var melody = Constants.MelodyFileNames.SimpleSoundFileName
+        
         if let chosMelodyNum = defaults.value(forKey: Constants.DefaultKeys.AudioKeyForChosenMelody) as? Int {
             numOfChosenMelody = chosMelodyNum
-            audioData = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: Constants.arrayOfFileNames[numOfChosenMelody!], ofType: "mp3")!))
+            melody = Constants.arrayOfFileNames[numOfChosenMelody!]
         }
         do {
-            audioPlayer = try AVAudioPlayer(data: audioData!)
+            audioData = try Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: melody, ofType: "mp3")!))
         } catch let error as NSError {
-            print("An error occured , trying to take data from \(audioData) ,\(error.localizedDescription)")
+            print("An error occured, trying to get data from melody '\(Constants.MelodyFileNames.SimpleSoundFileName)', \(error.localizedDescription)")
+        }
+        do {
+            audioPlayer = try AVAudioPlayer(data: audioData)
+        } catch let error as NSError {
+            print("An error occured, trying to initialise AVAudioPlayer with data \(audioData), \(error.localizedDescription)")
         }
     }
 

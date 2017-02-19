@@ -20,9 +20,9 @@ class StopwatchViewController: UIViewController {
     fileprivate var timer: Timer!
     fileprivate var startDate: Date! // time begins to run on pressing start
     fileprivate var splitStartDate: Date!
-    fileprivate var secondsFromNSDate: Double! // NSDate interval from now to start moment
-    fileprivate var secondsFromSplitNSDate: Double!
-    fileprivate var timeKeeper = 0.0  // time keeps track of latest tome when pause pressed
+    fileprivate var secondsFromNSDate: Double! // NSDate interval from now to the moment of start
+    fileprivate var secondsFromSplitNSDate: Double! // NSDate interval from now to themoment of last split start
+    fileprivate var timeKeeper = 0.0  // time keeps track of latest time when pause pressed
     fileprivate var splitTimeKeeper = 0.0
     fileprivate var splitNumber = 0
     fileprivate var timerIsOnPause = true
@@ -197,12 +197,10 @@ class StopwatchViewController: UIViewController {
         let min = ((secFromNSDate) / Double(Constants.TimeConstants.SecInMinute))  //I have no hours, so I can make more than 60 minutes // % Int(TimeConstants.SecInMinute)
         let sec = (secFromNSDate).truncatingRemainder(dividingBy: Double(Constants.TimeConstants.SecInMinute))
         let cs = (((secFromNSDate)) * 10).truncatingRemainder(dividingBy: 10)
-        let timeLabl = UILabel()
-        timeLabl.text = timeToString(Int(min)) + ":" + timeToString(Int(sec)) + "." + "\(Int(cs))"
-        return timeLabl.text!
+        return timeToString(Int(min)) + ":" + timeToString(Int(sec)) + "." + "\(Int(cs))"
     }
     
-    fileprivate func timeToString(_ selectedTime : Int!) -> String {
+    fileprivate func timeToString(_ selectedTime : Int) -> String {
         if selectedTime < 10 {
             return "0\(selectedTime)"
         } else {
