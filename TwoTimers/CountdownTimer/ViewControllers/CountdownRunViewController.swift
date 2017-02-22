@@ -24,9 +24,9 @@ class CountdownRunViewController: UIViewController  {
     fileprivate var timeWithPauseEvaluated = false
     fileprivate var moreThanOneMinute = true
     var secondsFromChosenTime = 0 // time, chosen by user in PickerView, converted to seconds
-    fileprivate var startDate : Date? // time begins to run on pressing start, and it's value is set in viewDidAppear (first time)
-    fileprivate var timeKeeper : Double = 0.0 // time keeps track of latest time
-    fileprivate var timeKeeperForPause : Double = 0.0 // remembers the timekeeper at the moment of pressing pause
+    fileprivate var startDate : Date! // time begins to run on pressing start, and it's value is set in viewDidAppear (first time)
+    fileprivate var timeKeeper: Double = 0.0 // time keeps track of latest time
+    fileprivate var timeKeeperForPause: Double = 0.0 // remembers the timekeeper at the moment of pressing pause
     fileprivate var timeOfWaitingOnPause = 0
     fileprivate var timeLeftInTimer = Int() // time, left in timer , in seconds
     fileprivate var audioData: Data!
@@ -39,40 +39,16 @@ class CountdownRunViewController: UIViewController  {
             static let ActionButton = NSLocalizedString("+1min", comment: "action to add one more minute")
         }
     }
+    fileprivate enum MinutesValue {
+        case PlusMinute
+        case MinusMinute
+    }
     
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var runningTimeLabel: UILabel!
     @IBOutlet weak var startOrPauseButton: UIButton!
     @IBOutlet weak var soundOnOffOButton: UIButton!
     @IBOutlet weak var minusOneMinuteButton: UIButton!
-    
-    
-    @IBAction func turnSoundOnOff(_ sender: UIButton) {
-        if soundIsOff == false {
-            soundIsOff = true
-            soundOff()
-        } else {
-            soundIsOff = false
-            soundOn()
-        }
-        defaults.set(soundIsOff, forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff)
-    }
-    
-    @IBAction func minusOneMinute(_ sender: UIButton) {
-        plusMinusMinute(-1)
-    }
-
-    @IBAction func plusOneMinute(_ sender: UIButton) {
-        plusMinusMinute(1)
-    }
-
-    @IBAction func startOrPauseAction(_ sender: UIButton) {
-        startOrPauseTimer(sender)
-    }
-
-    @IBAction func stopButton(_ sender: UIButton) {
-        self.navigationController!.popViewController(animated: true)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,7 +103,7 @@ class CountdownRunViewController: UIViewController  {
         } else {
             // if timer is not on pause, start timer considering NSDate changes
             if !timerIsOnPause {
-                calculateTimeAndSetTimeLabel(runningTimeLabel, timeInSeconds: secondsFromChosenTime + Int(startDate!.timeIntervalSinceNow))
+                calculateTimeAndSetTimeLabel(runningTimeLabel, timeInSeconds: secondsFromChosenTime + Int(startDate.timeIntervalSinceNow))
                 startTimer()
             }
             // or if timer is on pause, do nothing
@@ -142,12 +118,30 @@ class CountdownRunViewController: UIViewController  {
         stopTimer()
     }
     
-    fileprivate func startOrPauseTimer(_ nameOfButton : UIButton) {
+    @IBAction func turnSoundOnOff(_ sender: UIButton) {
+        if soundIsOff == false {
+            soundIsOff = true
+            soundOff()
+        } else {
+            soundIsOff = false
+            soundOn()
+        }
+        defaults.set(soundIsOff, forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff)
+    }
+    
+    @IBAction func minusOneMinute() {
+        plusMinusMinute(MinutesValue.MinusMinute)
+    }
+    
+    @IBAction func plusOneMinute() {
+        plusMinusMinute(MinutesValue.PlusMinute)
+    }
+    
+    @IBAction func startOrPauseAction(_ sender: UIButton) {
         if !appDelegate.countdownTimerStarted {
             startTimer()
             timerIsOnPause = false
-            nameOfButton.setImage(UIImage(named: "PauseButton"), for: UIControlState())
-            
+            sender.setImage(UIImage(named: "PauseButton"), for: UIControlState())
             /*
              Initially observer is added in viewWillAppear
              But when first pause is pressed, this observer is removed
@@ -164,18 +158,21 @@ class CountdownRunViewController: UIViewController  {
             timeKeeperForPause = timeKeeper
             timeWithPauseEvaluated = false
             timerIsOnPause = true
-            nameOfButton.setImage(UIImage(named: "StartButton"), for: UIControlState())
+            sender.setImage(UIImage(named: "StartButton"), for: UIControlState())
             // remove local notification
             notificationCenter.removeObserver(app.delegate!)
             app.cancelAllLocalNotifications()
         }
     }
     
+    @IBAction func stopButton(_ sender: UIButton) {
+        self.navigationController!.popViewController(animated: true)
+    }
+    
     fileprivate func startTimer() {
-        // changeTimeLabel() function will implement itself in 0.2 seconds. The code in current function will be already implemented.
+        // changeTimeLabel() function will be implemented in 0.2 seconds. The code in current function will be already implemented.
         self.timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(changeTimeLabel), userInfo: nil, repeats: true)
         appDelegate.countdownTimerStarted = true
-
     }
     
     fileprivate func stopTimer() {
@@ -185,16 +182,14 @@ class CountdownRunViewController: UIViewController  {
         appDelegate.countdownTimerStarted = false
     }
 
-    fileprivate func plusMinusMinute(_ delta : Int) {
+    fileprivate func plusMinusMinute(_ delta : MinutesValue) {
         switch delta {
-        case 1:
+        case MinutesValue.PlusMinute:
             self.plusMinute = false
             secondsFromChosenTime += 60
-        case -1:
+        case MinutesValue.MinusMinute:
             self.plusMinute = true
             secondsFromChosenTime -= 60
-        default:
-            print("Delta value for minutes must be -1 or +1 minute.")
         }
         calculateTimeAndSetTimeLabel(totalTimeLabel, timeInSeconds: secondsFromChosenTime)
         changeTimeLabel()
@@ -220,7 +215,7 @@ class CountdownRunViewController: UIViewController  {
             self.audioPlayer.stop() // stops playing sound after button is pressed
             // First recalculate startDate in startTimer(), only then can add 1 minute to refreshed startDate.
             self.startTimer()
-            self.plusMinusMinute(1)
+            self.plusMinusMinute(MinutesValue.PlusMinute)
         })
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             [unowned self] (action: UIAlertAction) -> Void in
@@ -233,52 +228,17 @@ class CountdownRunViewController: UIViewController  {
     }
     
     // MARK: - Changing time labels
-    
     func changeTimeLabel() {
-        
-        timeKeeper = startDate!.timeIntervalSinceNow
-        
-        if timeKeeperForPause != 0 && !timeWithPauseEvaluated {
-            timeOfWaitingOnPause += -Int(timeKeeper) + Int(timeKeeperForPause)
-            timeWithPauseEvaluated = true
-        }
-        // count this value considering all the pauses if there were any
+        timeKeeper = startDate.timeIntervalSinceNow
+        calculateTimeOfBeingInPauseStateIfPressedStartAfterPause()
         timeLeftInTimer = secondsFromChosenTime + Int(timeKeeper) + (timeOfWaitingOnPause)
-
-        // Set this value here for case of going to the background. So the local notification will come in time, left in timer.
+        //Set secondsForFireDate in case of going to background. Then local notification will come in time, left in timer.
         appDelegate.secondsForFireDate = Double(timeLeftInTimer)
-        
-        if timeLeftInTimer <= 0 {
-            // play audio if it wasn't played in background state
-            if timeLeftInTimer == 0 {
-                audioPlayer.play()
-            }
-            /*
-            timeKeeper is used further if I choose "+1min" action in alert. If an app was in background and I didn't open notification immidiately, (NSDate() - startDate) will be -(secondsFromChosenTime + Time_of_Waiting_To_Open_the_App), and I change it to be -(secondsFromChosenTime) which is correct.
-            */
-            timeKeeper = -Double(secondsFromChosenTime)
-            //the running time label must be fixed NOT to show smth like 00:0-10:0-11 (negative time)
-            timeLeftInTimer = 0
-            stopTimer()
-            pushAlert()
-        }
-        
-        // if time < 61 sec , lock pressing "-1m" button
-        if timeLeftInTimer < (Constants.TimeConstants.SecInMinute + 1) && moreThanOneMinute {
-            UIView.animate(withDuration: 0.7,
-                                       animations: {[unowned self] () in
-                                        self.minusOneMinuteButton.alpha = 0.5
-                }, completion: { _ in self.minusOneMinuteButton.isEnabled = false; self.minusOneMinuteButton.alpha = 1}
-            )
-            moreThanOneMinute = false
-        } else if timeLeftInTimer > (Constants.TimeConstants.SecInMinute + 1) && !moreThanOneMinute {
-            minusOneMinuteButton.isEnabled = true
-            moreThanOneMinute = true
-        }
-        
+        stopTimerAndShowAlertIfTimeIsUp()
+        disableMinusOneMinuteButtonIfTimeIsLessThan61Seconds()
         calculateTimeAndSetTimeLabel(runningTimeLabel, timeInSeconds: timeLeftInTimer)
     }
-    
+
     // as timeInSeconds variable it must be secondsFromChosenTime (for totalTimeEvaluate) or timeLeftInTimer (for changeTimeLabel)
     fileprivate func calculateTimeAndSetTimeLabel(_ timeLabel : UILabel , timeInSeconds : Int) {
         
@@ -324,7 +284,47 @@ class CountdownRunViewController: UIViewController  {
             print("An error occured, trying to initialise AVAudioPlayer with data \(audioData), \(error.localizedDescription)")
         }
     }
-
+    
+    // MARK: - Helper functions for making changeTimeLabel() more readable
+    
+    fileprivate func calculateTimeOfBeingInPauseStateIfPressedStartAfterPause() {
+        if timeKeeperForPause != 0 && !timeWithPauseEvaluated {
+            timeOfWaitingOnPause += -Int(timeKeeper) + Int(timeKeeperForPause)
+            timeWithPauseEvaluated = true
+        }
+    }
+    
+    fileprivate func stopTimerAndShowAlertIfTimeIsUp() {
+        if timeLeftInTimer <= 0 {
+            // play audio if it wasn't played in background state
+            if timeLeftInTimer == 0 {
+                audioPlayer.play()
+            }
+            /*
+             timeKeeper is used further if I choose "+1min" action in alert. If the app was in background and I didn't open notification immidiately, (NSDate() - startDate) will be -(secondsFromChosenTime + Time_of_Waiting_To_Open_the_App), and I change it to be -(secondsFromChosenTime) which is correct.
+             */
+            timeKeeper = -Double(secondsFromChosenTime)
+            //the running time label must be fixed NOT to show smth like 00:0-10:0-11 (negative time)
+            timeLeftInTimer = 0
+            stopTimer()
+            pushAlert()
+        }
+    }
+    
+    fileprivate func disableMinusOneMinuteButtonIfTimeIsLessThan61Seconds() {
+        if (timeLeftInTimer < Constants.TimeConstants.SecInMinute + 1) && moreThanOneMinute {
+            UIView.animate(withDuration: 0.7,
+                           animations: {[unowned self] () in
+                            self.minusOneMinuteButton.alpha = 0.5
+                }, completion: { _ in self.minusOneMinuteButton.isEnabled = false; self.minusOneMinuteButton.alpha = 1}
+            )
+            moreThanOneMinute = false
+        } else if (timeLeftInTimer > Constants.TimeConstants.SecInMinute + 1) && !moreThanOneMinute {
+            minusOneMinuteButton.isEnabled = true
+            moreThanOneMinute = true
+        }
+    }
+    
  }
 
 

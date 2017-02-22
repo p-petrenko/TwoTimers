@@ -11,20 +11,16 @@ import AVFoundation
 
 class MusicTableViewController: UITableViewController {
     
-    var selectedRow : Int?
+    var selectedRow: Int?
     
     var defaults = UserDefaults.standard
     
     //    audio
-    var audioData : Data?
-    var audioPlayer : AVAudioPlayer?
+    var audioData: Data?
+    var audioPlayer: AVAudioPlayer?
     
     var arrayOfFormatsForFileNames = [String]()
     
-    @IBAction func done(_ sender: UIBarButtonItem) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +44,11 @@ class MusicTableViewController: UITableViewController {
         super.viewWillDisappear(animated)
         defaults.setValue(selectedRow, forKey: Constants.DefaultKeys.AudioKeyForChosenMelody)
     }
+    
+    @IBAction func done(_ sender: UIBarButtonItem) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+
     
     // MARK: - Table view data source
     

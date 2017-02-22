@@ -41,61 +41,6 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var showAllResultsButton: UIButton!
     @IBOutlet weak var folderButton: UIButton!
     
-    @IBAction func switchSleepMode(_ sender: UIButton) {
-        if sleepModeOff == false {
-            //switch off the sleeping possibility of the screen
-            setSleepModeState(true)
-        } else {
-            setSleepModeState(false)
-        }
-        defaults.set(sleepModeOff, forKey: Constants.KeysUsedInStopwatch.SleepMode)
-    }
-    
-    @IBAction func startTimer(_ sender: UIButton) {
-        if appDelegate.stopwatchTimerStarted == false {
-            // the user pressed Start
-            automaticPressStart()
-            changeButtonsToPauseAndSplit()
-            startDate = Date()
-            splitStartDate = Date()
-
-        } else {
-            // the user pressed Pause
-            pauseTimer()
-            changeButtonsToStartAndReset()
-            timeKeeper = secondsFromNSDate
-            splitTimeKeeper = secondsFromSplitNSDate
-            timerIsOnPause = true
-        }
-    }
-    
-    @IBAction func resetOrMakeSplit(_ sender: UIButton) {
-        if appDelegate.stopwatchTimerStarted == false {
-            // the user pressed Reset
-            showAllResultsButton.setTitle("", for: UIControlState())
-            startDate = Date(); splitStartDate = Date()
-            timeKeeper = 0 ; splitTimeKeeper = 0 ; splitNumber = 0
-            removeSplitResultsFromCoreData()
-            timerBeep()
-        } else {
-            // the user pressed Split
-            splitStartDate = Date()
-            splitTimeKeeper = 0
-            splitNumber += 1
-            let splitTimeResult = "\(splitLabel.text!)"
-            //timeOfResultSaving and positionOfSavedResult are not used for split results table view, but it must have some value, which will never be used
-            coreDataStackManager.saveSplitResult("",
-                                                 timeLabel: splitTimeResult,
-                                                 date: Date(),
-                                                 saved: false,
-                                                 current: true,
-                                                 timeOfResultSaving: Date(),
-                                                 positionOfSavedResult: 0
-            )
-            showAllResultsButton.setTitle("#\(splitNumber) " + splitTimeResult, for: UIControlState())
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let timkeeper = defaults.value(forKey: Constants.KeysUsedInStopwatch.TimeKeeperKey) as? Double {
@@ -159,6 +104,61 @@ class StopwatchViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+    }
+    
+    @IBAction func switchSleepMode(_ sender: UIButton) {
+        if sleepModeOff == false {
+            //switch off the sleeping possibility of the screen
+            setSleepModeState(true)
+        } else {
+            setSleepModeState(false)
+        }
+        defaults.set(sleepModeOff, forKey: Constants.KeysUsedInStopwatch.SleepMode)
+    }
+    
+    @IBAction func startTimer(_ sender: UIButton) {
+        if appDelegate.stopwatchTimerStarted == false {
+            // the user pressed Start
+            automaticPressStart()
+            changeButtonsToPauseAndSplit()
+            startDate = Date()
+            splitStartDate = Date()
+            
+        } else {
+            // the user pressed Pause
+            pauseTimer()
+            changeButtonsToStartAndReset()
+            timeKeeper = secondsFromNSDate
+            splitTimeKeeper = secondsFromSplitNSDate
+            timerIsOnPause = true
+        }
+    }
+    
+    @IBAction func resetOrMakeSplit(_ sender: UIButton) {
+        if appDelegate.stopwatchTimerStarted == false {
+            // the user pressed Reset
+            showAllResultsButton.setTitle("", for: UIControlState())
+            startDate = Date(); splitStartDate = Date()
+            timeKeeper = 0 ; splitTimeKeeper = 0 ; splitNumber = 0
+            removeSplitResultsFromCoreData()
+            timerBeep()
+        } else {
+            // the user pressed Split
+            splitStartDate = Date()
+            splitTimeKeeper = 0
+            splitNumber += 1
+            let splitTimeResult = "\(splitLabel.text!)"
+            //timeOfResultSaving and positionOfSavedResult are not used for split results table view, but it must have some value, which will never be used
+            coreDataStackManager.saveSplitResult("",
+                                                 timeLabel: splitTimeResult,
+                                                 date: Date(),
+                                                 saved: false,
+                                                 current: true,
+                                                 timeOfResultSaving: Date(),
+                                                 positionOfSavedResult: 0
+            )
+            showAllResultsButton.setTitle("#\(splitNumber) " + splitTimeResult, for: UIControlState())
+        }
     }
     
     fileprivate func automaticPressStart() {

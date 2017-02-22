@@ -15,6 +15,13 @@ class SavedResultsTableTableViewController: UITableViewController {
     fileprivate var coreDataStackManager = CoreDataStackManager.sharedInstance()
     fileprivate var sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        savedStopwatchResults = coreDataStackManager.fetchSavedSplitResult()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
     @IBAction func changeEventName(_ sender: UIButton) {
         let eventNameTextField = UITextField()
         let alert = UIAlertController(title: Constants.StringsForAlert.RenameTitle, message: "Rename this result", preferredStyle: UIAlertControllerStyle.alert)
@@ -30,22 +37,15 @@ class SavedResultsTableTableViewController: UITableViewController {
         }
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {[unowned self] (alert : UIAlertAction) in
-
+            
             self.savedStopwatchResults[sender.tag].splitEventName = alertTextField[0].text!
             self.coreDataStackManager.saveContext()
-
+            
             self.tableView.reloadData()
-            } )
+        } )
         alert.addAction(UIAlertAction(title: "Cancel" , style: UIAlertActionStyle.cancel, handler: nil))
         alert.view.setNeedsLayout()
         present(alert, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        savedStopwatchResults = coreDataStackManager.fetchSavedSplitResult()
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source

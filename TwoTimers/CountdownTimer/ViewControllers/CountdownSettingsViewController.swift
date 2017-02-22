@@ -15,11 +15,11 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     fileprivate var pickerViewHoursArray = [String]()
     fileprivate var pickerViewMinutesArray = [String]()
     fileprivate var pickerViewSecondsArray = [String]()
-    fileprivate var selectedHours : Int!
-    fileprivate var selectedMinutes : Int!
-    fileprivate var selectedSeconds : Int!
+    fileprivate var selectedHours: Int!
+    fileprivate var selectedMinutes: Int!
+    fileprivate var selectedSeconds: Int!
     fileprivate let app = UIApplication.shared
-    fileprivate var countdownTimer : CountdownTimer!
+    fileprivate var countdownTimer: CountdownTimer!
     
     struct LocalConstants {
         static let NumOfHrs = 23
@@ -30,28 +30,6 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
     @IBOutlet weak var chooseTime: UIPickerView!
 
     @IBOutlet weak var startButton: UIButton!
-    
-    @IBAction func startButton(_ sender: UIButton) {
-        selectedHours = chooseTime.selectedRow(inComponent: 0)
-        selectedMinutes = chooseTime.selectedRow(inComponent: 1)
-        selectedSeconds = chooseTime.selectedRow(inComponent: 2)
-        
-        let dictionary : [String : AnyObject] = [
-            Constants.KeysUsedInCountdownTimer.SecondsForStart : selectedSeconds as AnyObject,
-            Constants.KeysUsedInCountdownTimer.MinutesForStart : selectedMinutes as AnyObject,
-            Constants.KeysUsedInCountdownTimer.HoursForStart : selectedHours as AnyObject
-        ]
-        
-        if let cdTimers = fetchCountdownTimer() as [CountdownTimer]! {
-            if cdTimers.count != 0 {
-                // delete existing countdownTimer and create the new one with new data in the dictionary of parameters
-                sharedContext.delete(countdownTimer)
-            }
-            countdownTimer = CountdownTimer(dictionary: dictionary, context: self.sharedContext)
-        }
-        CoreDataStackManager.sharedInstance().saveContext()
-    }
-        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +77,28 @@ class CountdownSettingsViewController: UIViewController, UIPickerViewDataSource,
             app.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.sound, UIUserNotificationType.alert] , categories: nil))
         }
     }
+    
+    @IBAction func startButton(_ sender: UIButton) {
+        selectedHours = chooseTime.selectedRow(inComponent: 0)
+        selectedMinutes = chooseTime.selectedRow(inComponent: 1)
+        selectedSeconds = chooseTime.selectedRow(inComponent: 2)
+        
+        let dictionary : [String : AnyObject] = [
+            Constants.KeysUsedInCountdownTimer.SecondsForStart : selectedSeconds as AnyObject,
+            Constants.KeysUsedInCountdownTimer.MinutesForStart : selectedMinutes as AnyObject,
+            Constants.KeysUsedInCountdownTimer.HoursForStart : selectedHours as AnyObject
+        ]
+        
+        if let cdTimers = fetchCountdownTimer() as [CountdownTimer]! {
+            if cdTimers.count != 0 {
+                // delete existing countdownTimer and create the new one with new data in the dictionary of parameters
+                sharedContext.delete(countdownTimer)
+            }
+            countdownTimer = CountdownTimer(dictionary: dictionary, context: self.sharedContext)
+        }
+        CoreDataStackManager.sharedInstance().saveContext()
+    }
+
     
     // MARK: - UIPickerView parameters
     

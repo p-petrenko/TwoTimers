@@ -17,6 +17,22 @@ class SplitResultsTableViewController: UITableViewController {
     
     @IBOutlet weak var folderButton: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        splitStopwatchResults = coreDataStackManager.fetchCurrentSplitResult()
+        self.tableView.reloadData()
+
+        if !coreDataStackManager.fetchSavedSplitResult().isEmpty {
+            folderButton.isHidden = false
+        } else {
+            folderButton.isHidden = true
+        }
+    }
+
     @IBAction func saveThisSplitResult(_ sender: UIButton) {
         let eventNameTextField = UITextField()
         let alert = UIAlertController(title: Constants.StringsForAlert.SaveResultQuestion, message: Constants.StringsForAlert.EnterName, preferredStyle: UIAlertControllerStyle.alert)
@@ -32,7 +48,7 @@ class SplitResultsTableViewController: UITableViewController {
         }
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){[unowned self] (alert : UIAlertAction) in
-
+            
             // change 'event name' and 'saved' for current cell
             self.splitStopwatchResults[sender.tag].saved = true
             self.splitStopwatchResults[sender.tag].splitEventName = alertTextField[0].text!
@@ -43,8 +59,8 @@ class SplitResultsTableViewController: UITableViewController {
                 self.folderButton.alpha = 0
                 self.folderButton.isHidden = false
                 UIView.animate(withDuration: 1,
-                    animations: {[unowned self] () in
-                        self.folderButton.alpha = 1
+                               animations: {[unowned self] () in
+                                self.folderButton.alpha = 1
                     }, completion: nil
                 )
             }
@@ -53,22 +69,6 @@ class SplitResultsTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel" , style: UIAlertActionStyle.cancel, handler: nil))
         alert.view.setNeedsLayout()
         present(alert, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        splitStopwatchResults = coreDataStackManager.fetchCurrentSplitResult()
-        self.tableView.reloadData()
-
-        if !coreDataStackManager.fetchSavedSplitResult().isEmpty {
-            folderButton.isHidden = false
-        } else {
-            folderButton.isHidden = true
-        }
     }
 
     // MARK: - Table view data source

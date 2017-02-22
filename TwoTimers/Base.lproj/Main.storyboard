@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="255" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="748" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="5T4-Zt-9A9">
-                                <rect key="frame" x="102" y="410.5" width="171.5" height="91.5"/>
+                                <rect key="frame" x="102.5" y="410.5" width="171.5" height="91.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="hCL-5v-0Rp">
@@ -98,7 +98,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="255" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="753" text="11:00.0" textAlignment="center" lineBreakMode="clip" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="VZ8-qB-YtK" userLabel="Split time00:00.00">
-                                <rect key="frame" x="102" y="311" width="171.5" height="91.5"/>
+                                <rect key="frame" x="102.5" y="311" width="171.5" height="91.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="RunningSplitTimeLabel"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -193,38 +193,6 @@
                                 <exclude reference="1wE-XV-Gp2"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="MxF-Jm-zdF"/>
-                                <exclude reference="OhS-Sm-xkP"/>
-                                <include reference="P4r-Qd-y4z"/>
-                                <include reference="v0H-be-jrS"/>
-                                <exclude reference="xOd-BJ-FFj"/>
-                                <exclude reference="3MY-yZ-D0F"/>
-                                <include reference="4bv-Tc-0po"/>
-                                <include reference="PGh-wm-oK8"/>
-                                <exclude reference="QZs-5u-vW6"/>
-                                <exclude reference="jny-eX-JXC"/>
-                                <exclude reference="b0T-AB-Mqz"/>
-                                <exclude reference="m5i-fS-rGZ"/>
-                                <exclude reference="zsb-ws-TYc"/>
-                                <include reference="RJU-8E-dG1"/>
-                                <exclude reference="e8o-AE-cTC"/>
-                                <include reference="jIX-mf-YHx"/>
-                                <exclude reference="5Td-d5-gc0"/>
-                                <exclude reference="I9x-Nj-YzP"/>
-                                <exclude reference="MUz-RD-s0e"/>
-                                <exclude reference="rNU-9c-ZDH"/>
-                                <exclude reference="xJk-PE-Puz"/>
-                                <include reference="8hi-Kk-81T"/>
-                                <exclude reference="2k4-aI-bE8"/>
-                                <exclude reference="76H-kK-JSE"/>
-                                <exclude reference="dvO-4g-wze"/>
-                                <include reference="FyW-HF-Utl"/>
-                                <include reference="GPy-9g-sMv"/>
-                                <exclude reference="ZkY-Gd-L50"/>
-                                <include reference="kY2-0I-wzg"/>
-                                <exclude reference="66W-3B-tE7"/>
-                                <exclude reference="eY0-PL-o60"/>
-                                <exclude reference="joT-68-90h"/>
                                 <exclude reference="JNR-eX-LKR"/>
                                 <include reference="XW2-rL-EWE"/>
                                 <exclude reference="sya-xf-eoL"/>
@@ -394,7 +362,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uiD-Hj-ABq" id="eVI-T7-0aT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-n4-VjI">
@@ -505,7 +473,7 @@
                                 </constraints>
                                 <state key="normal" image="-1minButton"/>
                                 <connections>
-                                    <action selector="minusOneMinute:" destination="abn-Zu-D0g" eventType="touchUpInside" id="BkK-Jn-1Xv"/>
+                                    <action selector="minusOneMinute" destination="abn-Zu-D0g" eventType="touchUpInside" id="nY0-Xx-irX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="746" verticalCompressionResistancePriority="746" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-wg-ydI" userLabel="Plus One Minute Button">
@@ -529,7 +497,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="plusOneMinute:" destination="abn-Zu-D0g" eventType="touchUpInside" id="Hrw-ab-KpC"/>
+                                    <action selector="plusOneMinute" destination="abn-Zu-D0g" eventType="touchUpInside" id="7BK-gV-lgK"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6B-VG-AMb">
@@ -715,7 +683,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y66-Hd-oJT" id="uZO-Pp-wbB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ResultName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbB-uP-nP4">
@@ -819,7 +787,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ztE-4t-bMp" id="b39-oc-Jnd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="00:01.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2Y-la-RP4">
