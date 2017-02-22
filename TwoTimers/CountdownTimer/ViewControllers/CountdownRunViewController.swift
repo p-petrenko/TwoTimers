@@ -25,7 +25,7 @@ class CountdownRunViewController: UIViewController  {
     fileprivate var moreThanOneMinute = true
     var secondsFromChosenTime = 0 // time, chosen by user in PickerView, converted to seconds
     fileprivate var startDate : Date! // time begins to run on pressing start, and it's value is set in viewDidAppear (first time)
-    fileprivate var timeKeeper: Double = 0.0 // time keeps track of latest time
+    fileprivate var timeKeeper: Double = 0.0 // time keeps track of the latest time
     fileprivate var timeKeeperForPause: Double = 0.0 // remembers the timekeeper at the moment of pressing pause
     fileprivate var timeOfWaitingOnPause = 0
     fileprivate var timeLeftInTimer = Int() // time, left in timer , in seconds
@@ -301,10 +301,10 @@ class CountdownRunViewController: UIViewController  {
                 audioPlayer.play()
             }
             /*
-             timeKeeper is used further if I choose "+1min" action in alert. If the app was in background and I didn't open notification immidiately, (NSDate() - startDate) will be -(secondsFromChosenTime + Time_of_Waiting_To_Open_the_App), and I change it to be -(secondsFromChosenTime) which is correct.
+             timeKeeper is used further if I choose "+1min" action in alert. If the app was in background and I didn't open notification immidiately, (Date() - startDate) will be -(secondsFromChosenTime + Time_of_Waiting_To_Open_the_App), and I change it to be -(secondsFromChosenTime) which is correct. It will set runningTimeLabel to be "00:00:00".
              */
             timeKeeper = -Double(secondsFromChosenTime)
-            //the running time label must be fixed NOT to show smth like 00:0-10:0-11 (negative time)
+            //the runningTimeLabel must be fixed NOT to show smth like 00:0-10:0-11 (negative time)
             timeLeftInTimer = 0
             stopTimer()
             pushAlert()

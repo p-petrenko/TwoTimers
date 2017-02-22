@@ -11,7 +11,7 @@ import XCTest
 
 class CountdownRunViewControllerUnitTests: XCTestCase {
     
-    var viewController : CountdownRunViewController!
+    var viewController: CountdownRunViewController!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func setUp() {
@@ -103,6 +103,11 @@ class CountdownRunViewControllerUnitTests: XCTestCase {
         let runningTimeLabelText = viewController.runningTimeLabel.text
         // timeLeftInTimer = secondsFromChosenTime + Int(timeKeeper) + (timeOfWaitingOnPause)
         XCTAssertEqual(runningTimeLabelText, "00:02:00")
+    }
+    
+    func test_IfTimeAfterPauseCalculatesCorrectly() {
+        viewController.secondsFromChosenTime = 60
+        viewController.changeTimeLabel()
     }
 
 }

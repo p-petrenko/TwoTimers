@@ -12,7 +12,7 @@ import UIKit
 
 class CountdownSettingsViewControllerUnitTests: XCTestCase {
     
-    var viewController : CountdownSettingsViewController!
+    var viewController: CountdownSettingsViewController!
     var pickerView: UIPickerView!
     
     override func setUp() {
