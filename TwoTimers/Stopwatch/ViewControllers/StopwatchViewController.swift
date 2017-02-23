@@ -51,9 +51,7 @@ class StopwatchViewController: UIViewController {
         }
         presetTimeLabels()
     }
-    
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         savedStopwatchResults = coreDataStackManager.fetchSavedSplitResult()
@@ -67,9 +65,9 @@ class StopwatchViewController: UIViewController {
         splitStopwatchResults = coreDataStackManager.fetchCurrentSplitResult()
         splitNumber = splitStopwatchResults.count
         if let lastResult = splitStopwatchResults.last {
-            showAllResultsButton.setTitle("#\(splitNumber) " + lastResult.splitTimeLabel!, for: UIControlState())
+            showAllResultsButton.setTitle("#\(splitNumber) " + lastResult.splitTimeLabel!, for: .normal)
         } else {
-            showAllResultsButton.setTitle(" ", for: UIControlState())
+            showAllResultsButton.setTitle(" ", for: .normal)
         }
 
         if let sleepMode = defaults.object(forKey: Constants.KeysUsedInStopwatch.SleepMode) as? Bool {
@@ -80,13 +78,9 @@ class StopwatchViewController: UIViewController {
             setSleepModeState(false)
         }
 
-        if !savedStopwatchResults.isEmpty {
-            folderButton.isHidden = false
-        } else {
-            folderButton.isHidden = true
-        }
+        // if there is at least one element in saved results, show folder button
+        folderButton.isHidden = savedStopwatchResults.isEmpty
     }
-
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -102,22 +96,14 @@ class StopwatchViewController: UIViewController {
         pauseTimer()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
     @IBAction func switchSleepMode(_ sender: UIButton) {
-        if sleepModeOff == false {
-            //switch off the sleeping possibility of the screen
-            setSleepModeState(true)
-        } else {
-            setSleepModeState(false)
-        }
+        //switch off the sleeping possibility of the screen if it is on and vice versa
+        setSleepModeState(!sleepModeOff)
         defaults.set(sleepModeOff, forKey: Constants.KeysUsedInStopwatch.SleepMode)
     }
     
     @IBAction func startTimer(_ sender: UIButton) {
-        if appDelegate.stopwatchTimerStarted == false {
+        if !appDelegate.stopwatchTimerStarted {
             // the user pressed Start
             automaticPressStart()
             changeButtonsToPauseAndSplit()
@@ -135,9 +121,9 @@ class StopwatchViewController: UIViewController {
     }
     
     @IBAction func resetOrMakeSplit(_ sender: UIButton) {
-        if appDelegate.stopwatchTimerStarted == false {
+        if !appDelegate.stopwatchTimerStarted {
             // the user pressed Reset
-            showAllResultsButton.setTitle("", for: UIControlState())
+            showAllResultsButton.setTitle("", for: .normal)
             startDate = Date(); splitStartDate = Date()
             timeKeeper = 0 ; splitTimeKeeper = 0 ; splitNumber = 0
             removeSplitResultsFromCoreData()
@@ -157,7 +143,7 @@ class StopwatchViewController: UIViewController {
                                                  timeOfResultSaving: Date(),
                                                  positionOfSavedResult: 0
             )
-            showAllResultsButton.setTitle("#\(splitNumber) " + splitTimeResult, for: UIControlState())
+            showAllResultsButton.setTitle("#\(splitNumber) " + splitTimeResult, for: .normal)
         }
     }
     
@@ -168,7 +154,7 @@ class StopwatchViewController: UIViewController {
     }
     
     func pauseTimer() {
-        if appDelegate.stopwatchTimerStarted == true {
+        if appDelegate.stopwatchTimerStarted {
             appDelegate.stopwatchTimerStarted = false
             timeWithPauseEvaluated = false
             timer.invalidate()
@@ -177,13 +163,13 @@ class StopwatchViewController: UIViewController {
     }
 
     fileprivate func changeButtonsToStartAndReset() {
-        startTimerButton.setImage(UIImage(named: "StartButton"), for: UIControlState())
-        splitAndResetButton.setImage(UIImage(named: "ResetButton"), for: UIControlState())
+        startTimerButton.setImage(UIImage(named: "StartButton"), for: .normal)
+        splitAndResetButton.setImage(UIImage(named: "ResetButton"), for: .normal)
     }
     
     fileprivate func changeButtonsToPauseAndSplit() {
-        startTimerButton.setImage(UIImage(named: "PauseButton"), for: UIControlState())
-        splitAndResetButton.setImage(UIImage(named: "SplitButton"), for: UIControlState())
+        startTimerButton.setImage(UIImage(named: "PauseButton"), for: .normal)
+        splitAndResetButton.setImage(UIImage(named: "SplitButton"), for: .normal)
     }
     
     func timerBeep() {
@@ -212,14 +198,12 @@ class StopwatchViewController: UIViewController {
         defaults.setValue(secondsFromNSDate , forKey: Constants.KeysUsedInStopwatch.TimeKeeperKey)
         defaults.setValue(secondsFromSplitNSDate, forKey: Constants.KeysUsedInStopwatch.SplitTimeKeeperKey)
     }
+    
     fileprivate func setSleepModeState(_ state: Bool) {
         app.isIdleTimerDisabled = state
         sleepModeOff = state
-        if sleepModeOff {
-            sleepModeButton.setImage(UIImage(named: "SleepModeOff"), for: UIControlState())
-        } else {
-            sleepModeButton.setImage(UIImage(named: "SleepModeOn"), for: UIControlState())
-        }
+        let imageOfSleepModeButton = sleepModeOff ? UIImage(named: "SleepModeOff") : UIImage(named: "SleepModeOn")
+        sleepModeButton.setImage(imageOfSleepModeButton, for: .normal)
     }
  
     fileprivate func presetTimeLabels() {
@@ -228,7 +212,6 @@ class StopwatchViewController: UIViewController {
         runningTimeLabel.text = getTimeLabelFromTimeNumbers(secondsFromNSDate)
         splitLabel.text = getTimeLabelFromTimeNumbers(secondsFromSplitNSDate)
     }
-    
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "Split Results Segue" && splitNumber != 0 {
@@ -244,10 +227,12 @@ class StopwatchViewController: UIViewController {
     
     fileprivate func removeSplitResultsFromCoreData() {
         for (index,_) in splitStopwatchResults.enumerated() {
-            if splitStopwatchResults[index].saved == false {
-                sharedContext.delete(splitStopwatchResults[index])
-            } else {
-                splitStopwatchResults[index].current = false
+            if let savedSplitStopwatchResult = splitStopwatchResults[index].saved as? Bool {
+                if !savedSplitStopwatchResult {
+                    sharedContext.delete(splitStopwatchResults[index])
+                } else {
+                    splitStopwatchResults[index].current = false
+                }
             }
         }
         coreDataStackManager.saveContext()

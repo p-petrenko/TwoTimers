@@ -16,28 +16,27 @@ class SplitResultTableViewCell: UITableViewCell {
         }
     }
 
-    
     @IBOutlet weak var resultName: UILabel!
     @IBOutlet weak var numOfSplitResult: UILabel!
     @IBOutlet weak var timeInterval: UILabel!
     @IBOutlet weak var dateAndTimeOfSplitPressing: UILabel!
     @IBOutlet weak var saveThisResultButton: UIButton!
     
-
+    
     fileprivate func updateUI() {
         resultName.text = nil
         timeInterval.text = nil
         dateAndTimeOfSplitPressing.text = nil
         numOfSplitResult.text = nil
-
+        
         if let result = self.currentResult {
             resultName.text = result.splitEventName
             timeInterval.text = result.splitTimeLabel
             dateAndTimeOfSplitPressing.text = transferNSDateIntoString(result.splitDateAndTimeOfSplit! as Date)
             numOfSplitResult.text = "#" + String(saveThisResultButton.tag + 1) + " "
-            if (result.saved == true) {
+            if let resultIsSaved = result.saved as? Bool, resultIsSaved {
                 saveThisResultButton.isHidden = true
-             } else {
+            } else {
                 if saveThisResultButton.isHidden {
                     saveThisResultButton.isHidden = false
                 }
@@ -61,5 +60,5 @@ class SplitResultTableViewCell: UITableViewCell {
         
         return textOfDate
     }
-
+    
 }

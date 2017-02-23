@@ -55,7 +55,7 @@ class SplitResultsTableViewController: UITableViewController {
             self.splitStopwatchResults[sender.tag].timeOfResultSaving = Date()
             self.coreDataStackManager.saveContext()
             
-            if self.folderButton.isHidden == true {
+            if self.folderButton.isHidden {
                 self.folderButton.alpha = 0
                 self.folderButton.isHidden = false
                 UIView.animate(withDuration: 1,

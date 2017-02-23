@@ -69,7 +69,7 @@ class CountdownRunViewController: UIViewController  {
         
         if let soundVol = defaults.object(forKey: Constants.KeysUsedInCountdownTimer.SoundOnOff) as? Bool {
             soundIsOff = soundVol
-            if soundIsOff == true {
+            if soundIsOff {
                 soundOff()
             } else {
                 soundOn()
@@ -119,7 +119,7 @@ class CountdownRunViewController: UIViewController  {
     }
     
     @IBAction func turnSoundOnOff(_ sender: UIButton) {
-        if soundIsOff == false {
+        if !soundIsOff {
             soundIsOff = true
             soundOff()
         } else {
@@ -141,7 +141,7 @@ class CountdownRunViewController: UIViewController  {
         if !appDelegate.countdownTimerStarted {
             startTimer()
             timerIsOnPause = false
-            sender.setImage(UIImage(named: "PauseButton"), for: UIControlState())
+            sender.setImage(UIImage(named: "PauseButton"), for: .normal)
             /*
              Initially observer is added in viewWillAppear
              But when first pause is pressed, this observer is removed
@@ -158,7 +158,7 @@ class CountdownRunViewController: UIViewController  {
             timeKeeperForPause = timeKeeper
             timeWithPauseEvaluated = false
             timerIsOnPause = true
-            sender.setImage(UIImage(named: "StartButton"), for: UIControlState())
+            sender.setImage(UIImage(named: "StartButton"), for: .normal)
             // remove local notification
             notificationCenter.removeObserver(app.delegate!)
             app.cancelAllLocalNotifications()
@@ -258,11 +258,11 @@ class CountdownRunViewController: UIViewController  {
     // MARK: - Audio functions
     
     fileprivate func soundOff() {
-        soundOnOffOButton.setImage(UIImage(named : "SoundOff"), for: UIControlState())
+        soundOnOffOButton.setImage(UIImage(named : "SoundOff"), for: .normal)
         audioPlayer.volume = 0
     }
     fileprivate func soundOn() {
-        soundOnOffOButton.setImage(UIImage(named : "SoundOn"), for: UIControlState())
+        soundOnOffOButton.setImage(UIImage(named : "SoundOn"), for: .normal)
         audioPlayer.volume = 1
     }
     
