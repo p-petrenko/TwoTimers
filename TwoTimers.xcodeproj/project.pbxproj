@@ -12,6 +12,7 @@
 		2D262F571E2D70AD00DF61D5 /* CountdownSettingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D262F561E2D70AD00DF61D5 /* CountdownSettingsUITests.swift */; };
 		2D262F591E2D725600DF61D5 /* TwoTimersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D262F581E2D725600DF61D5 /* TwoTimersUITests.swift */; };
 		2D2C67B91E5E0CD90079DAFF /* MusicTableViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C67B81E5E0CD90079DAFF /* MusicTableViewControllerUnitTests.swift */; };
+		2D2C67BB1E5EE21A0079DAFF /* StopwatchViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C67BA1E5EE21A0079DAFF /* StopwatchViewControllerUnitTests.swift */; };
 		2D2D74411D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D743F1D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift */; };
 		2D2D74421D4695B000BCCFA9 /* SplitStopwatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D74401D4695B000BCCFA9 /* SplitStopwatchResult.swift */; };
 		2D2F1D451D21561000A19953 /* SavedResultsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */; };
@@ -81,6 +82,7 @@
 		2D262F561E2D70AD00DF61D5 /* CountdownSettingsUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownSettingsUITests.swift; sourceTree = "<group>"; };
 		2D262F581E2D725600DF61D5 /* TwoTimersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTimersUITests.swift; sourceTree = "<group>"; };
 		2D2C67B81E5E0CD90079DAFF /* MusicTableViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTableViewControllerUnitTests.swift; sourceTree = "<group>"; };
+		2D2C67BA1E5EE21A0079DAFF /* StopwatchViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		2D2D743F1D4695B000BCCFA9 /* SplitStopwatchResult+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SplitStopwatchResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D2D74401D4695B000BCCFA9 /* SplitStopwatchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitStopwatchResult.swift; sourceTree = "<group>"; };
 		2D2F1D441D21561000A19953 /* SavedResultsTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedResultsTableTableViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,24 @@
 				2DE41DEE1E37B74C00CFB700 /* CountdownRunUITests.swift */,
 			);
 			path = TwoTimersUITests;
+			sourceTree = "<group>";
+		};
+		2D2C67BC1E5EE8CC0079DAFF /* Countdown */ = {
+			isa = PBXGroup;
+			children = (
+				2DD3A9741E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift */,
+				2DD3A9761E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift */,
+				2D2C67B81E5E0CD90079DAFF /* MusicTableViewControllerUnitTests.swift */,
+			);
+			path = Countdown;
+			sourceTree = "<group>";
+		};
+		2D2C67BD1E5EE8D50079DAFF /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				2D2C67BA1E5EE21A0079DAFF /* StopwatchViewControllerUnitTests.swift */,
+			);
+			path = Stopwatch;
 			sourceTree = "<group>";
 		};
 		2D82D8681CA33D24008BFEB4 = {
@@ -320,10 +340,9 @@
 		2DE41DF51E38F61400CFB700 /* TwoTimersTests */ = {
 			isa = PBXGroup;
 			children = (
+				2D2C67BC1E5EE8CC0079DAFF /* Countdown */,
+				2D2C67BD1E5EE8D50079DAFF /* Stopwatch */,
 				2DE41DF81E38F61400CFB700 /* Info.plist */,
-				2DD3A9741E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift */,
-				2DD3A9761E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift */,
-				2D2C67B81E5E0CD90079DAFF /* MusicTableViewControllerUnitTests.swift */,
 			);
 			path = TwoTimersTests;
 			sourceTree = "<group>";
@@ -521,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2C67BB1E5EE21A0079DAFF /* StopwatchViewControllerUnitTests.swift in Sources */,
 				2DD3A9771E3E4679001BB7F6 /* CountdownRunViewControllerUnitTests.swift in Sources */,
 				2DD3A9751E3CDC24001BB7F6 /* CountdownSettingsViewControllerUnitTests.swift in Sources */,
 				2D2C67B91E5E0CD90079DAFF /* MusicTableViewControllerUnitTests.swift in Sources */,

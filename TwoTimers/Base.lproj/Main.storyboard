@@ -15,7 +15,7 @@
         <!--Stopwatch-->
         <scene sceneID="JOl-Hf-x3u">
             <objects>
-                <viewController id="d7C-2g-efc" customClass="StopwatchViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StopwatchViewController" id="d7C-2g-efc" customClass="StopwatchViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aqa-PU-eun"/>
                         <viewControllerLayoutGuide type="bottom" id="x7r-ge-bmR"/>
@@ -673,7 +673,7 @@
         <!--Split Results-->
         <scene sceneID="UZp-4g-QSG">
             <objects>
-                <tableViewController id="GKC-4i-i22" customClass="SplitResultsTableViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SplitResultsTableViewController" id="GKC-4i-i22" customClass="SplitResultsTableViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" id="g3q-Fz-5MR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -777,7 +777,7 @@
         <!--Saved Results-->
         <scene sceneID="5is-wX-Gp6">
             <objects>
-                <tableViewController id="AZ6-Lf-QLW" customClass="SavedResultsTableTableViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SavedResultsTableTableViewController" id="AZ6-Lf-QLW" customClass="SavedResultsTableTableViewController" customModule="TwoTimers" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" id="uYZ-U2-URb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -947,7 +947,7 @@
         <image name="StopButton" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="84c-aI-mKH"/>
+        <segue reference="Uqe-D2-s8U"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.023529411760000001" green="0.65490196079999996" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
