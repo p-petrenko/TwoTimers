@@ -30,7 +30,6 @@ class StopwatchViewControllerUnitTests: XCTestCase {
     }
     
     func test_IfSwitchingSleepModeSetsProperSleepMode() {
-        // sleepModeOff - private but false by default
         let stateOfSleepModeBeforeSwitching = app.isIdleTimerDisabled
         viewController.switchSleepMode(viewController.sleepModeButton)
         let defaultsSleepModeValue = defaults.value(forKey: Constants.KeysUsedInStopwatch.SleepMode) as! Bool
@@ -78,5 +77,18 @@ class StopwatchViewControllerUnitTests: XCTestCase {
         XCTAssertEqual(viewController.startTimerButton.image(for: .normal), UIImage(named: "StartButton"))
         XCTAssertEqual(viewController.splitAndResetButton .image(for: .normal), UIImage(named: "ResetButton"))
     }
+    
+    func test_IfAfterFirstStartTimeLabelsWillBeCorrect() {
+        // reset
+        appDelegate.stopwatchTimerStarted = false
+        viewController.resetOrMakeSplit(viewController.splitAndResetButton)
+        
+        viewController.startDate = Date(timeIntervalSinceNow: -0.1)
+        viewController.splitStartDate = Date(timeIntervalSinceNow: -0.1)
+        viewController.timerBeep()
+        XCTAssertEqual(viewController.runningTimeLabel.text, "00:00.1")
+        XCTAssertEqual(viewController.splitLabel.text, "00:00.1")
+    }
 
+    
 }

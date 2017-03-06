@@ -71,15 +71,6 @@ class CountdownRunViewControllerUnitTests: XCTestCase {
         let totalTimeLabelText = viewController.totalTimeLabel.text
         XCTAssertEqual(totalTimeLabelText, "Total time 00:01:00")
     }
-    
-    func test_IfPressingMinusOneMinuteChangesRunningTimeLabelCorrectly() {
-        viewController.secondsFromChosenTime = 120
-        viewController.minusOneMinute()
-        
-        let runningTimeLabelText = viewController.runningTimeLabel.text
-        // timeLeftInTimer = secondsFromChosenTime + Int(timeKeeper) + (timeOfWaitingOnPause)
-        XCTAssertEqual(runningTimeLabelText, "00:01:00")
-    }
    
     func test_IfPressingPlusOneMinuteIncreasesSecondsBy60() {
         viewController.secondsFromChosenTime = 60

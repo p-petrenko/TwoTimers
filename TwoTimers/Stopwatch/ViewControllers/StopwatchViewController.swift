@@ -18,20 +18,18 @@ class StopwatchViewController: UIViewController {
     fileprivate var sharedContext = CoreDataStackManager.sharedInstance().managedObjectContext
     
     fileprivate var timer: Timer!
-    fileprivate var startDate: Date! // time begins to run on pressing start
-    fileprivate var splitStartDate: Date!
+    var startDate: Date! // time, which was at the moment of pressing the start button
+    var splitStartDate: Date!
     fileprivate var secondsFromNSDate: Double! // NSDate interval from now to the moment of start
     fileprivate var secondsFromSplitNSDate: Double! // NSDate interval from now to themoment of last split start
-    fileprivate var timeKeeper = 0.0  // time keeps track of latest time when pause pressed
-    fileprivate var splitTimeKeeper = 0.0
+    fileprivate var timeKeeper = 0.0  // time in seconds, which was last time at the moment of pressing Pause
+    fileprivate var splitTimeKeeper = 0.0 // the same as timeKeeper, but on each split it resets to 0
     fileprivate var splitNumber = 0
     fileprivate var timerIsOnPause = true
     fileprivate var timeWithPauseEvaluated = false
     fileprivate var sleepModeOff = false
     fileprivate var splitStopwatchResults = [SplitStopwatchResult]()
     fileprivate var savedStopwatchResults = [SplitStopwatchResult]()
-    
-
     
     @IBOutlet weak var runningTimeLabel: UILabel!
     @IBOutlet weak var splitLabel: UILabel!
@@ -109,7 +107,6 @@ class StopwatchViewController: UIViewController {
             changeButtonsToPauseAndSplit()
             startDate = Date()
             splitStartDate = Date()
-            
         } else {
             // the user pressed Pause
             pauseTimer()
@@ -173,6 +170,19 @@ class StopwatchViewController: UIViewController {
     }
     
     func timerBeep() {
+        /*
+            On the first Start:
+         secondsFromNSDate = 0 - (-0.1 sec) = 0.1 sec
+         secondsFromSplitNSDate = 0 - (-0.1 sec) = 0.1 sec
+         
+            On Start after Pause:
+         secondsFromNSDate = 0.1 - (-0.1 sec) = 0.2 sec
+         secondsFromSplitNSDate = 0.1 - (-0.1 sec) = 0.2 sec
+         
+            On Split after Start(time was running for 5 seconds):
+         secondsFromNSDate = 0 - (-5.1 sec) = 5.1 sec
+         secondsFromSplitNSDate = 0 - (-0.1 sec) = 0.1 sec
+         */
         secondsFromNSDate = timeKeeper - (startDate.timeIntervalSinceNow)
         secondsFromSplitNSDate = splitTimeKeeper - (splitStartDate.timeIntervalSinceNow)
         runningTimeLabel.text = getTimeLabelFromTimeNumbers(secondsFromNSDate)

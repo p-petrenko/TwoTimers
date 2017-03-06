@@ -17,10 +17,6 @@ class SplitResultsTableViewController: UITableViewController {
     
     @IBOutlet weak var folderButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         splitStopwatchResults = coreDataStackManager.fetchCurrentSplitResult()
@@ -38,7 +34,7 @@ class SplitResultsTableViewController: UITableViewController {
         let alert = UIAlertController(title: Constants.StringsForAlert.SaveResultQuestion, message: Constants.StringsForAlert.EnterName, preferredStyle: UIAlertControllerStyle.alert)
         var alertTextField = [UITextField]()
         
-        alert.addTextField(){ textField in
+        alert.addTextField() {textField in
             eventNameTextField.keyboardType = UIKeyboardType.default
         }
         if alert.textFields != nil {
@@ -48,8 +44,7 @@ class SplitResultsTableViewController: UITableViewController {
         }
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){[unowned self] (alert : UIAlertAction) in
-            
-            // change 'event name' and 'saved' for current cell
+            // change 'event name' and 'saved' status for the current cell
             self.splitStopwatchResults[sender.tag].saved = true
             self.splitStopwatchResults[sender.tag].splitEventName = alertTextField[0].text!
             self.splitStopwatchResults[sender.tag].timeOfResultSaving = Date()
@@ -106,7 +101,6 @@ class SplitResultsTableViewController: UITableViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-
         if identifier == "Folder in SRTVC Segue" && !coreDataStackManager.fetchSavedSplitResult().isEmpty {
             return true
         }
